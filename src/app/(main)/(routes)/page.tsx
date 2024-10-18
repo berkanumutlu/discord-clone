@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button, buttonVariants } from "@/components/ui/button"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -21,6 +20,10 @@ export default function Home() {
           "bg-indigo-500",
           state && "bg-red-500"
         )}>cn Button</Button>
+      </div>
+      <div className="m-2 inline-flex gap-2">
+        <Button><Link href="/login">Login</Link></Button>
+        <Button><Link href="/register">Register</Link></Button>
       </div>
     </div>
 
