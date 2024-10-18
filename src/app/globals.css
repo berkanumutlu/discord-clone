@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-:root {
-  height: 100%;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -83,4 +73,36 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.main {
+  padding: 20px;
+  flex: 1;
+  background-color: #e9ecef;
+}
+
+footer {
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+  background-color: #f8f9fa;
+  text-align: center;
 }
