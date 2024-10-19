@@ -89,20 +89,19 @@ body {
 
 header {
   padding: 20px;
-  background-color: #f8f9fa;
-  text-align: center;
+  /* background-color: #f8f9fa; */
 }
 
 .main {
   padding: 20px;
   flex: 1;
-  background-color: #e9ecef;
+  /* background-color: #e9ecef; */
 }
 
 footer {
   padding: 10px;
   position: sticky;
   bottom: 0;
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   text-align: center;
 }
