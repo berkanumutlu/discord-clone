@@ -5,6 +5,7 @@ import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@c
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
+import ClientLayout from "./client-layout";
 
 const font = Open_Sans({ subsets: ['latin'] });
 
@@ -28,9 +29,9 @@ export default function RootLayout({
         )}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             /* forcedTheme="dark" */
-            enableSystem={false}
+            enableSystem={true}
             storageKey="discord-theme"
           >
             <header>
@@ -40,11 +41,9 @@ export default function RootLayout({
               <SignedIn>
                 <UserButton />
               </SignedIn>
-              <div>
-                <ModeToggle />
-              </div>
+              <ModeToggle />
             </header>
-            <main className="main">{children}</main>
+            <main className="main"><ClientLayout>{children}</ClientLayout></main>
             <footer>
               Footer Section
             </footer>
