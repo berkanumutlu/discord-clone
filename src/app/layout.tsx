@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ModeToggle } from "@/components/mode-toggle";
+import { cn } from "@/lib/utils";
+import ClientLayout from "./client-layout";
 
 const font = Open_Sans({ subsets: ['latin'] });
 
@@ -17,20 +21,33 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`h-full ${font.className} antialiased`}>
-          <header>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          <main className="main">{children}</main>
-          <footer>
-            Footer Section
-          </footer>
+      <html lang="en" suppressHydrationWarning={true}>
+        <body className={cn(
+          font.className,
+          'antialiased',
+          'bg-[#e9ecef] dark:bg-[#313338]'
+        )}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            /* forcedTheme="dark" */
+            enableSystem={true}
+            storageKey="discord-theme"
+          >
+            <header>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <ModeToggle />
+            </header>
+            <main className="main"><ClientLayout>{children}</ClientLayout></main>
+            <footer>
+              Footer Section
+            </footer>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
