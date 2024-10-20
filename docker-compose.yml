@@ -39,6 +39,17 @@ services:
       - pgadmin_data:/var/lib/pgadmin
     depends_on:
       - db
+  prisma:
+    container_name: discord-clone-prisma
+    image: node:20.18.0-alpine
+    working_dir: /user/local/app
+    command: [ "npx", "prisma", "studio" ]
+    volumes:
+      - .:/user/local/app
+    ports:
+      - "5555:5555"
+    depends_on:
+      - db
 
 volumes:
   pgdata:
