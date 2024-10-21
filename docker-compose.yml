@@ -1,0 +1,58 @@
+version: '3'
+services:
+  app:
+    container_name: discord-clone-app
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - docker/.env
+    volumes:
+      - .:/user/local/app
+      # - /user/local/app/node_modules
+      # - /user/local/app/.next
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev
+    depends_on:
+      - db
+  db:
+    container_name: discord-clone-db
+    image: postgres:15.7
+    env_file:
+      - docker/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    container_name: discord-clone-pgadmin4
+    image: dpage/pgadmin4:8.12
+    env_file:
+      - docker/.env
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
+  prisma:
+    container_name: discord-clone-prisma
+    image: node:20.18.0-alpine
+    working_dir: /user/local/app
+    command: [ "npx", "prisma", "studio" ]
+    volumes:
+      - .:/user/local/app
+    ports:
+      - "5555:5555"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+    driver: local
+  pgadmin_data:
+    driver: local
