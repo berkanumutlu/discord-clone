@@ -38,7 +38,7 @@ export const NavigationSidebar = async () => {
                 <UserButton
                     appearance={{
                         elements: {
-                            avatarBox: "w-[48px] h-[48px]"
+                            avatarBox: "w-[48px] h-[48px] hover:rounded-[16px] transition-all overflow-hidden"
                         }
                     }}
                 />

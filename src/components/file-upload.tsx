@@ -1,7 +1,6 @@
 "use client";
 
 import { UploadDropzone } from "@/lib/uploadthing";
-import "@uploadthing/react/styles.css";
 import { X } from "lucide-react";
 import Image from "next/image";
 
@@ -42,7 +41,7 @@ export const FileUpload = ({
                 onChange(res?.[0].url);
             }}
             onUploadError={(err: Error) => {
-                console.log(err);
+                console.log("[FILE_UPLOAD]", err);
             }}
         />
     )

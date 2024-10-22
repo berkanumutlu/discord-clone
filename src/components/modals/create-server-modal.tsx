@@ -3,7 +3,6 @@
 import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogTitle, DialogContent, DialogDescription, DialogHeader, DialogFooter } from "@/components/ui/dialog";
@@ -11,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
+import { useModal } from "@/hooks/use-modal-store";
 
 const forSchema = z.object({
     name: z.string().min(1, {
@@ -21,14 +21,11 @@ const forSchema = z.object({
     })
 });
 
-export const InitialModal = () => {
-    const [isMounted, setIsMounted] = useState(false);
+export const CreateServerModal = () => {
+    const { isOpen, onClose, type } = useModal();
     const router = useRouter();
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
+    const isModalOpen = isOpen && type === 'createServer';
     const form = useForm({
         resolver: zodResolver(forSchema),
         defaultValues: {
@@ -42,23 +39,23 @@ export const InitialModal = () => {
             await axios.post("/api/servers", values);
             form.reset();
             router.refresh();
-            window.location.reload();
+            onClose();
         } catch (err) {
-            console.log("[INITIAL_MODAL]", err);
+            console.log("[CREATE_SERVER]", err);
         }
     }
-
-    if (!isMounted) {
-        return null;
+    const handleClose = () => {
+        form.reset();
+        onClose();
     }
 
     return (
-        <Dialog open>
+        <Dialog open={isModalOpen} onOpenChange={handleClose}>
             <DialogContent className="p-0 bg-white text-black overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
-                    <DialogTitle className="text-2xl font-bold text-center">First Server</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold text-center">Customize your server</DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        To start using the application, you first need to create a server.
+                        Give your server a personality with a name and an image. You can always change it later.
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
