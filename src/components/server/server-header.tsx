@@ -65,20 +65,14 @@ export const ServerHeader = ({
                 {isModerator && (
                     <DropdownMenuSeparator />
                 )}
-                {isAdmin ? (
-                    <DropdownMenuItem className="px-3 py-2 text-sm text-rose-500 cursor-pointer">
-                        Delete Server
-                        <Trash className="w-4 h-4 ml-auto" />
-                    </DropdownMenuItem>
-                ) : (
-                    <DropdownMenuItem
-                        onClick={() => onOpen("leaveServer", { server })}
-                        className="px-3 py-2 text-sm text-rose-500 cursor-pointer"
-                    >
-                        Leave Server
-                        <LogOut className="w-4 h-4 ml-auto" />
-                    </DropdownMenuItem>
-                )}
+                <DropdownMenuItem
+                    onClick={() => onOpen(isAdmin ? "deleteServer" : "leaveServer", { server })}
+                    className="px-3 py-2 text-sm text-rose-500 cursor-pointer"
+                >
+                    {isAdmin ? "Delete Server" : "Leave Server"}
+                    {isAdmin ? <Trash className="w-4 h-4 ml-auto" /> : <LogOut className="w-4 h-4 ml-auto" />}
+                    {/* {React.createElement(isAdmin ? Trash : LogOut, { className: "w-4 h-4 ml-auto" })} */}
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )
