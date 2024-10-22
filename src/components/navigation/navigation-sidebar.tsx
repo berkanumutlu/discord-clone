@@ -33,7 +33,7 @@ export const NavigationSidebar = async () => {
                     </div>
                 ))}
             </ScrollArea>
-            <div className="mt-auto pb-3 flex flex-col items-center gap-y-4">
+            <div className="mt-auto flex flex-col items-center gap-y-4">
                 <ModeToggle />
                 <UserButton
                     appearance={{
