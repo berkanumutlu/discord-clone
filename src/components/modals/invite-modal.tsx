@@ -44,7 +44,7 @@ export const InviteModal = () => {
         } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
