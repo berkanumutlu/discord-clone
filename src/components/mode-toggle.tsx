@@ -50,7 +50,7 @@ export function ModeToggle() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button className="bg-transparent border-0 focus-visible:!ring-transparent focus-visible:!ring-offset-transparent" variant="outline" size="icon">
                     {renderThemeIcon()}
                     <span className="sr-only">Toggle theme</span>
                 </Button>
