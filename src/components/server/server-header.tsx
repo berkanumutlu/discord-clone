@@ -32,7 +32,8 @@ export const ServerHeader = ({
                 {isModerator && (
                     <DropdownMenuItem
                         onClick={() => onOpen("invite", { server })}
-                        className="px-3 py-2 text-sm text-indigo-600 dark:text-indigo-400 cursor-pointer">
+                        className="px-3 py-2 text-sm text-indigo-600 dark:text-indigo-400 cursor-pointer"
+                    >
                         Invite People
                         <UserPlus className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
@@ -40,7 +41,8 @@ export const ServerHeader = ({
                 {isAdmin && (
                     <DropdownMenuItem
                         onClick={() => onOpen("editServer", { server })}
-                        className="px-3 py-2 text-sm cursor-pointer">
+                        className="px-3 py-2 text-sm cursor-pointer"
+                    >
                         Server Settings
                         <Settings className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
@@ -48,7 +50,8 @@ export const ServerHeader = ({
                 {isAdmin && (
                     <DropdownMenuItem
                         onClick={() => onOpen("members", { server })}
-                        className="px-3 py-2 text-sm cursor-pointer">
+                        className="px-3 py-2 text-sm cursor-pointer"
+                    >
                         Manage Members
                         <Users className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
@@ -68,7 +71,10 @@ export const ServerHeader = ({
                         <Trash className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
                 ) : (
-                    <DropdownMenuItem className="px-3 py-2 text-sm text-rose-500 cursor-pointer">
+                    <DropdownMenuItem
+                        onClick={() => onOpen("leaveServer", { server })}
+                        className="px-3 py-2 text-sm text-rose-500 cursor-pointer"
+                    >
                         Leave Server
                         <LogOut className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>

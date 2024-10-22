@@ -12,8 +12,8 @@ import { useModal } from "@/hooks/use-modal-store";
 import { UseOrigin } from "@/hooks/use-origin";
 
 export const InviteModal = () => {
-    const { isOpen, onOpen, onClose, type, data } = useModal();
     const origin = UseOrigin();
+    const { isOpen, onOpen, onClose, type, data } = useModal();
     const [isLoading, setIsLoading] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
