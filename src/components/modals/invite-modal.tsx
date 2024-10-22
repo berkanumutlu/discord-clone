@@ -65,8 +65,8 @@ export const InviteModal = () => {
                         </ActionTooltip>
                     </div>
                     <Button variant="link" size="sm" onClick={onNew} disabled={isLoading} className="mt-4 text-xs text-zinc-500">
-                        Generate a new link
-                        <RefreshCw className="w-4 h-4 ml-2" />
+                        <RefreshCw className="w-4 h-4" />
+                        Generate a new invite link
                     </Button>
                 </div>
             </DialogContent>

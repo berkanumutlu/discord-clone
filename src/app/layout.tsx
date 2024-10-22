@@ -34,10 +34,12 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="discord-theme"
           >
-            <ClientLayout>
-              <ModalProvider />
-              {children}
-            </ClientLayout>
+            <main className="main">
+              <ClientLayout>
+                <ModalProvider />
+                {children}
+              </ClientLayout>
+            </main>
           </ThemeProvider>
         </body>
       </html>
