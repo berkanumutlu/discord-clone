@@ -34,5 +34,5 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         return null;
     }
 
-    return <div>{children}</div>;
+    return <>{children}</>;
 }

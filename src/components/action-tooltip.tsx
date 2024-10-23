@@ -7,19 +7,21 @@ interface ActionTooltipProps {
     children: React.ReactNode;
     side?: "top" | "right" | "bottom" | "left";
     align?: "start" | "center" | "end";
+    open?: boolean;
 }
 
 export const ActionTooltip = ({
     label,
     children,
     side,
-    align
+    align,
+    open
 }: ActionTooltipProps) => {
     return (
         <TooltipProvider>
-            <Tooltip delayDuration={50}>
+            <Tooltip open={open} delayDuration={50}>
                 <TooltipTrigger asChild>{children}</TooltipTrigger>
-                <TooltipContent side={side} align={align}>
+                <TooltipContent side={side} align={align} className="z-51">
                     <p className="text-sm font-semibold capitalize">
                         {label.toLocaleLowerCase()}
                     </p>
