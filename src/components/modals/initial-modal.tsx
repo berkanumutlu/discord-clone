@@ -22,8 +22,8 @@ const forSchema = z.object({
 });
 
 export const InitialModal = () => {
-    const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
         setIsMounted(true);
@@ -46,7 +46,7 @@ export const InitialModal = () => {
         } catch (err) {
             console.log("[INITIAL_MODAL]", err);
         }
-    }
+    };
 
     if (!isMounted) {
         return null;
