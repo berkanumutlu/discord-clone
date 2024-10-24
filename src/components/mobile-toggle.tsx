@@ -18,7 +18,7 @@ export const MobileToggle = ({
             </SheetTrigger>
             <SheetContent side="left" className="p-0 flex flex-col gap-0">
                 {/* Manual Header without default Close button */}
-                <div className="w-full px-4 py-2 flex items-center justify-between bg-[#dcdddf] dark:bg-[#121214] border-b">
+                <div className="px-4 py-2 flex items-center justify-between bg-[#dcdddf] dark:bg-[#121214]">
                     <h2 className="text-lg font-bold">Menu</h2>
                 </div>
                 <div className="flex flex-1 gap-0">
