@@ -70,6 +70,6 @@ export const InviteModal = () => {
                     </Button>
                 </div>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }
