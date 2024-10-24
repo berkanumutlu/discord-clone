@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun, SunMoon } from "lucide-react";
+import { Check, Moon, Sun, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -57,13 +57,13 @@ export function ModeToggle() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => handleThemeChange("system")}>
-                    Automatic
+                    Automatic{userSelectedTheme === "system" && (<Check className="ml-auto w-4 h-4" />)}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleThemeChange("light")}>
-                    Light
+                    Light{userSelectedTheme === "light" && (<Check className="ml-auto w-4 h-4" />)}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
-                    Dark
+                    Dark{userSelectedTheme === "dark" && (<Check className="ml-auto w-4 h-4" />)}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

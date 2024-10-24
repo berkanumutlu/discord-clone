@@ -23,8 +23,8 @@ const forSchema = z.object({
 });
 
 export const EditServerModal = () => {
-    const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
+    const { isOpen, onClose, type, data } = useModal();
 
     const isModalOpen = isOpen && type === 'editServer';
     const { server } = data;
@@ -55,11 +55,11 @@ export const EditServerModal = () => {
         } catch (err) {
             console.log("[CREATE_SERVER]", err);
         }
-    }
+    };
     const handleClose = () => {
         form.reset();
         onClose();
-    }
+    };
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>

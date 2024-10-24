@@ -22,8 +22,8 @@ const forSchema = z.object({
 });
 
 export const CreateServerModal = () => {
-    const { isOpen, onClose, type } = useModal();
     const router = useRouter();
+    const { isOpen, onClose, type } = useModal();
 
     const isModalOpen = isOpen && type === 'createServer';
     const form = useForm({
@@ -43,11 +43,11 @@ export const CreateServerModal = () => {
         } catch (err) {
             console.log("[CREATE_SERVER]", err);
         }
-    }
+    };
     const handleClose = () => {
         form.reset();
         onClose();
-    }
+    };
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
@@ -61,7 +61,9 @@ export const CreateServerModal = () => {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                         <div className="space-y-8 px-6">
+                            {/* TODO: When the form is submitted, there is no warning that a image is required. */}
                             <div className="flex items-center justify-center text-center">
+
                                 <FormField control={form.control} name="imageUrl"
                                     render={({ field }) => (
                                         <FormItem>
@@ -79,9 +81,9 @@ export const CreateServerModal = () => {
                             <FormField control={form.control} name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:secondary/70">Server name</FormLabel>
+                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:secondary/70">Server Name</FormLabel>
                                         <FormControl>
-                                            <Input disabled={isLoading} className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0" placeholder="Enter Server name" {...field} />
+                                            <Input disabled={isLoading} className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0" placeholder="Enter server name" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

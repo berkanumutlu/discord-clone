@@ -66,7 +66,7 @@ export const MembersModal = () => {
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl font-bold text-center">Manage Members</DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        {server?.members?.length} Members
+                        {server?.members?.length > 0 ? `${server.members.length} Members` : "There are no members"}
                     </DialogDescription>
                 </DialogHeader>
                 <ScrollArea className="mt-8 pr-6 max-h-[420px]">
@@ -121,6 +121,6 @@ export const MembersModal = () => {
                     ))}
                 </ScrollArea>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }

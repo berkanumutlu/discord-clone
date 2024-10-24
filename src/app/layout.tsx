@@ -24,8 +24,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning={true}>
         <body className={cn(
           font.className,
-          "antialiased",
-          "bg-[#e9ecef] dark:bg-[#313338]"
+          "antialiased dark:bg-[#313338]"
         )}>
           <ThemeProvider
             attribute="class"
