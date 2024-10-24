@@ -1,12 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import qs from "query-string";
 import * as z from "zod";
-import { Plus, SmilePlus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { EmojiPicker } from "@/components/emoji-picker";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "@/hooks/use-modal-store";
 
@@ -27,6 +29,7 @@ export const ChatInput = ({
     name,
     type
 }: ChatInputProps) => {
+    const router = useRouter();
     const { onOpen } = useModal();
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -40,6 +43,8 @@ export const ChatInput = ({
         try {
             const url = qs.stringifyUrl({ url: apiUrl, query });
             await axios.post(url, values);
+            form.reset();
+            router.refresh();
         } catch (err) {
             console.log(err);
         }
@@ -58,7 +63,7 @@ export const ChatInput = ({
                                     </button>
                                     <Input disabled={isLoading} autoComplete="off" placeholder={`Message ${type === "conversation" ? name : "#" + name}`} {...field} className="px-14 py-6 text-zinc-600 dark:text-zinc-200 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
                                     <div className="absolute top-7 right-8">
-                                        <SmilePlus />
+                                        <EmojiPicker onChange={(emoji: string) => field.onChange(`${field.value} ${emoji}`)} />
                                     </div>
                                 </div>
                             </FormControl>
