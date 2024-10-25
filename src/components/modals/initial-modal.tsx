@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 
-const forSchema = z.object({
+const formSchema = z.object({
     name: z.string().min(1, {
         message: "Server name is required."
     }),
@@ -30,7 +30,7 @@ export const InitialModal = () => {
     }, []);
 
     const form = useForm({
-        resolver: zodResolver(forSchema),
+        resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
             imageUrl: ""
@@ -38,7 +38,7 @@ export const InitialModal = () => {
     });
     const isLoading = form.formState.isSubmitting;
 
-    const onSubmit = async (values: z.infer<typeof forSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             await axios.post("/api/servers", values);
             form.reset();

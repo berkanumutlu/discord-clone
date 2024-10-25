@@ -1,10 +1,14 @@
 "use client";
 
 import { Fragment } from "react";
+import { format } from "date-fns";
 import { Member, Message, Profile } from "@prisma/client";
 import { Loader2, ServerCrash } from "lucide-react";
 import { useChatQuery } from "@/hooks/use-chat-query";
 import { ChatWelcome } from "./chat-welcome";
+import { ChatItem } from "./chat-item";
+
+const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
 type MessageWithMemberWithProfile = Message & {
     member: Member & {
@@ -49,6 +53,7 @@ export const ChatMessages = ({
         paramKey,
         paramValue
     });
+
     if (isLoading) {
         return (
             <div className="flex flex-col flex-1 justify-center items-center">
@@ -67,16 +72,28 @@ export const ChatMessages = ({
     }
 
     return (
-        <div className="py-4 flex flex-col flex-1 overflow-y-auto">
+        <div className="pt-4 flex flex-col flex-1 overflow-y-auto">
             <div className="flex-1" />
             <ChatWelcome name={name} type={type} />
             <div className="mt-auto flex flex-col-reverse">
                 {data?.pages?.map((group, index) => (
                     <Fragment key={index}>
                         {group?.items?.map((message: MessageWithMemberWithProfile) => (
-                            <div key={message.id}>
-                                {message.content}
-                            </div>
+                            <ChatItem
+                                key={message.id}
+                                id={message.id}
+                                content={message.content}
+                                member={message.member}
+                                currentMember={member}
+                                fileUrl={message.fileUrl}
+                                fileType={message.fileType}
+                                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
+                                isUpdated={message.updatedAt !== null && message.updatedAt !== message.createdAt}
+                                isDeleted={!!message.deletedAt}
+                                deletedAt={format(new Date(message?.deletedAt as Date), DATE_FORMAT)}
+                                socketUrl={socketUrl}
+                                socketQuery={socketQuery}
+                            />
                         ))}
                     </Fragment>
                 ))}

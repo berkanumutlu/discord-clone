@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useModal } from "@/hooks/use-modal-store";
 
-const forSchema = z.object({
+const formSchema = z.object({
     name: z.string().min(1, {
         message: "Server name is required."
     }),
@@ -29,7 +29,7 @@ export const EditServerModal = () => {
     const isModalOpen = isOpen && type === 'editServer';
     const { server } = data;
     const form = useForm({
-        resolver: zodResolver(forSchema),
+        resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
             imageUrl: ""
@@ -46,7 +46,7 @@ export const EditServerModal = () => {
         }
     }, [isModalOpen, server, form]);
 
-    const onSubmit = async (values: z.infer<typeof forSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             await axios.patch(`/api/servers/${server?.id}`, values);
             form.reset();

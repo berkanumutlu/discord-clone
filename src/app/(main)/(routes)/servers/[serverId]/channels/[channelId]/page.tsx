@@ -24,29 +24,35 @@ const ChannelIdPage = async ({
 
     return (
         <div className="h-full flex flex-col bg-white dark:bg-[#313338]">
-            <ChatHeader name={channel.name} serverId={channel.serverId} type="channel" />
-            <ChatMessages
-                name={channel.name}
-                member={member}
-                chatId={channel.id}
-                type="channel"
-                apiUrl="/api/messages"
-                socketUrl="/api/socket/messages"
-                socketQuery={{
-                    channelId: channel.id,
-                    serverId: channel.serverId
-                }}
-                paramKey="channelId"
-                paramValue={channel.id}
-            />
-            <ChatInput type="channel" name={channel.name}
-                apiUrl="/api/socket/messages"
-                query={{
-                    channelId: channel.id,
-                    serverId: channel.serverId
-                }}
-            />
-        </div>
+            <div className="sticky top-0 z-10 bg-inherit">
+                <ChatHeader name={channel.name} serverId={channel.serverId} type="channel" />
+            </div>
+            <div className="flex flex-1 overflow-y-auto">
+                <ChatMessages
+                    name={channel.name}
+                    member={member}
+                    chatId={channel.id}
+                    type="channel"
+                    apiUrl="/api/messages"
+                    socketUrl="/api/socket/messages"
+                    socketQuery={{
+                        channelId: channel.id,
+                        serverId: channel.serverId
+                    }}
+                    paramKey="channelId"
+                    paramValue={channel.id}
+                />
+            </div>
+            <div className="sticky bottom-0 z-10 bg-inherit">
+                <ChatInput type="channel" name={channel.name}
+                    apiUrl="/api/socket/messages"
+                    query={{
+                        channelId: channel.id,
+                        serverId: channel.serverId
+                    }}
+                />
+            </div>
+        </div >
     )
 }
 

@@ -6,7 +6,7 @@ import { FileIcon, X } from "lucide-react";
 import { UploadDropzone } from "@/lib/uploadthing";
 
 interface FileUploadProps {
-    onChange: (url?: string) => void;
+    onChange: (url?: string, type?: string) => void;
     value: string;
     endpoint: "messageFile" | "serverImage";
 }
@@ -40,7 +40,7 @@ export const FileUpload = ({
             return (
                 <div className="mt-2 p-2 relative flex items-center bg-background/10 rounded-md">
                     <FileIcon className="w-10 h-10 fill-indigo-200 stroke-indigo-400" />
-                    <a href={value} target="_blank" rel="noopener noreferrer" className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[350px]">{value}</a>
+                    <a href={value} target="_blank" rel="noopener noreferrer" className="ml-2 max-w-[350px] text-sm text-indigo-500 dark:text-indigo-400 hover:underline overflow-hidden text-ellipsis whitespace-nowrap">{value}</a>
                     <button
                         onClick={() => {
                             onChange("");
@@ -62,7 +62,7 @@ export const FileUpload = ({
             onClientUploadComplete={(res) => {
                 if (res && res[0]) {
                     const { url, type } = res[0];
-                    onChange(url);
+                    onChange(url, type);
                     setMimeType(type);
                 }
             }}

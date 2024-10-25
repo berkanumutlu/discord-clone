@@ -23,14 +23,14 @@ export const ServerSearch = ({ searchData }: ServerSearchProps) => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const down = (e: KeyboardEvent) => {
+        const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key && e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)) {
                 e.preventDefault();
                 setOpen((open) => !open);
             }
         };
-        document.addEventListener("keydown", down);
-        return () => { document.removeEventListener("keydown", down) }
+        document.addEventListener("keydown", handleKeyDown);
+        return () => { document.removeEventListener("keydown", handleKeyDown) };
     }, [setOpen]);
 
 

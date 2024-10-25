@@ -91,6 +91,7 @@ model Message {
   id        String    @id @default(uuid())
   content   String    @db.Text
   fileUrl   String?   @db.Text
+  fileType  String?   @db.VarChar(50)
   memberId  String
   member    Member    @relation(fields: [memberId], references: [id], onDelete: Cascade)
   channelId String
