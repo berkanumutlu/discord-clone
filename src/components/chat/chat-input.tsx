@@ -1,11 +1,11 @@
 "use client";
 
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import qs from "query-string";
 import * as z from "zod";
 import { Plus } from "lucide-react";
-import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { EmojiPicker } from "@/components/emoji-picker";
@@ -39,6 +39,7 @@ export const ChatInput = ({
         }
     });
     const isLoading = form.formState.isSubmitting;
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const url = qs.stringifyUrl({ url: apiUrl, query });

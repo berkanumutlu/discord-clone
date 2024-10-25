@@ -8,6 +8,7 @@ interface ChatQueryProps {
     paramKey: "channelId" | "conversationId";
     paramValue: string;
 }
+
 interface MessageData {
     items: [] | null;
     nextCursor: string | null;
@@ -20,6 +21,7 @@ export const useChatQuery = ({
     paramValue
 }: ChatQueryProps) => {
     const { isConnected } = useSocket();
+
     const fetchMessages = async ({ pageParam = null }: { pageParam: string | null }): Promise<MessageData> => {
         const url = qs.stringifyUrl({
             url: apiUrl,

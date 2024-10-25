@@ -23,7 +23,6 @@ export const MessageFileModal = () => {
     const { isOpen, onClose, type, data } = useModal();
 
     const isModalOpen = isOpen && type === 'messageFile';
-
     const form = useForm({
         resolver: zodResolver(forSchema),
         defaultValues: {
@@ -32,6 +31,7 @@ export const MessageFileModal = () => {
     });
     const isLoading = form.formState.isSubmitting;
     const { apiUrl, query } = data;
+
     const onSubmit = async (values: z.infer<typeof forSchema>) => {
         try {
             const url = qs.stringifyUrl({ url: apiUrl || "", query })

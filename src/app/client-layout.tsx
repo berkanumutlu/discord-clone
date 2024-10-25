@@ -5,8 +5,8 @@ import { useTheme } from "next-themes";
 import { updateThemeBasedOnTime } from "@/lib/utils";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
-    const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme(); // setTheme from next-themes
+    const [mounted, setMounted] = useState(false);
     const [isSystemTheme, setIsSystemTheme] = useState(false); // Track if the user has selected the "system" theme
 
     useEffect(() => {
@@ -34,5 +34,5 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         return null;
     }
 
-    return <>{children}</>;
+    return (<>{children}</>);
 }

@@ -35,6 +35,7 @@ export const EditServerModal = () => {
             imageUrl: ""
         }
     });
+    const isLoading = form.formState.isSubmitting;
 
     useEffect(() => {
         if (server) {
@@ -45,7 +46,6 @@ export const EditServerModal = () => {
         }
     }, [isModalOpen, server, form]);
 
-    const isLoading = form.formState.isSubmitting;
     const onSubmit = async (values: z.infer<typeof forSchema>) => {
         try {
             await axios.patch(`/api/servers/${server?.id}`, values);

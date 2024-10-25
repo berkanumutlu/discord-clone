@@ -28,7 +28,8 @@ export const FileUpload = ({
                         onClick={() => {
                             onChange("");
                             setMimeType(undefined);
-                        }} type="button"
+                        }}
+                        type="button"
                         className="p-1 absolute top-0 right-0 bg-rose-500 text-white rounded-full shadow-sm"
                     >
                         <X className="w-4 h-4" />
@@ -45,9 +46,11 @@ export const FileUpload = ({
                             onChange("");
                             setMimeType(undefined);
                         }}
-                        className="p-1 absolute -top-2 -right-2 bg-rose-500 text-white rounded-full shadow-sm"
                         type="button"
-                    ><X className="w-4 h-4" /></button>
+                        className="p-1 absolute -top-2 -right-2 bg-rose-500 text-white rounded-full shadow-sm"
+                    >
+                        <X className="w-4 h-4" />
+                    </button>
                 </div>
             )
         }

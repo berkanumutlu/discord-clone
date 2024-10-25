@@ -8,7 +8,6 @@ export default async function handler(
     res: NextApiResponseServerIo
 ) {
     if (req.method !== "POST") return res.status(405).json({ error: "MEthod not allowed" });
-
     try {
         const profile = await currentProfilePages(req);
         if (!profile) return res.status(401).json({ error: "Unauthorized" });

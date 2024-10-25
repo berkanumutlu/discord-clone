@@ -1,20 +1,19 @@
 "use client";
 
-import * as React from "react";
-import { Check, Moon, Sun, SunMoon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Check, Moon, Sun, SunMoon } from "lucide-react";
 import { updateThemeBasedOnTime } from "@/lib/utils";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
-    const [mounted, setMounted] = React.useState(false);
     const { setTheme } = useTheme();
-    const [userSelectedTheme, setUserSelectedTheme] = React.useState<string | null>(null); // Let's add state to track the theme
+    const [mounted, setMounted] = useState(false);
+    const [userSelectedTheme, setUserSelectedTheme] = useState<string | null>(null); // Let's add state to track the theme
 
     // Checking the mount status
-    React.useEffect(() => {
+    useEffect(() => {
         setMounted(true);
         const userSelectedTheme = localStorage.getItem("user-selected-theme");
         setUserSelectedTheme(userSelectedTheme || "system"); // If not present, "system" is the default
@@ -38,7 +37,7 @@ export function ModeToggle() {
             case "dark":
                 return <Moon className="h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />;
             default:
-                return <SunMoon className="h-[1.9rem] w-[1.9rem]" />;
+                return <SunMoon className="h-[1.9rem] w-[1.9rem] rotate-0 scale-100 transition-all" />;
         }
     };
 
@@ -50,7 +49,7 @@ export function ModeToggle() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button className="bg-transparent border-0 focus-visible:!ring-transparent focus-visible:!ring-offset-transparent" variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="bg-transparent border-0 focus-visible:!ring-transparent focus-visible:!ring-offset-transparent">
                     {renderThemeIcon()}
                     <span className="sr-only">Toggle theme</span>
                 </Button>

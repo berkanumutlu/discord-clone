@@ -1,8 +1,8 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { Edit, Hash, Lock, Volume2, Trash } from "lucide-react";
 import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
+import { Edit, Hash, Lock, Volume2, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { ModalType, useModal } from "@/hooks/use-modal-store";
@@ -28,6 +28,7 @@ export const ServerChannel = ({
     const { onOpen } = useModal();
 
     const Icon = iconMap[channel.type];
+
     const onClick = () => {
         router.push(`/servers/${params?.serverId}/channels/${channel.id}`);
     };

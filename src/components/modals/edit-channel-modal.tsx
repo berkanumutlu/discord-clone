@@ -40,6 +40,7 @@ export const EditChannelModal = () => {
             type: channel?.type || ChannelType.TEXT
         }
     });
+    const isLoading = form.formState.isSubmitting;
 
     useEffect(() => {
         if (channel) {
@@ -48,7 +49,6 @@ export const EditChannelModal = () => {
         }
     }, [form, channel]);
 
-    const isLoading = form.formState.isSubmitting;
     const onSubmit = async (values: z.infer<typeof forSchema>) => {
         try {
             const url = qs.stringifyUrl({

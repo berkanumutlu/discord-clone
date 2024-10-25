@@ -8,17 +8,13 @@ const MESSAGES_LIMIT = 25;
 async function fetchMessages(channelId: string, cursor?: string) {
     const queryOptions: Prisma.MessageFindManyArgs = {
         take: MESSAGES_LIMIT,
-        where: {
-            channelId
-        },
+        where: { channelId },
         include: {
             member: {
                 include: { profile: true }
             }
         },
-        orderBy: {
-            createdAt: "desc"
-        }
+        orderBy: { createdAt: "desc" }
     };
     if (cursor) {
         queryOptions.cursor = { id: cursor };

@@ -1,10 +1,10 @@
 "use client";
 
 import { Fragment } from "react";
-import { Loader2, ServerCrash } from "lucide-react";
 import { Member, Message, Profile } from "@prisma/client";
-import { ChatWelcome } from "./chat-welcome";
+import { Loader2, ServerCrash } from "lucide-react";
 import { useChatQuery } from "@/hooks/use-chat-query";
+import { ChatWelcome } from "./chat-welcome";
 
 type MessageWithMemberWithProfile = Message & {
     member: Member & {
@@ -73,7 +73,7 @@ export const ChatMessages = ({
             <div className="mt-auto flex flex-col-reverse">
                 {data?.pages?.map((group, index) => (
                     <Fragment key={index}>
-                        {group.items.map((message: MessageWithMemberWithProfile) => (
+                        {group?.items?.map((message: MessageWithMemberWithProfile) => (
                             <div key={message.id}>
                                 {message.content}
                             </div>

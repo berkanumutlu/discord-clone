@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
-import { Hash, ShieldAlert, ShieldCheck, Volume2 } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
-import { db } from "@/lib/db";
 import { ChannelType, MemberRole } from "@prisma/client";
+import { Hash, ShieldAlert, ShieldCheck, Volume2 } from "lucide-react";
+import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -20,6 +20,7 @@ const iconMap = {
     [ChannelType.TEXT]: <Hash className="mr-2 w-4 h-4" />,
     [ChannelType.AUDIO]: <Volume2 className="mr-2 w-4 h-4" />
 };
+
 const roleIconMap = {
     [MemberRole.GUEST]: null,
     [MemberRole.MODERATOR]: <ShieldCheck className="mr-2 w-4 h-4 text-indigo-500" />,
@@ -51,7 +52,7 @@ export const ServerSidebar = async ({
             <ScrollArea className="px-3 flex-1">
                 <div className="mt-2">
                     <ServerSearch
-                        data={[
+                        searchData={[
                             {
                                 label: "Text Channels",
                                 type: "channel",
