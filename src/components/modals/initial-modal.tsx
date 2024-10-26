@@ -57,9 +57,9 @@ export const InitialModal = () => {
         <Dialog open>
             <DialogContent className="p-0 bg-white text-black overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
-                    <DialogTitle className="text-2xl font-bold text-center">First Server</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold text-center">Get Started</DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        To start using the application, you first need to create a server.
+                        To start using the application, you first need to create or join a server.
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>

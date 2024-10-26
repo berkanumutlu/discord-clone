@@ -44,7 +44,9 @@ const ChannelIdPage = async ({
                 />
             </div>
             <div className="sticky bottom-0 z-10 bg-inherit">
-                <ChatInput type="channel" name={channel.name}
+                <ChatInput
+                    type="channel"
+                    name={channel.name}
                     apiUrl="/api/socket/messages"
                     query={{
                         channelId: channel.id,

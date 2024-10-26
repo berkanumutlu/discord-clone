@@ -62,7 +62,7 @@ export const ChatInput = ({
                                     <button onClick={() => onOpen("messageFile", { apiUrl, query })} type="button" className="p-1 w-[24px] h-[24px] absolute top-7 left-8 flex items-center justify-center bg-zinc-500 hover:bg-zinc-600 dark:bg-zinc-400 dark:hover:bg-zinc-300 rounded-full transition">
                                         <Plus className="text-white dark:text-[#313338]" />
                                     </button>
-                                    <Input disabled={isLoading} autoComplete="off" placeholder={`Message ${type === "conversation" ? name : "#" + name}`} {...field} className="px-14 py-6 text-zinc-600 dark:text-zinc-200 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                                    <Input disabled={isLoading} autoComplete="off" placeholder={`Message ${type === "conversation" ? "to " : "#"}${name}`} {...field} className="px-14 py-6 text-zinc-600 dark:text-zinc-200 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
                                     <div className="absolute top-7 right-8">
                                         <EmojiPicker onChange={(emoji: string) => field.onChange(`${field.value} ${emoji}`)} />
                                     </div>
