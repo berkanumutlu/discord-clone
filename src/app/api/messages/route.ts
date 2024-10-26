@@ -3,7 +3,7 @@ import { Message, Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 
-const MESSAGES_LIMIT = 25;
+const MESSAGES_LIMIT = 15;
 
 async function fetchMessages(channelId: string, cursor?: string) {
     const queryOptions: Prisma.MessageFindManyArgs = {
