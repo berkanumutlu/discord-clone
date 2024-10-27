@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
+import { ChannelType } from "@prisma/client";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
+import { MediaRoom } from "@/components/media-room";
 
 interface ChannelIdProps {
     params: {
@@ -27,34 +29,45 @@ const ChannelIdPage = async ({
             <div className="sticky top-0 z-10 bg-inherit">
                 <ChatHeader name={channel.name} serverId={channel.serverId} type="channel" />
             </div>
-            <div className="flex flex-1 overflow-y-auto">
-                <ChatMessages
-                    name={channel.name}
-                    member={member}
+            {channel.type === ChannelType.TEXT && (
+                <>
+                    <div className="flex flex-1 overflow-y-auto">
+                        <ChatMessages
+                            name={channel.name}
+                            member={member}
+                            chatId={channel.id}
+                            type="channel"
+                            apiUrl="/api/messages"
+                            socketUrl="/api/socket/messages"
+                            socketQuery={{
+                                channelId: channel.id,
+                                serverId: channel.serverId
+                            }}
+                            paramKey="channelId"
+                            paramValue={channel.id}
+                        />
+                    </div>
+                    <div className="sticky bottom-0 z-10 bg-inherit">
+                        <ChatInput
+                            type="channel"
+                            name={channel.name}
+                            apiUrl="/api/socket/messages"
+                            query={{
+                                channelId: channel.id,
+                                serverId: channel.serverId
+                            }}
+                        />
+                    </div>
+                </>
+            )}
+            {channel.type === ChannelType.AUDIO && (
+                <MediaRoom
                     chatId={channel.id}
-                    type="channel"
-                    apiUrl="/api/messages"
-                    socketUrl="/api/socket/messages"
-                    socketQuery={{
-                        channelId: channel.id,
-                        serverId: channel.serverId
-                    }}
-                    paramKey="channelId"
-                    paramValue={channel.id}
+                    video={false}
+                    audio={true}
                 />
-            </div>
-            <div className="sticky bottom-0 z-10 bg-inherit">
-                <ChatInput
-                    type="channel"
-                    name={channel.name}
-                    apiUrl="/api/socket/messages"
-                    query={{
-                        channelId: channel.id,
-                        serverId: channel.serverId
-                    }}
-                />
-            </div>
-        </div >
+            )}
+        </div>
     )
 }
 
