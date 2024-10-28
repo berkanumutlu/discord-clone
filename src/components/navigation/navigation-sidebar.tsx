@@ -11,7 +11,6 @@ import { NavigationItem } from "./navigation-item";
 export const NavigationSidebar = async () => {
     const profile = await currentProfile();
     if (!profile) return redirect("/");
-
     const servers = await db.server.findMany({
         where: {
             members: {
@@ -34,6 +33,7 @@ export const NavigationSidebar = async () => {
                 ))}
             </ScrollArea>
             <div className="mt-auto flex flex-col items-center gap-y-4">
+                <Separator className="mx-auto w-10 h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md" />
                 <ModeToggle />
                 <UserButton
                     appearance={{

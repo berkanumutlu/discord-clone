@@ -1,10 +1,10 @@
 "use client";
 
-import { ServerWithMembersWithProfiles } from "@/types";
 import { MemberRole } from "@prisma/client";
-import { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LogOut, PlusCircle, Settings, Trash, UserPlus, Users } from "lucide-react";
+import { ServerWithMembersWithProfiles } from "@/types";
 import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerHeaderProps {
@@ -17,6 +17,7 @@ export const ServerHeader = ({
     role
 }: ServerHeaderProps) => {
     const { onOpen } = useModal();
+
     const isAdmin = role === MemberRole.ADMIN;
     const isModerator = isAdmin || role === MemberRole.MODERATOR;
 
@@ -28,7 +29,7 @@ export const ServerHeader = ({
                     <ChevronDown className="ml-auto w-5 h-5" />
                 </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 space-y-[2px] font-medium text-xs text-black dark:text-neutral-400 bg-[#e0e1e2] dark:bg-[#191b1d] rounded-bl rounded-br z-[21]">
+            <DropdownMenuContent className="w-72 md:w-56 space-y-[2px] font-medium text-xs text-black dark:text-neutral-400 bg-[#e0e1e2] dark:bg-[#191b1d] rounded-bl rounded-br z-[21]">
                 {isModerator && (
                     <DropdownMenuItem
                         onClick={() => onOpen("invite", { server })}

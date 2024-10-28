@@ -27,7 +27,6 @@ export async function DELETE(
     try {
         const profile = await currentProfile();
         if (!profile) return new NextResponse("Unauthorized", { status: 401 });
-
         const server = await db.server.delete({
             where: { id: params.serverId, profileId: profile.id }
         });

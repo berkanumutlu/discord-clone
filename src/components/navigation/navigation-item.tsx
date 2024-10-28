@@ -16,11 +16,12 @@ export const NavigationItem = ({
     imageUrl,
     name
 }: NavigationItemProps) => {
-    const params = useParams();
     const router = useRouter();
+    const params = useParams();
+
     const onClick = () => {
         router.push(`/servers/${id}`);
-    }
+    };
 
     return (
         <ActionTooltip side="right" align="center" label={name}>

@@ -15,7 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useModal } from "@/hooks/use-modal-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const forSchema = z.object({
+const formSchema = z.object({
     name: z.string().min(1, {
         message: "Channel name is required."
     }).refine(
@@ -35,12 +35,13 @@ export const CreateChannelModal = () => {
     const isModalOpen = isOpen && type === 'createChannel';
     const { channelType } = data;
     const form = useForm({
-        resolver: zodResolver(forSchema),
+        resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
             type: channelType || ChannelType.TEXT
         }
     });
+    const isLoading = form.formState.isSubmitting;
 
     useEffect(() => {
         if (channelType) {
@@ -50,8 +51,7 @@ export const CreateChannelModal = () => {
         }
     }, [channelType, form]);
 
-    const isLoading = form.formState.isSubmitting;
-    const onSubmit = async (values: z.infer<typeof forSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const url = qs.stringifyUrl({
                 url: "/api/channels",

@@ -49,6 +49,6 @@ export const LeaveServerModal = () => {
                     </div>
                 </DialogFooter>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }

@@ -28,6 +28,7 @@ export const DeleteChannelModal = () => {
             await axios.delete(url);
             onClose();
             router.refresh();
+            // router.push(`/servers/${server?.id}`);
         } catch (err) {
             console.log(err);
         } finally {
@@ -37,7 +38,7 @@ export const DeleteChannelModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="p-0 bg-white text-black">
+            <DialogContent className="p-0 bg-white text-black overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl font-bold text-center">Delete Channel</DialogTitle>
                     <DialogDescription className="!my-3 text-center text-zinc-500">
@@ -56,6 +57,6 @@ export const DeleteChannelModal = () => {
                     </div>
                 </DialogFooter>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }

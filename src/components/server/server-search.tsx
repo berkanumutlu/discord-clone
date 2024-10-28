@@ -1,36 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { Command, Search } from "lucide-react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { useParams, useRouter } from "next/navigation";
 
 interface ServerSearchProps {
-    data: {
+    searchData?: {
         label: string;
         type: "channel" | "member",
-        data: {
+        data: Array<{
             id: string;
             name: string;
             icon: React.ReactNode;
-        }
-    }[] | undefined
+        }>
+    }[]
 }
 
-export const ServerSearch = ({ data }: ServerSearchProps) => {
-    const [open, setOpen] = useState(false);
+export const ServerSearch = ({ searchData }: ServerSearchProps) => {
     const router = useRouter();
     const params = useParams();
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const down = (e: KeyboardEvent) => {
+        const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key && e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)) {
                 e.preventDefault();
                 setOpen((open) => !open);
             }
         };
-        document.addEventListener("keydown", down);
-        return () => { document.removeEventListener("keydown", down) }
+        document.addEventListener("keydown", handleKeyDown);
+        return () => { document.removeEventListener("keydown", handleKeyDown) };
     }, [setOpen]);
 
 
@@ -59,7 +59,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
                     <CommandEmpty>
                         No Results found
                     </CommandEmpty>
-                    {data?.map(({ label, type, data }) => {
+                    {searchData?.map(({ label, type, data }) => {
                         if (!data?.length) return null;
 
                         return (

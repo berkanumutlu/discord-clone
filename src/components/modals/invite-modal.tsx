@@ -1,7 +1,7 @@
 "use client";
 
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 import { Check, Copy, RefreshCw } from "lucide-react";
 import { Dialog, DialogTitle, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
@@ -70,6 +70,6 @@ export const InviteModal = () => {
                     </Button>
                 </div>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }

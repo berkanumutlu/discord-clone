@@ -16,7 +16,6 @@ const InviteCodePage = async ({
     const profile = await currentProfile();
     if (!profile) return auth().redirectToSignIn();
     if (!params.inviteCode) return redirect("/");
-
     const existingServer = await db.server.findFirst({
         where: {
             inviteCode: params.inviteCode,
@@ -37,7 +36,7 @@ const InviteCodePage = async ({
         });
         if (joinServer) return redirect(`/servers/${joinServer.id}`);
     }
-    // TODO: Show informations
+    // TODO: Show warning and error informations
     return null;
 }
 

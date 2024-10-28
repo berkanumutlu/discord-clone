@@ -31,7 +31,7 @@ export const DeleteServerModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="p-0 bg-white text-black">
+            <DialogContent className="p-0 bg-white text-black overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl font-bold text-center">Delete Server</DialogTitle>
                     <DialogDescription className="!my-3 text-center text-zinc-500">
@@ -50,6 +50,6 @@ export const DeleteServerModal = () => {
                     </div>
                 </DialogFooter>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     )
 }
