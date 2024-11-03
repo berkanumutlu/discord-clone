@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import SignUpPage from '@/app/(auth)/(routes)/sign-up/[[...sign-up]]/page';
+import { useSignUp } from "@clerk/nextjs";
 
 const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
 const mockPush = jest.fn();
@@ -63,6 +64,19 @@ jest.mock('@clerk/nextjs', () => ({
             </div>
         </div>
     ),
+    useSignUp: () => ({
+        signUp: {
+            create: jest.fn().mockResolvedValue({}),
+            preparePhoneNumberVerification: jest.fn().mockResolvedValue({}),
+            attemptPhoneNumberVerification: jest.fn().mockResolvedValue({
+                verifications: {
+                    phoneNumber: {
+                        status: 'verified'
+                    }
+                }
+            }),
+        },
+    }),
 }));
 
 describe('SignUp Page', () => {
@@ -119,5 +133,18 @@ describe('SignUp Page', () => {
         const signInLink = screen.getByText('Sign in');
         expect(signInLink).toBeInTheDocument();
         expect(signInLink).toHaveAttribute('href', signInUrl);
+    });
+    test('Testing sign up with phone number', async () => {
+        const { signUp } = useSignUp();
+
+        await signUp?.create({
+            phoneNumber: '+12015550100',
+        });
+        await signUp?.preparePhoneNumberVerification();
+
+        const res = await signUp?.attemptPhoneNumberVerification({
+            code: '424242'
+        });
+        expect(res?.verifications.phoneNumber.status).toBe('verified');
     });
 });
