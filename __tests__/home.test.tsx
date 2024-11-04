@@ -3,7 +3,9 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@clerk/nextjs';
 import { render, screen, waitFor } from '@testing-library/react';
 import HomeClient from '@/app/client-page';
+import { mockServer } from '../__mocks__/data';
 
+const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
 jest.mock('next/navigation', () => ({
     useRouter: jest.fn().mockReturnValue({
         push: jest.fn(),
@@ -26,7 +28,7 @@ jest.mock('@/hooks/use-modal-store', () => ({
 }));
 
 describe('Home page', () => {
-    it('should redirect to /sign-in if the user is not signed in', async () => {
+    it('should redirect to ' + signInUrl + ' if the user is not signed in', async () => {
         const mockRouterPush = jest.fn();
         (useRouter as jest.Mock).mockReturnValue({
             push: mockRouterPush
@@ -39,7 +41,7 @@ describe('Home page', () => {
         render(<HomeClient serverUrl={null} />);
 
         await waitFor(() => {
-            expect(mockRouterPush).toHaveBeenCalledWith('/sign-in');
+            expect(mockRouterPush).toHaveBeenCalledWith(signInUrl);
         });
     });
     it('should render welcome message if the user is signed in', () => {
@@ -69,7 +71,7 @@ describe('Home page', () => {
             isSignedIn: true,
         });
 
-        render(<HomeClient serverUrl="/servers/56bb2e31-1aa9-42d5-9e7d-903dcb3b67a8" />);
+        render(<HomeClient serverUrl={`/servers/${mockServer.id}`} />);
 
         expect(screen.getByText('Start now')).toBeInTheDocument();
     });

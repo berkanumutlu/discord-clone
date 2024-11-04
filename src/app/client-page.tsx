@@ -16,12 +16,13 @@ export default function Home({ serverUrl }: HomeClientProps) {
     const { theme } = useTheme();
     const { isSignedIn } = useAuth();
     const { onOpen } = useModal();
+    const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? '/sign-in';
 
     useEffect(() => {
         if (!isSignedIn) {
-            router.push('/sign-in');
+            router.push(signInUrl);
         }
-    }, [isSignedIn, router]);
+    }, [isSignedIn, router, signInUrl]);
 
     if (!isSignedIn) {
         return null;
