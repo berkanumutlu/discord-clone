@@ -1,6 +1,7 @@
-import { render, screen, fireEvent, waitFor, renderHook, act } from '@testing-library/react';
-import SignInPage from '@/app/(auth)/(routes)/sign-in/[[...sign-in]]/page';
 import { useSignIn } from '@clerk/nextjs';
+import { render, screen, fireEvent, waitFor, renderHook, act } from '@testing-library/react';
+import { mockSignInData } from '../__mocks__/data';
+import SignInPage from '@/app/(auth)/(routes)/sign-in/[[...sign-in]]/page';
 
 type EmailCodeFactor = {
     strategy: 'email_code';
@@ -13,13 +14,12 @@ const afterSignInUrl = process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL;
 const mockPush = jest.fn();
 jest.mock('next/navigation', () => ({
     useRouter: () => ({
-        push: mockPush,
+        push: mockPush
     })
 }));
 jest.mock('@clerk/nextjs', () => {
-    const originalModule = jest.requireActual('@clerk/nextjs');
     return {
-        ...originalModule,
+        ...jest.requireActual('@clerk/nextjs'),
         SignIn: () => (
             <div data-testid="clerk-sign-in">
                 <form data-testid="sign-in-form">
@@ -41,15 +41,15 @@ jest.mock('@clerk/nextjs', () => {
                     supportedFirstFactors: [
                         {
                             strategy: 'email_code',
-                            emailAddressId: 'test-email-id',
-                            safeIdentifier: 'john+clerk_test@example.com'
+                            emailAddressId: mockSignInData.emailAddressId,
+                            safeIdentifier: mockSignInData.safeIdentifier
                         }
                     ]
                 }),
                 prepareFirstFactor: jest.fn().mockResolvedValue({}),
                 attemptFirstFactor: jest.fn().mockResolvedValue({ status: 'complete' })
             }
-        })),
+        }))
     };
 });
 
@@ -75,15 +75,15 @@ describe('SignIn Page', () => {
         expect(screen.getByText('Sign up')).toBeInTheDocument();
     });
     it('allows user to fill in sign-in form', async () => {
-        fireEvent.change(screen.getByPlaceholderText('Email address or username'), { target: { value: 'your_email+clerk_test@example.com' } });
-        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(screen.getByPlaceholderText('Email address or username'), { target: { value: mockSignInData.email } });
+        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: mockSignInData.password } });
 
-        expect(screen.getByPlaceholderText('Email address or username')).toHaveValue('your_email+clerk_test@example.com');
-        expect(screen.getByPlaceholderText('Password')).toHaveValue('password123');
+        expect(screen.getByPlaceholderText('Email address or username')).toHaveValue(mockSignInData.email);
+        expect(screen.getByPlaceholderText('Password')).toHaveValue(mockSignInData.password);
     });
     it('handles form submission', async () => {
-        fireEvent.change(screen.getByPlaceholderText('Email address or username'), { target: { value: 'your_email+clerk_test@example.com' } });
-        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(screen.getByPlaceholderText('Email address or username'), { target: { value: mockSignInData.email } });
+        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: mockSignInData.password } });
 
         const form = screen.getByTestId('sign-in-form');
         fireEvent.submit(form);
@@ -96,19 +96,17 @@ describe('SignIn Page', () => {
         const { result } = renderHook(() => useSignIn());
 
         await act(async () => {
-            const emailAddress = 'john+clerk_test@example.com';
-
             expect(result.current.isLoaded).toBe(true);
             expect(result.current.signIn).toBeDefined();
 
             if (result.current.signIn) {
-                const signInResp = await result.current.signIn.create({ identifier: emailAddress });
+                const signInResp = await result.current.signIn.create({ identifier: mockSignInData.safeIdentifier });
 
                 expect(signInResp.status).toBe('complete');
                 expect(signInResp.supportedFirstFactors).toBeDefined();
 
                 const emailCodeFactor = signInResp.supportedFirstFactors?.find(
-                    (ff): ff is EmailCodeFactor => ff.strategy === 'email_code' && ff.safeIdentifier === emailAddress
+                    (ff): ff is EmailCodeFactor => ff.strategy === 'email_code' && ff.safeIdentifier === mockSignInData.safeIdentifier
                 );
 
                 expect(emailCodeFactor).toBeDefined();
@@ -121,7 +119,7 @@ describe('SignIn Page', () => {
 
                     const attemptResponse = await result.current.signIn.attemptFirstFactor({
                         strategy: 'email_code',
-                        code: '424242',
+                        code: mockSignInData.code,
                     });
 
                     expect(attemptResponse.status).toBe('complete');
@@ -135,17 +133,15 @@ describe('SignIn Page', () => {
         const { result } = renderHook(() => useSignIn());
 
         await act(async () => {
-            const emailAddress = 'john+clerk_test@example.com';
-
             if (result.current.signIn) {
-                await result.current.signIn.create({ identifier: emailAddress });
+                await result.current.signIn.create({ identifier: mockSignInData.safeIdentifier });
                 await result.current.signIn.prepareFirstFactor({
                     strategy: 'email_code',
-                    emailAddressId: 'test-email-id',
+                    emailAddressId: mockSignInData.emailAddressId
                 });
                 const attemptResponse = await result.current.signIn.attemptFirstFactor({
                     strategy: 'email_code',
-                    code: '424242',
+                    code: mockSignInData.code,
                 });
 
                 expect(attemptResponse.status).toBe('complete');

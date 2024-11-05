@@ -1,14 +1,15 @@
 import Image from "next/image";
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import SignUpPage from '@/app/(auth)/(routes)/sign-up/[[...sign-up]]/page';
 import { useSignUp } from "@clerk/nextjs";
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { mockSignUpData } from "../__mocks__/data";
+import SignUpPage from '@/app/(auth)/(routes)/sign-up/[[...sign-up]]/page';
 
 const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
 const mockPush = jest.fn();
 jest.mock('next/navigation', () => ({
     useRouter: () => ({
-        push: mockPush,
-    }),
+        push: mockPush
+    })
 }));
 jest.mock('@clerk/nextjs', () => ({
     SignUp: ({ routing }: { routing: any }) => (
@@ -74,9 +75,9 @@ jest.mock('@clerk/nextjs', () => ({
                         status: 'verified'
                     }
                 }
-            }),
-        },
-    }),
+            })
+        }
+    })
 }));
 
 describe('SignUp Page', () => {
@@ -105,22 +106,22 @@ describe('SignUp Page', () => {
         expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
     });
     it('allows user to fill in sign-up form', async () => {
-        fireEvent.change(screen.getByPlaceholderText('First name'), { target: { value: 'Test' } });
-        fireEvent.change(screen.getByPlaceholderText('Last name'), { target: { value: 'User' } });
-        fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'testuser' } });
-        fireEvent.change(screen.getByPlaceholderText('Email address'), { target: { value: 'your_email+clerk_test@example.com' } });
-        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(screen.getByPlaceholderText('First name'), { target: { value: mockSignUpData.firstName } });
+        fireEvent.change(screen.getByPlaceholderText('Last name'), { target: { value: mockSignUpData.lastName } });
+        fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: mockSignUpData.username } });
+        fireEvent.change(screen.getByPlaceholderText('Email address'), { target: { value: mockSignUpData.email } });
+        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: mockSignUpData.password } });
 
-        expect(screen.getByPlaceholderText('First name')).toHaveValue('Test');
-        expect(screen.getByPlaceholderText('Last name')).toHaveValue('User');
-        expect(screen.getByPlaceholderText('Username')).toHaveValue('testuser');
-        expect(screen.getByPlaceholderText('Email address')).toHaveValue('your_email+clerk_test@example.com');
-        expect(screen.getByPlaceholderText('Password')).toHaveValue('password123');
+        expect(screen.getByPlaceholderText('First name')).toHaveValue(mockSignUpData.firstName);
+        expect(screen.getByPlaceholderText('Last name')).toHaveValue(mockSignUpData.lastName);
+        expect(screen.getByPlaceholderText('Username')).toHaveValue(mockSignUpData.username);
+        expect(screen.getByPlaceholderText('Email address')).toHaveValue(mockSignUpData.email);
+        expect(screen.getByPlaceholderText('Password')).toHaveValue(mockSignUpData.password);
     });
     it('handles form submission', async () => {
-        fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: 'testuser' } });
-        fireEvent.change(screen.getByPlaceholderText('Email address'), { target: { value: 'your_email+clerk_test@example.com' } });
-        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(screen.getByPlaceholderText('Username'), { target: { value: mockSignUpData.username } });
+        fireEvent.change(screen.getByPlaceholderText('Email address'), { target: { value: mockSignUpData.email } });
+        fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: mockSignUpData.password } });
 
         const form = screen.getByTestId('sign-up-form');
         fireEvent.submit(form);
@@ -138,12 +139,12 @@ describe('SignUp Page', () => {
         const { signUp } = useSignUp();
 
         await signUp?.create({
-            phoneNumber: '+12015550100',
+            phoneNumber: mockSignUpData.phoneNumber
         });
         await signUp?.preparePhoneNumberVerification();
 
         const res = await signUp?.attemptPhoneNumberVerification({
-            code: '424242'
+            code: mockSignUpData.code
         });
         expect(res?.verifications.phoneNumber.status).toBe('verified');
     });

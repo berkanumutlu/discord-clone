@@ -78,3 +78,19 @@ export const mockDirectMessage = {
     createdAt: new Date(),
     updatedAt: null
 };
+export const mockSignInData = {
+    email: 'your_email+clerk_test@example.com',
+    password: 'password123',
+    code: '424242',
+    emailAddressId: 'test-email-id',
+    safeIdentifier: 'john+clerk_test@example.com'
+};
+export const mockSignUpData = {
+    firstName: 'Test',
+    lastName: 'User',
+    username: 'testuser',
+    email: 'your_email+clerk_test@example.com',
+    password: 'password123',
+    phoneNumber: '+12015550100',
+    code: '424242'
+};
