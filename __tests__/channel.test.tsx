@@ -2,12 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as socketIo from 'socket.io-client';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ChatHeader } from '@/components/chat/chat-header';
 import { ChatInput } from '@/components/chat/chat-input';
 import { ChatMessages } from '@/components/chat/chat-messages';
 import { SocketIndicator } from '@/components/socket-indicator';
 import { useSocket } from "@/components/providers/socket-provider";
+import { MessageFileModal } from '@/components/modals/message-file-modal';
 import { useModal } from '@/hooks/use-modal-store';
 import { mockServer, mockTextChannel, mockTextMessage, mockMember, mockTextMessages } from '../__mocks__/data';
 
@@ -79,6 +80,13 @@ jest.mock('@/components/emoji-picker', () => ({
             </button>
         );
     }
+}));
+jest.mock('@/components/file-upload', () => ({
+    FileUpload: jest.fn()
+}));
+jest.mock('next/image', () => ({
+    __esModule: true,
+    default: jest.fn((props) => <img {...props} />)
 }));
 
 describe('Channel Component', () => {
@@ -352,5 +360,290 @@ describe('Channel Component', () => {
         fireEvent.click(plusButton);
 
         expect(mockOnOpen).toHaveBeenCalledWith('messageFile', { apiUrl: `/api/socket/messages`, query: { channelId: mockTextChannel.id, serverId: mockTextChannel.serverId } });
+    });
+    it('should open attachment modal, upload image, and display it in message list', async () => {
+        const { FileUpload } = jest.requireMock('@/components/file-upload') as { FileUpload: jest.Mock };
+        FileUpload.mockImplementation(({ onChange }: { onChange: (url: string, type: string) => void }) => (
+            <input
+                type="file"
+                data-testid="file-upload"
+                onChange={() => onChange('https://utfs.io/f/ZFr4IITn9uM2mueS1sOwl9gdaXn1oFErRxOBzS4m3Tbt0jfZ', 'image/jpeg')}
+            />
+        ));
+        const NextImage = jest.requireMock('next/image').default as jest.Mock;
+        NextImage.mockImplementation((props: any) => (
+            <img data-testid="uploaded-image" alt={props.alt || ''} {...props} fill={props.fill?.toString()} />
+        ));
+
+        // Mock `useModal`'s `onOpen` and `onClose` methods
+        const mockOnOpen = jest.fn();
+        const mockOnClose = jest.fn();
+        (useModal as unknown as jest.Mock).mockReturnValue({
+            isOpen: true,
+            onOpen: mockOnOpen,
+            onClose: mockOnClose,
+            type: 'messageFile',
+            data: {
+                apiUrl: `/api/socket/messages`,
+                query: { channelId: mockTextChannel.id, serverId: mockTextChannel.serverId }
+            }
+        });
+
+        // Mock fetch and axios post calls
+        jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce({ items: [] })
+        } as any);
+
+        const mockAxiosPost = jest.spyOn(axios, 'post').mockResolvedValueOnce({
+            data: {
+                id: 'new-message-id',
+                content: '',
+                fileUrl: 'https://utfs.io/f/ZFr4IITn9uM2mueS1sOwl9gdaXn1oFErRxOBzS4m3Tbt0jfZ',
+                fileType: 'image/jpeg',
+                createdAt: new Date(),
+                updatedAt: null
+            }
+        });
+
+        // Render chat components
+        const { rerender } = render(
+            <QueryClientProvider client={queryClient}>
+                <>
+                    <ChatMessages name={mockTextChannel.name} member={mockMember} chatId={mockTextChannel.id} type="channel" apiUrl={`/api/channels/${mockTextChannel.id}/messages`} socketUrl="/api/socket/messages" socketQuery={{ channelId: mockTextChannel.id }} paramKey="channelId" paramValue={mockTextChannel.id} />
+                    <ChatInput apiUrl={`/api/socket/messages`} query={{ channelId: mockTextChannel.id, serverId: mockTextChannel.serverId }} name={mockTextChannel.name} type="channel" />
+                    <MessageFileModal />
+                </>
+            </QueryClientProvider>
+        );
+
+        // Click the plus button to open modal
+        const plusButton = screen.getByLabelText('Open attachment modal');
+        fireEvent.click(plusButton);
+
+        // Wait for the modal to open and find the file input
+        const fileInput = await screen.findByTestId('file-upload');
+        expect(fileInput).toBeInTheDocument();
+
+        // Simulate file upload
+        fireEvent.change(fileInput);
+
+        const sendButton = await screen.findByRole('button', { name: /send/i });
+        fireEvent.click(sendButton);
+
+        // Verify axios.post was called
+        await waitFor(() => {
+            expect(mockAxiosPost).toHaveBeenCalledWith(
+                expect.stringContaining('/api/socket/messages'),
+                expect.objectContaining({
+                    fileUrl: 'https://utfs.io/f/ZFr4IITn9uM2mueS1sOwl9gdaXn1oFErRxOBzS4m3Tbt0jfZ',
+                    fileType: 'image/jpeg'
+                })
+            );
+        });
+
+        // Ensure modal closes and `onClose` was called
+        await waitFor(() => {
+            expect(mockOnClose).toHaveBeenCalled();
+        });
+
+        // Update the chat query mock to include the new message
+        const { useChatQuery } = jest.requireMock('@/hooks/use-chat-query') as { useChatQuery: jest.Mock };
+        useChatQuery.mockReturnValue({
+            data: {
+                pages: [{
+                    items: [{
+                        id: 'new-message-id',
+                        content: '',
+                        fileUrl: 'https://utfs.io/f/ZFr4IITn9uM2mueS1sOwl9gdaXn1oFErRxOBzS4m3Tbt0jfZ',
+                        fileType: 'image/jpeg',
+                        member: mockMember,
+                        createdAt: new Date(),
+                        updatedAt: null
+                    }]
+                }]
+            },
+            fetchNextPage: jest.fn(),
+            hasNextPage: false,
+            isFetchingNextPage: false,
+            isLoading: false,
+            status: 'success'
+        });
+
+        // Rerender the component to reflect the updated mock
+        await act(async () => {
+            rerender(
+                <QueryClientProvider client={queryClient}>
+                    <>
+                        <ChatMessages
+                            name={mockTextChannel.name}
+                            member={mockMember}
+                            chatId={mockTextChannel.id}
+                            type="channel"
+                            apiUrl={`/api/channels/${mockTextChannel.id}/messages`}
+                            socketUrl="/api/socket/messages"
+                            socketQuery={{ channelId: mockTextChannel.id }}
+                            paramKey="channelId"
+                            paramValue={mockTextChannel.id}
+                        />
+                        <ChatInput
+                            apiUrl={`/api/socket/messages`}
+                            query={{ channelId: mockTextChannel.id, serverId: mockTextChannel.serverId }}
+                            name={mockTextChannel.name}
+                            type="channel"
+                        />
+                        <MessageFileModal />
+                    </>
+                </QueryClientProvider>
+            );
+        });
+
+        // Verify the uploaded image appears in the message list
+        await waitFor(() => {
+            const imageElement = screen.getByTestId('uploaded-image');
+            expect(imageElement).toHaveAttribute('src', 'https://utfs.io/f/ZFr4IITn9uM2mueS1sOwl9gdaXn1oFErRxOBzS4m3Tbt0jfZ');
+            expect(imageElement).toHaveAttribute('alt', '');
+        });
+    });
+    it('should open attachment modal, upload file, and display uploaded file as a link in message list', async () => {
+        const { FileUpload } = jest.requireMock('@/components/file-upload') as { FileUpload: jest.Mock };
+        FileUpload.mockImplementation(({ onChange }: { onChange: (url: string, type: string) => void }) => (
+            <input
+                type="file"
+                data-testid="file-upload"
+                onChange={() => onChange('https://utfs.io/f/ZFr4IITn9uM29ixCLMqlwYzQi7NB03onPLc4lb2Z51yspeFg', 'application/pdf')}
+            />
+        ));
+
+        const mockOnOpen = jest.fn();
+        const mockOnClose = jest.fn();
+        (useModal as unknown as jest.Mock).mockReturnValue({
+            isOpen: true,
+            onOpen: mockOnOpen,
+            onClose: mockOnClose,
+            type: 'messageFile',
+            data: {
+                apiUrl: `/api/socket/messages`,
+                query: { channelId: mockTextChannel.id, serverId: mockTextChannel.serverId }
+            }
+        });
+
+        jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+            json: jest.fn().mockResolvedValueOnce({ items: [] })
+        } as any);
+
+        const mockAxiosPost = jest.spyOn(axios, 'post').mockResolvedValueOnce({
+            data: {
+                id: 'new-message-id',
+                content: '',
+                fileUrl: 'https://utfs.io/f/ZFr4IITn9uM29ixCLMqlwYzQi7NB03onPLc4lb2Z51yspeFg',
+                fileType: 'application/pdf',
+                createdAt: new Date(),
+                updatedAt: null
+            }
+        });
+
+        const { rerender } = render(
+            <QueryClientProvider client={queryClient}>
+                <>
+                    <ChatMessages
+                        name={mockTextChannel.name}
+                        member={mockMember}
+                        chatId={mockTextChannel.id}
+                        type="channel"
+                        apiUrl={`/api/channels/${mockTextChannel.id}/messages`}
+                        socketUrl="/api/socket/messages"
+                        socketQuery={{ channelId: mockTextChannel.id }}
+                        paramKey="channelId"
+                        paramValue={mockTextChannel.id}
+                    />
+                    <ChatInput
+                        apiUrl={`/api/socket/messages`}
+                        query={{ channelId: mockTextChannel.id, serverId: mockTextChannel.serverId }}
+                        name={mockTextChannel.name}
+                        type="channel"
+                    />
+                    <MessageFileModal />
+                </>
+            </QueryClientProvider>
+        );
+
+        const plusButton = screen.getByLabelText('Open attachment modal');
+        fireEvent.click(plusButton);
+
+        const fileInput = await screen.findByTestId('file-upload');
+        expect(fileInput).toBeInTheDocument();
+        fireEvent.change(fileInput);
+
+        const sendButton = await screen.findByRole('button', { name: /send/i });
+        fireEvent.click(sendButton);
+
+        await waitFor(() => {
+            expect(mockAxiosPost).toHaveBeenCalledWith(
+                expect.stringContaining('/api/socket/messages'),
+                expect.objectContaining({
+                    fileUrl: 'https://utfs.io/f/ZFr4IITn9uM29ixCLMqlwYzQi7NB03onPLc4lb2Z51yspeFg',
+                    fileType: 'application/pdf'
+                })
+            );
+        });
+
+        await waitFor(() => {
+            expect(mockOnClose).toHaveBeenCalled();
+        });
+
+        const { useChatQuery } = jest.requireMock('@/hooks/use-chat-query') as { useChatQuery: jest.Mock };
+        useChatQuery.mockReturnValue({
+            data: {
+                pages: [{
+                    items: [{
+                        id: 'new-message-id',
+                        content: '',
+                        fileUrl: 'https://utfs.io/f/ZFr4IITn9uM29ixCLMqlwYzQi7NB03onPLc4lb2Z51yspeFg',
+                        fileType: 'application/pdf',
+                        member: mockMember,
+                        createdAt: new Date(),
+                        updatedAt: null
+                    }]
+                }]
+            },
+            fetchNextPage: jest.fn(),
+            hasNextPage: false,
+            isFetchingNextPage: false,
+            isLoading: false,
+            status: 'success'
+        });
+
+        await act(async () => {
+            rerender(
+                <QueryClientProvider client={queryClient}>
+                    <>
+                        <ChatMessages
+                            name={mockTextChannel.name}
+                            member={mockMember}
+                            chatId={mockTextChannel.id}
+                            type="channel"
+                            apiUrl={`/api/channels/${mockTextChannel.id}/messages`}
+                            socketUrl="/api/socket/messages"
+                            socketQuery={{ channelId: mockTextChannel.id }}
+                            paramKey="channelId"
+                            paramValue={mockTextChannel.id}
+                        />
+                        <ChatInput
+                            apiUrl={`/api/socket/messages`}
+                            query={{ channelId: mockTextChannel.id, serverId: mockTextChannel.serverId }}
+                            name={mockTextChannel.name}
+                            type="channel"
+                        />
+                        <MessageFileModal />
+                    </>
+                </QueryClientProvider>
+            );
+        });
+
+        await waitFor(() => {
+            const fileLink = screen.getByText('File');
+            expect(fileLink).toHaveAttribute('href', 'https://utfs.io/f/ZFr4IITn9uM29ixCLMqlwYzQi7NB03onPLc4lb2Z51yspeFg');
+        });
+        expect(screen.getByText(mockMember.profile.name)).toBeInTheDocument();
     });
 });

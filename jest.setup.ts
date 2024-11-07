@@ -5,7 +5,7 @@ global.TextEncoder = NodeTextEncoder as unknown as typeof TextEncoder;
 global.TextDecoder = NodeTextDecoder as unknown as typeof TextDecoder;
 
 jest.mock('next/font/google', () => ({
-    Open_Sans: jest.fn(() => ({ className: 'mocked-class-name' })),
+    Open_Sans: jest.fn(() => ({ className: 'mocked-class-name' }))
 }));
 jest.mock('query-string', () => ({
     parse: jest.fn(),
@@ -18,6 +18,9 @@ jest.mock('query-string', () => ({
 jest.mock("date-fns", () => ({
     ...jest.requireActual("date-fns"),
     format: jest.fn((date) => {
+        if (!(date instanceof Date) || isNaN(date.getTime())) {
+            return 'Invalid Date';
+        }
         const options: Intl.DateTimeFormatOptions = {
             day: "numeric",
             month: "short",
@@ -26,6 +29,6 @@ jest.mock("date-fns", () => ({
             minute: "2-digit",
             hour12: false
         };
-        return new Intl.DateTimeFormat("en-GB", options).format(date);
-    }),
+        return new Intl.DateTimeFormat("en-GB", options).format(date as Date);
+    })
 }));
