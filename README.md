@@ -127,26 +127,71 @@ $ docker-compose stop
 
 ## Screenshots
 
-- Home Page
-<img src="screenshots/home-page.png" alt="Home page" width="49%" /> <img src="screenshots/home-page-dark-theme.png" alt="Home page dark theme" width="49%" />
-- Login page & Initial page
-<img src="screenshots/login-page.png" alt="Login page" width="49%" /> <img src="screenshots/initial-page.png" alt="Initial page" width="49%" />
-- Text channel
-<img src="screenshots/server-text-chat.png" alt="Text channel" width="49%" /> <img src="screenshots/server-text-chat-light-theme.png" alt="Text channel light theme" width="49%" />
-- Voice chat
-![Voice chat](screenshots/server-voice-chat.png)
-- Create server
-![Create server](screenshots/server-creation.png)
-- Create channel
-![Create channel](screenshots/server-create-channel.png)
-- Invite to server
-![Invite to server](screenshots/server-invite-people.png)
-- Manage server members
-![Manage server members](screenshots/server-manage-members.png)
-- Search in server
-![Search in server](screenshots/server-search.png)
-- User conversations
-![Voice chat](screenshots/user-conversations.png)
+<ul>
+    <li>
+        <p>Home Page</p>
+        <p align="center">
+            <img src="screenshots/home-page.png" alt="Home page" width="49%" />
+            <img src="screenshots/home-page-dark-theme.png" alt="Home page dark theme" width="49%" />
+        </p>
+    </li>
+    <li>
+        <p>Login page & Initial page</p>
+        <p align="center">
+            <img src="screenshots/login-page.png" alt="Login page" width="49%" />
+            <img src="screenshots/initial-page.png" alt="Initial page" width="49%" />
+        </p>
+    </li>
+    <li>
+        <p>Text channel</p>
+        <p align="center">
+            <img src="screenshots/server-text-chat.png" alt="Text channel" width="49%" />
+            <img src="screenshots/server-text-chat-light-theme.png" alt="Text channel light theme" width="49%" />
+        </p>
+    </li>
+    <li>
+        <p>Voice chat</p>
+        <p align="center">
+            <img src="screenshots/server-voice-chat.png" alt="Voice chat" />
+        </p>
+    </li>
+    <li>
+        <p>Create server</p>
+        <p align="center">
+            <img src="screenshots/server-creation.png" alt="Create server" />
+        </p>
+    </li>
+    <li>
+        <p>Create channel</p>
+        <p align="center">
+            <img src="screenshots/server-create-channel.png" alt="Create channel" />
+        </p>
+    </li>
+    <li>
+        <p>Invite to server</p>
+        <p align="center">
+            <img src="screenshots/server-invite-people.png" alt="Invite to server" />
+        </p>
+    </li>
+    <li>
+        <p>Manage server members</p>
+        <p align="center">
+            <img src="screenshots/server-manage-members.png" alt="Manage server members" />
+        </p>
+    </li>
+    <li>
+        <p>Search in server</p>
+        <p align="center">
+            <img src="screenshots/server-search.png" alt="Search in server" />
+        </p>
+    </li>
+    <li>
+        <p>User conversations</p>
+        <p align="center">
+            <img src="screenshots/user-conversations.png" alt="User conversations" />
+        </p>
+    </li>
+</ul>
 
 ## License
 
