@@ -15,6 +15,12 @@ type MessageWithMemberWithProfile = Message & {
     };
 };
 
+type PaginatedData = {
+    pages: Array<{
+        items: MessageWithMemberWithProfile[];
+    }>;
+};
+
 export const useChatSocket = ({
     addKey,
     updateKey,
@@ -27,16 +33,16 @@ export const useChatSocket = ({
         if (!socket) return;
 
         socket.on(updateKey, (message: MessageWithMemberWithProfile) => {
-            queryClient.setQueryData([queryKey], (oldData: any) => {
+            queryClient.setQueryData<PaginatedData>([queryKey], (oldData) => {
                 if (!oldData || !oldData.pages || oldData.pages.length === 0) return oldData;
-                const newData = oldData.pages.map((page: any) => {
+                const newData = oldData.pages.map((page) => {
                     return {
                         ...page,
-                        items: page.items.map((item: MessageWithMemberWithProfile) => {
+                        items: page.items.map((item) => {
                             if (item.id === message.id) return message;
                             return item;
                         })
-                    }
+                    };
                 });
                 return {
                     ...oldData,
@@ -46,7 +52,7 @@ export const useChatSocket = ({
         });
 
         socket.on(addKey, (message: MessageWithMemberWithProfile) => {
-            queryClient.setQueryData([queryKey], (oldData: any) => {
+            queryClient.setQueryData<PaginatedData>([queryKey], (oldData) => {
                 if (!oldData || !oldData.pages || oldData.pages.length === 0) {
                     return {
                         pages: [{ items: [message] }]
@@ -55,10 +61,7 @@ export const useChatSocket = ({
                 const newData = [...oldData.pages];
                 newData[0] = {
                     ...newData[0],
-                    items: [
-                        message,
-                        ...newData[0].items
-                    ]
+                    items: [message, ...newData[0].items]
                 };
                 return {
                     ...oldData,
@@ -72,4 +75,4 @@ export const useChatSocket = ({
             socket.off(updateKey);
         };
     }, [addKey, updateKey, queryKey, socket, queryClient]);
-}
+};

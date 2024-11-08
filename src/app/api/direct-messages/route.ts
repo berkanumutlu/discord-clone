@@ -23,6 +23,8 @@ async function fetchDirectMessages(conversationId: string, cursor?: string) {
     return await db.directMessage.findMany(queryOptions);
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
     try {
         const profile = await currentProfile();

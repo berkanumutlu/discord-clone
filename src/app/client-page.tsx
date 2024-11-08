@@ -1,30 +1,39 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@clerk/nextjs';
 import { useTheme } from 'next-themes';
 import { useModal } from '@/hooks/use-modal-store';
 
-interface HomeClientProps {
-    serverUrl: string | null;
-}
-
-export default function Home({ serverUrl }: HomeClientProps) {
+export default function HomeClient() {
     const router = useRouter();
     const { theme } = useTheme();
-    const { isSignedIn } = useAuth();
+    const { isSignedIn, isLoaded } = useAuth();
     const { onOpen } = useModal();
     const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? '/sign-in';
+    const [serverUrl, setServerUrl] = useState("");
 
     useEffect(() => {
-        if (!isSignedIn) {
+        if (isLoaded && !isSignedIn) {
             router.push(signInUrl);
+        } else if (isSignedIn) {
+            fetchServerUrl();
         }
-    }, [isSignedIn, router, signInUrl]);
+    }, [isLoaded, isSignedIn, router, signInUrl]);
 
-    if (!isSignedIn) {
+    const fetchServerUrl = async () => {
+        try {
+            const response = await fetch('/api/servers/server-url');
+            const data = await response.json();
+            setServerUrl(data.serverUrl);
+        } catch (error) {
+            console.error('Error fetching server URL:', error);
+        }
+    };
+
+    if (!isLoaded || !isSignedIn) {
         return null;
     }
 

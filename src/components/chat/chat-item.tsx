@@ -157,7 +157,7 @@ export const ChatItem = ({
                     {!fileUrl && !isEditing && (
                         <p className={cn(
                             "text-sm text-zinc-600 dark:text-zinc-300",
-                            isDeleted && "mt-1 italic text-xs text-zinc-500 dark:text-zinc-400"
+                            isDeleted && "mt-2 italic text-xs text-zinc-500 dark:text-zinc-400"
                         )}>
                             {isDeleted
                                 ? `This message has been deleted${canActionMessage ? ` at: ${deletedAt}` : '.'}`

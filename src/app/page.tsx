@@ -1,23 +1,10 @@
-import { db } from '@/lib/db';
-import { currentProfile } from '@/lib/current-profile';
-import HomeClient from './client-page';
+import dynamic from 'next/dynamic';
 
-export default async function Home() {
-    const profile = await currentProfile();
-    if (!profile) return null;
-    const server = await db.server.findFirst({
-        where: {
-            members: {
-                some: {
-                    profileId: profile.id
-                }
-            }
-        }
-    });
-    let serverUrl = "";
-    if (server) {
-        serverUrl = `/servers/${server.id}`;
-    }
+const DynamicHomeClient = dynamic(() => import('./client-page'), {
+    ssr: false,
+    loading: () => <div>Loading...</div>
+});
 
-    return <HomeClient serverUrl={serverUrl} />;
+export default function Home() {
+    return <DynamicHomeClient />;
 }

@@ -14,7 +14,7 @@ import { useModal } from "@/hooks/use-modal-store";
 
 interface ChatInputProps {
     apiUrl: string;
-    query: Record<string, any>;
+    query: Record<string, string | number>;
     name: string;
     type: "conversation" | "channel";
 }
