@@ -15,7 +15,10 @@ const DynamicQueryProvider = dynamic(() => import('@/components/providers/query-
 
 export const metadata: Metadata = {
   title: "Discord Clone By Berkan Ümütlü",
-  description: "Built with Next.js 14, React, Socket.io, Prisma, Tailwind, PostgreSQL"
+  description: "Built with Next.js 14, React, Socket.io, Prisma, Tailwind, PostgreSQL",
+  icons: {
+    apple: '/logo/apple-touch-icon.ico'
+  }
 };
 
 export default function RootLayout({

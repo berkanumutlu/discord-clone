@@ -2,6 +2,40 @@
   "name": "discord-clone",
   "version": "0.1.0",
   "private": true,
+  "description": "A Discord clone application built with Next.js 14, React, Tailwind, shadcn/ui, Clerk, uploadthing, Prisma, PostgreSQL, Socket.io, LiveKit",
+  "author": "Berkan Ümütlü",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/berkanumutlu/discord-clone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/berkanumutlu/discord-clone/issues"
+  },
+  "homepage": "https://github.com/berkanumutlu/discord-clone#readme",
+  "keywords": [
+    "discord",
+    "discord clone",
+    "real-time app",
+    "real-time chat",
+    "real-time messaging",
+    "voice chat app",
+    "node",
+    "nodejs",
+    "typescript",
+    "nextjs",
+    "react",
+    "tailwind",
+    "shadcn",
+    "prisma",
+    "postgresql",
+    "socket",
+    "socketio",
+    "socket.io",
+    "socket io",
+    "livekit",
+    "clerk",
+    "uploadthing"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
