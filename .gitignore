@@ -135,7 +135,6 @@ dist
 /node_modules
 /.pnp
 .pnp.js
-.yarn/install-state.gz
 
 # testing
 /coverage
@@ -143,6 +142,7 @@ dist
 # next.js
 /.next/
 /out/
+next-env.d.ts
 
 # production
 /build
@@ -151,17 +151,16 @@ dist
 .DS_Store
 *.pem
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # local env files
 .env*.local
 
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# IDE stuff
+**/.idea/
+**/.settings/
+**/.vscode/
+**/.idea_modules/
+**/.buildpath
+**/.project
