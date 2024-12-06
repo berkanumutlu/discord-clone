@@ -3,9 +3,8 @@ import { Message, Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 
-const MESSAGES_LIMIT = 15;
-
 export const dynamic = 'force-dynamic';
+const MESSAGES_LIMIT = 15;
 
 async function fetchMessages(channelId: string, cursor?: string) {
     const queryOptions: Prisma.MessageFindManyArgs = {
@@ -40,8 +39,8 @@ export async function GET(req: Request) {
             nextCursor = messages[MESSAGES_LIMIT - 1].id;
         }
         return NextResponse.json({ items: messages, nextCursor });
-    } catch (err) {
-        console.log("[MESSAGES_GET]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[MESSAGES_GET]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }

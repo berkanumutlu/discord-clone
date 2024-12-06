@@ -22,8 +22,8 @@ export const DeleteServerModal = () => {
             onClose();
             router.refresh();
             router.push("/");
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.error("[DELETE_SERVER_MODAL_ONCLICK]", error);
         } finally {
             setIsLoading(false);
         }

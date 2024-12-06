@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const SocketIndicator = () => {
     const { isConnected } = useSocket();
+
     if (!isConnected) {
         return (
             <Badge variant="outline" className="text-white bg-yellow-600 border-none select-none">

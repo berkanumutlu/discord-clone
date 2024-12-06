@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
@@ -8,7 +9,7 @@ const ServerIdLayout = async ({
     children,
     params
 }: {
-    children: React.ReactNode;
+    children: ReactNode;
     params: { serverId: string };
 }) => {
     const profile = await currentProfile();
@@ -20,7 +21,7 @@ const ServerIdLayout = async ({
 
     return (
         <div className="h-full">
-            <div className="w-60 h-full md:flex flex-col fixed inset-y-0 z-20 hidden">
+            <div className="w-60 h-full fixed inset-y-0 hidden md:flex flex-col z-20">
                 <ServerSidebar serverId={params.serverId} />
             </div>
             <main className="h-full md:pl-60">

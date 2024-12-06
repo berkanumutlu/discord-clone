@@ -23,8 +23,8 @@ export const DeleteMessageModal = () => {
             });
             await axios.delete(url);
             onClose();
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.error("[DELETE_MESSAGE_MODAL_ONCLICK]", error);
         } finally {
             setIsLoading(false);
         }

@@ -6,9 +6,9 @@ const f = createUploadthing();
 
 // const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
 const handleAuth = () => {
-    const userId = auth();
+    const { userId } = auth();
     if (!userId) throw new Error("Unauthorized");
-    return { userId: userId };
+    return { userId };
 };
 
 // FileRouter for your app, can contain multiple FileRoutes

@@ -66,8 +66,8 @@ export const FileUpload = ({
                     setMimeType(type);
                 }
             }}
-            onUploadError={(err: Error) => {
-                console.log("[FILE_UPLOAD]", err);
+            onUploadError={(error: Error) => {
+                console.error("[FILE_UPLOAD_ONUPLOADERROR]", error);
             }}
         />
     )

@@ -43,8 +43,8 @@ export const MessageFileModal = () => {
             form.reset();
             router.refresh();
             onClose();
-        } catch (err) {
-            console.log("[INITIAL_MODAL]", err);
+        } catch (error) {
+            console.error("[MESSAGE_FILE_MODAL_ONSUBMIT]", error);
         }
     };
     const handleClose = () => {

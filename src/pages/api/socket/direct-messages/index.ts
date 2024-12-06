@@ -40,8 +40,8 @@ export default async function handler(
         res?.socket?.server?.io?.emit(channelKey, directMessage);
 
         return res.status(200).json(directMessage);
-    } catch (err) {
-        console.log("[DIRECT_MESSAGES_POST]", err);
-        return res.status(500).json({ error: "Internal Error" });
+    } catch (error) {
+        console.error("[DIRECT_MESSAGES_POST]", error);
+        return res.status(500).json({ error: "Internal Server Error" });
     }
 }

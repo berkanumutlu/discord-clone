@@ -46,8 +46,8 @@ export const ChatInput = ({
             await axios.post(url, values);
             form.reset();
             router.refresh();
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.error("[CHAT_INPUT_ONSUBMIT]", error);
         }
     };
 

@@ -36,9 +36,9 @@ export async function PATCH(
             }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[CHANNEL_ID_PATCH]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[CHANNEL_ID_PATCH]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
 export async function DELETE(
@@ -74,8 +74,8 @@ export async function DELETE(
             }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[CHANNEL_ID_DELETE]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[CHANNEL_ID_DELETE]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }

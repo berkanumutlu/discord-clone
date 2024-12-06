@@ -1,10 +1,11 @@
 "use client";
 
+import { ReactNode } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface ActionTooltipProps {
     label: string;
-    children: React.ReactNode;
+    children: ReactNode;
     side?: "top" | "right" | "bottom" | "left";
     align?: "start" | "center" | "end";
     open?: boolean;

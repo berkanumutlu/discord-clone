@@ -3,6 +3,7 @@ import { DirectMessage, Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 
+export const dynamic = 'force-dynamic';
 const MESSAGES_LIMIT = 15;
 
 async function fetchDirectMessages(conversationId: string, cursor?: string) {
@@ -23,8 +24,6 @@ async function fetchDirectMessages(conversationId: string, cursor?: string) {
     return await db.directMessage.findMany(queryOptions);
 }
 
-export const dynamic = 'force-dynamic';
-
 export async function GET(req: Request) {
     try {
         const profile = await currentProfile();
@@ -40,8 +39,8 @@ export async function GET(req: Request) {
             nextCursor = messages[MESSAGES_LIMIT - 1].id;
         }
         return NextResponse.json({ items: messages, nextCursor });
-    } catch (err) {
-        console.log("[DIRECT_MESSAGES_GET]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[DIRECT_MESSAGES_GET]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }

@@ -64,8 +64,8 @@ export default async function handler(
         res?.socket?.server?.io?.emit(updateKey, message);
 
         return res.status(200).json(message);
-    } catch (err) {
-        console.log("[MESSAGE_ID]", err);
-        return res.status(500).json({ error: "Internal Error" });
+    } catch (error) {
+        console.error("[MESSAGE_ID]", error);
+        return res.status(500).json({ error: "Internal Server Error" });
     }
 }

@@ -20,8 +20,8 @@ export async function POST(req: Request) {
             }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[SERVERS_POST]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[SERVERS_POST]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
