@@ -23,13 +23,16 @@ export const useChatQuery = ({
     const { isConnected } = useSocket();
 
     const fetchMessages = async ({ pageParam = null }: { pageParam: string | null }): Promise<MessageData> => {
-        const url = qs.stringifyUrl({
-            url: apiUrl,
-            query: {
-                cursor: pageParam,
-                [paramKey]: paramValue
-            }
-        }, { skipNull: true });
+        const url = qs.stringifyUrl(
+            {
+                url: apiUrl,
+                query: {
+                    cursor: pageParam,
+                    [paramKey]: paramValue
+                }
+            },
+            { skipNull: true }
+        );
         const res = await fetch(url);
         return res.json();
     };

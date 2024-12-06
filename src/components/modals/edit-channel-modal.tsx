@@ -61,8 +61,8 @@ export const EditChannelModal = () => {
             form.reset();
             router.refresh();
             onClose();
-        } catch (err) {
-            console.log("[EDIT_SERVER]", err);
+        } catch (error) {
+            console.error("[EDIT_CHANNEL_MODAL_ONSUBMIT]", error);
         }
     };
     const handleClose = () => {

@@ -63,8 +63,8 @@ export const CreateChannelModal = () => {
             form.reset();
             router.refresh();
             onClose();
-        } catch (err) {
-            console.log("[CREATE_SERVER]", err);
+        } catch (error) {
+            console.error("[CREATE_CHANNEL_MODAL_ONSUBMIT]", error);
         }
     };
     const handleClose = () => {

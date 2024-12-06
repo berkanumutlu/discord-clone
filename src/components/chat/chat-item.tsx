@@ -110,13 +110,13 @@ export const ChatItem = ({
             await axios.patch(url, values);
             form.reset();
             setIsEditing(false);
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.error("[CHAT_ITEM_ONSUBMIT]", error);
         }
     };
 
     return (
-        <div className="group w-full p-4 relative flex items-center hover:bg-black/5 transition">
+        <div className="group p-4 w-full relative flex items-center hover:bg-black/5 transition">
             <div className="group w-full flex items-start gap-x-2">
                 <div onClick={onMemberClick} className="hover:drop-shadow-md transition cursor-pointer">
                     <UserAvatar src={member.profile.imageUrl} />

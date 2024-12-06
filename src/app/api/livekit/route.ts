@@ -18,9 +18,9 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 });
     }
 
-    const at = new AccessToken(apiKey, apiSecret, { identity: username });
+    const accessToken = new AccessToken(apiKey, apiSecret, { identity: username });
 
-    at.addGrant({ room, roomJoin: true, canPublish: true, canSubscribe: true });
+    accessToken.addGrant({ room, roomJoin: true, canPublish: true, canSubscribe: true });
 
-    return NextResponse.json({ token: await at.toJwt() });
+    return NextResponse.json({ token: await accessToken.toJwt() });
 }

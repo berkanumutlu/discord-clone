@@ -41,8 +41,8 @@ export const CreateServerModal = () => {
             form.reset();
             router.refresh();
             onClose();
-        } catch (err) {
-            console.log("[CREATE_SERVER]", err);
+        } catch (error) {
+            console.error("[CREATE_SERVER_MODAL_ONSUBMIT]", error);
         }
     };
     const handleClose = () => {
@@ -64,7 +64,6 @@ export const CreateServerModal = () => {
                         <div className="space-y-8 px-6">
                             {/* TODO: When the form is submitted, there is no warning that a image is required. */}
                             <div className="flex items-center justify-center text-center">
-
                                 <FormField control={form.control} name="imageUrl"
                                     render={({ field }) => (
                                         <FormItem>

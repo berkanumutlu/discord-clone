@@ -22,8 +22,8 @@ export const LeaveServerModal = () => {
             onClose();
             router.refresh();
             router.push("/");
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.error("[LEAVE_SERVER_MODAL_ONCLICK]", error);
         } finally {
             setIsLoading(false);
         }

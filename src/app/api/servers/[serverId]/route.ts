@@ -15,9 +15,9 @@ export async function PATCH(
             data: { name, imageUrl }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[SERVER_ID_PATCH]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[SERVER_ID_PATCH]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
 export async function DELETE(
@@ -27,12 +27,13 @@ export async function DELETE(
     try {
         const profile = await currentProfile();
         if (!profile) return new NextResponse("Unauthorized", { status: 401 });
+        if (!params.serverId) return new NextResponse("Server Id missing", { status: 400 });
         const server = await db.server.delete({
             where: { id: params.serverId, profileId: profile.id }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[SERVER_ID_DELETE]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[SERVER_ID_DELETE]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
