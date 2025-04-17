@@ -6,6 +6,38 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .custom-scrollbar {
+    max-height: 240px !important;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: white transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    overflow: auto !important;
+    z-index: 900;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+    display: none;
+    background: transparent;
+  }
 }
 
 @layer base {
@@ -35,6 +67,53 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Font variables */
+    --font-primary: "gg sans", "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-display: "Ginto Nord", "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-mono: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+
+    /* Discord color variables with app prefix */
+    --app-blurple: 88, 101, 242;
+    /* #5865F2 */
+    --app-green: 87, 242, 135;
+    /* #57F287 */
+    --app-yellow: 254, 231, 92;
+    /* #FEE75C */
+    --app-fuchsia: 235, 69, 158;
+    /* #EB459E */
+    --app-red: 237, 66, 69;
+    /* #ED4245 */
+
+    /* Background colors */
+    --app-bg-primary: 35, 39, 42;
+    /* #23272A */
+    --app-bg-secondary: 44, 47, 51;
+    /* #2C2F33 */
+    --app-bg-tertiary: 54, 57, 63;
+    /* #36393F */
+
+    /* Text colors */
+    --app-text-normal: 220, 221, 222;
+    /* #DCDDDE */
+    --app-text-muted: 185, 187, 190;
+    /* #B9BBBE */
+    --app-text-link: 0, 175, 244;
+    /* #00AFF4 */
+
+    /* Interactive colors */
+    --app-interactive-normal: 185, 187, 190;
+    /* #B9BBBE */
+    --app-interactive-hover: 220, 221, 222;
+    /* #DCDDDE */
+    --app-interactive-active: 255, 255, 255;
+    /* #FFFFFF */
+
+    /* Border colors */
+    --app-border-light: 78, 80, 88;
+    /* #4E5058 */
+    --app-border-dark: 45, 47, 51;
+    /* #2D2F33 */
   }
 
   .dark {
@@ -62,17 +141,261 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-}
 
-@layer base {
+    /* Discord dark mode colors remain the same as they're already dark */
+  }
+
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
+
+  *:focus-visible {
+    outline-width: 0px;
+    outline: none;
+  }
+}
+
+/* Discord Fonts */
+@font-face {
+  font-family: 'gg sans';
+  src: url('/fonts/ggsans/ggsansvf-VF.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsansvf-VF.woff') format('woff'),
+    url('/fonts/ggsans/ggsansvf-VF.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'gg sans';
+  src: url('/fonts/ggsans/ggsansvf-Italic-VF.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsansvf-Italic-VF.woff') format('woff'),
+    url('/fonts/ggsans/ggsansvf-Italic-VF.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-Normal.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-Normal.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-Normal.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-Normal.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-NormalItalic.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-NormalItalic.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-NormalItalic.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-NormalItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-Medium.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-Medium.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-Medium.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-MediumItalic.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-MediumItalic.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-MediumItalic.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-Semibold.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-Semibold.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-Semibold.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-SemiboldItalic.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-SemiboldItalic.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-SemiboldItalic.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-SemiboldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-Bold.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-Bold.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-Bold.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-Bold.ttf') format('truetype'),
+    url('/fonts/ggsans/ggsans-ExtraBold.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-ExtraBold.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-ExtraBold.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-ExtraBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsans';
+  src: url('/fonts/ggsans/ggsans-BoldItalic.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-BoldItalic.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-BoldItalic.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-BoldItalic.ttf') format('truetype'),
+    url('/fonts/ggsans/ggsans-ExtraBoldItalic.woff2') format('woff2'),
+    url('/fonts/ggsans/ggsans-ExtraBoldItalic.eot') format('embedded-opentype'),
+    url('/fonts/ggsans/ggsans-ExtraBoldItalic.woff') format('woff'),
+    url('/fonts/ggsans/ggsans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Abcgintonord 800';
+  src: url('/fonts/Abcgintodiscordnord/abcgintonord-800-extrabolditalic.woff2') format('woff2'),
+    url('/fonts/Abcgintodiscordnord/abcgintonord-800-extrabolditalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Abcgintonord 800';
+  src: url('/fonts/Abcgintodiscordnord/abcgintonord-800-extrabold.woff2') format('woff2'),
+    url('/fonts/Abcgintodiscordnord/abcgintonord-800-extrabold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Abcgintodiscord';
+  src: url('/fonts/Abcgintodiscord/ABCGintoDiscord-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Abcgintodiscordnord';
+  src: url('/fonts/Abcgintodiscordnord/ABCGintoDiscordNord-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Abcgintodiscord';
+  src: url('/fonts/Abcgintodiscord/ABCGintoDiscord-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABCGintoNormal-Bold';
+  src: url('/fonts/Abcgintodiscord/ABCGintoNormal-Bold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ginto nord';
+  src: ;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ginto';
+  src: ;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ginto';
+  src: ;
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: ;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Notosans';
+  src: ;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Notosans';
+  src: ;
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABC Ginto Normal';
+  src: url('/fonts/Abcgintodiscord/ABCGintoNormalVariable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsansmono';
+  src: url('/fonts/ggsansmono/ggsansmono-Normal.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ggsansmono';
+  src: url('/fonts/ggsansmono/ggsansmono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 html,
@@ -87,23 +410,8 @@ body {
   flex-direction: column;
 }
 
-header {
-  padding: 20px;
-  /* background-color: #f8f9fa; */
-}
-
-.main {
+main {
   flex: 1;
-  /* padding: 20px; */
-  /* background-color: #e9ecef; */
-}
-
-footer {
-  padding: 10px;
-  position: sticky;
-  bottom: 0;
-  /* background-color: #f8f9fa; */
-  text-align: center;
 }
 
 @import "~@uploadthing/react/styles.css";
