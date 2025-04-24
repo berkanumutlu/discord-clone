@@ -69,21 +69,68 @@
     --radius: 0.5rem;
 
     /* Font variables */
-    --font-primary: "gg sans", "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --font-display: "Ginto Nord", "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --font-mono: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    --font-primary: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-display: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-code: "gg mono", "Source Code Pro", Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    --font-headline: "ABC Ginto Nord", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-clan-body: Fraunces, "gg sans", serif, "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-clan-signature: Corinthia, "gg sans", cursive, "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-display-marketing: "ABC Ginto Discord", "gg sans", serif, "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-display-marketing-header: "ABC Ginto Nord Discord", "gg sans", serif, "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     /* Discord color variables with app prefix */
+    --app-not-quite-black: 35, 39, 42;
+    /* #23272A */
     --app-blurple: 88, 101, 242;
     /* #5865F2 */
-    --app-green: 87, 242, 135;
+    --app-black: 6, 10, 11;
+    /* #060A0B */
+    --app-white: 255, 255, 255;
+    /* #FFFFFF */
+    --app-dark-charcoal: 44, 47, 51;
+    /* #2C2F33 */
+    --app-dark-button-hover: 59, 59, 59;
+    /* #3B3B3B */
+    --app-button-hover: 136, 145, 242;
+    /* #8891F2 */
+    --app-greyple: 153, 170, 181;
+    /* #99AAB5 */
+    --app-spring-green: 87, 242, 135;
     /* #57F287 */
-    --app-yellow: 254, 231, 92;
-    /* #FEE75C */
+    --app-dim-grey: 80, 85, 95;
+    /* #50555F */
+    --app-off-white: 246, 246, 246;
+    /* #F6F6F6 */
+    --app-dark-blurple: 52, 66, 217;
+    /* #3442D9 */
     --app-fuchsia: 235, 69, 158;
     /* #EB459E */
+    --app-yellow: 254, 231, 92;
+    /* #FEE75C */
+    --app-mint-green: 87, 242, 135;
+    /* #57f287 */
     --app-red: 237, 66, 69;
     /* #ED4245 */
+    --app-ekko-red: 222, 39, 97;
+    /* #DE2761 */
+    --app-vivid-cerulean: 0, 176, 244;
+    /* #00B0F4 */
+    --app-orange: 253, 162, 32;
+    /* #FDA220 */
+    --app-pink: 255, 205, 238;
+    /* #FFCDFE */
+    --app-pinc-2: 220, 65, 149;
+    /* #DC4195 */
+    --app-green: 82, 241, 128;
+    /* #52f180 */
+    --app-purple: 128, 138, 255;
+    /* #808AFF */
+    --app-refresh-blue: 22, 28, 187;
+    /* #161CBB */
+    --app-navy-blue: 36, 23, 63;
+    /* #24173F */
+    --app-always-white: 255, 255, 255;
+    /* white */
 
     /* Background colors */
     --app-bg-primary: 35, 39, 42;
@@ -142,20 +189,38 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    /* Discord dark mode colors remain the same as they're already dark */
+    /* Discord dark mode colors */
+
+    /* Background colors */
+    --app-bg-primary: 255, 255, 255;
+    /* white */
   }
 
   * {
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-sans;
-  }
-
   *:focus-visible {
     outline-width: 0px;
     outline: none;
+  }
+
+  body {
+    @apply bg-background text-foreground font-primary;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-headline);
+  }
+
+  code,
+  pre {
+    font-family: var(--font-code);
   }
 }
 
@@ -408,10 +473,135 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--app-black);
+  background-color: var(--app-bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 main {
   flex: 1;
+}
+
+.nav-header:has(.navigation-menu [data-state="open"]) .nav-backdrop {
+  height: 100%;
+  display: block;
+  transition: opacity 0.4s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-decor {
+  width: 100%;
+  max-width: 8.75rem;
+  margin-bottom: -6.1rem;
+  margin-right: -4.5rem;
+  position: absolute;
+  inset: auto 0% 0% auto;
+}
+
+.nav-decor img {
+  height: auto !important;
+  opacity: 0;
+  object-fit: contain;
+}
+
+.nav-header:has(.navigation-menu [data-state="open"]) .nav-decor img {
+  opacity: 1;
+}
+
+.nav-decor.is-safety {
+  max-width: 12.5rem;
+  margin-bottom: 4.025rem;
+  margin-right: -3.175rem;
+  position: absolute;
+  inset: auto 0% 0% auto;
+}
+
+.nav-decor.is-build {
+  margin-bottom: 5.7rem;
+  margin-right: -4.1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-decor {
+    max-width: 100%;
+    margin-bottom: 0;
+    margin-right: 0;
+    position: relative;
+  }
+
+  .nav-decor.is-safety {
+    width: auto;
+    max-width: none;
+    margin-bottom: 0;
+    margin-right: 0;
+    position: static;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .nav-decor_safety {
+    max-width: 11.25rem;
+    margin-bottom: 2.125rem;
+    margin-right: -2.375rem;
+    position: absolute;
+    inset: auto 0% 0% auto;
+  }
+
+  .nav-decor {
+    max-width: 8.75rem;
+    margin-bottom: 4.125rem;
+    margin-right: -4.5rem;
+    position: absolute;
+    inset: auto 0% 0% auto;
+  }
+
+  .nav-decor.is-safety {
+    pointer-events: none;
+    max-width: 12.5rem;
+    margin-bottom: 9.025rem;
+    margin-right: -3.175rem;
+  }
+
+  .nav-decor.is-support {
+    max-width: 9.375rem;
+    margin-bottom: 5rem;
+    margin-right: -5.9rem;
+  }
+
+  .nav-decor.is-blog {
+    max-width: 11.875rem;
+    margin-bottom: 5.675rem;
+    margin-right: -80px;
+  }
+
+  .nav-decor.is-build {
+    max-width: 11.875rem;
+    margin-bottom: 4.5125rem;
+    margin-right: -6.2875rem;
+  }
+
+  .nav-decor_support {
+    max-width: 8.75rem;
+    margin-bottom: 4.5rem;
+    margin-right: -5rem;
+    position: absolute;
+    inset: auto 0% 0% auto;
+  }
+
+  .nav-decor_blog {
+    max-width: 9rem;
+    margin-bottom: 3.25rem;
+    margin-right: -50px;
+    position: absolute;
+    inset: auto 0% 0% auto;
+  }
 }
 
 @import "~@uploadthing/react/styles.css";

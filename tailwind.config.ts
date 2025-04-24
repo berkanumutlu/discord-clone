@@ -1,4 +1,5 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 const config: Config = {
 	darkMode: ["class"],
@@ -10,9 +11,18 @@ const config: Config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["gg sans", "Whitney", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+				primary: ['var(--font-primary)'],
+				display: ['var(--font-display)'],
+				code: ['var(--font-code)'],
+				headline: ['var(--font-headline)'],
+				'clan-body': ['var(--font-clan-body)'],
+				'clan-signature': ['var(--font-clan-signature)'],
+				'display-marketing': ['var(--font-display-marketing)'],
+				'display-marketing-header': ['var(--font-display-marketing-header)'],
+				/* sans: ["gg sans", "Whitney", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
 				display: ["Ginto Nord", "Whitney", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
-				mono: ["Consolas", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Monaco", "Courier New", "Courier", "monospace"],
+				mono: ["Consolas", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Monaco", "Courier New", "Courier", "monospace"],*/
+				abcgintonormal: ["ABC Ginto Normal", "sans-serif"],
 				abcgintodiscord: ["Abcgintodiscord", "sans-serif"],
 			},
 			colors: {
@@ -58,28 +68,52 @@ const config: Config = {
 				},
 				// Discord specific colors using app prefix
 				app: {
-					blurple: "rgb(var(--app-blurple))",
-					green: "rgb(var(--app-green))",
-					yellow: "rgb(var(--app-yellow))",
-					fuchsia: "rgb(var(--app-fuchsia))",
-					red: "rgb(var(--app-red))",
-					white: "#FFFFFF",
-					black: "#000000",
+					// Colors
+					"not-quite-black": "rgba(var(--app-not-quite-black))",
+					blurple: "rgba(var(--app-blurple))",
+					black: "rgba(var(--app-black))",
+					white: "rgba(var(--app-white))",
+					"dark-charcoal": "rgba(var(--app-dark-charcoal))",
+					"dark-button-hover": "rgba(var(--app-dark-button-hover))",
+					"button-hover": "rgba(var(--app-button-hover))",
+					greyple: "rgba(var(--app-greyple))",
+					"spring-green": "rgba(var(--app-spring-green))",
+					"dim-grey": "rgba(var(--app-dim-grey))",
+					"off-white": "rgba(var(--app-off-white))",
+					"dark-blurple": "rgba(var(--app-dark-blurple))",
+					fuchsia: "rgba(var(--app-fuchsia))",
+					yellow: "rgba(var(--app-yellow))",
+					"mint-green": "rgba(var(--app-mint-green))",
+					red: "rgba(var(--app-red))",
+					"ekko-red": "rgba(var(--app-ekko-red))",
+					"vivid-cerulean": "rgba(var(--app-vivid-cerulean))",
+					orange: "rgba(var(--app-orange))",
+					pink: "rgba(var(--app-pink))",
+					"pinc-2": "rgba(var(--app-pinc-2))",
+					green: "rgba(var(--app-green))",
+					purple: "rgba(var(--app-purple))",
+					"refresh-blue": "rgba(var(--app-refresh-blue))",
+					"navy-blue": "rgba(var(--app-navy-blue))",
+					"always-white": "rgba(var(--app-always-white))",
+
 					// Background colors
-					"bg-primary": "rgb(var(--app-bg-primary))",
-					"bg-secondary": "rgb(var(--app-bg-secondary))",
-					"bg-tertiary": "rgb(var(--app-bg-tertiary))",
+					"bg-primary": "rgba(var(--app-bg-primary))",
+					"bg-secondary": "rgba(var(--app-bg-secondary))",
+					"bg-tertiary": "rgba(var(--app-bg-tertiary))",
+
 					// Text colors
-					"text-normal": "rgb(var(--app-text-normal))",
-					"text-muted": "rgb(var(--app-text-muted))",
-					"text-link": "rgb(var(--app-text-link))",
+					"text-normal": "rgba(var(--app-text-normal))",
+					"text-muted": "rgba(var(--app-text-muted))",
+					"text-link": "rgba(var(--app-text-link))",
+
 					// Interactive colors
-					"interactive-normal": "rgb(var(--app-interactive-normal))",
-					"interactive-hover": "rgb(var(--app-interactive-hover))",
-					"interactive-active": "rgb(var(--app-interactive-active))",
+					"interactive-normal": "rgba(var(--app-interactive-normal))",
+					"interactive-hover": "rgba(var(--app-interactive-hover))",
+					"interactive-active": "rgba(var(--app-interactive-active))",
+
 					// Border colors
-					"border-light": "rgb(var(--app-border-light))",
-					"border-dark": "rgb(var(--app-border-dark))",
+					"border-light": "rgba(var(--app-border-light))",
+					"border-dark": "rgba(var(--app-border-dark))",
 				},
 			},
 			borderRadius: {
@@ -104,13 +138,24 @@ const config: Config = {
 						height: "0",
 					},
 				},
+				fadeInUpCustom: {
+					'0%': { opacity: "0", transform: 'translateY(50px)' },
+					'25%': { opacity: "1" },
+					'75%': { opacity: "1", transform: 'translateY(-10px)' },
+					'100%': { opacity: "1", transform: 'translateY(0)' },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				"fade-in-up-custom": "fadeInUpCustom 0.75s ease-in-out forwards",
+			},
+			transitionDuration: {
+				250: '250ms',
+				400: '400ms',
 			},
 			backgroundImage: {
-				"footer-bg-image": "url('/images/footer_background.png')",
+				"footer-bg-image": "url('/images/background/footer_background.png')",
 			},
 			gridTemplateColumns: {
 				"footer-grid-cols": "1fr 1fr 1fr auto auto auto auto",
@@ -119,6 +164,6 @@ const config: Config = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
-};
-export default config;
+	plugins: [tailwindcssAnimate],
+}
+export default config
