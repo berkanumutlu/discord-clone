@@ -70,10 +70,10 @@ export function Logo({
                     alt="Discord Clone logo"
                     width={width}
                     height={height}
-                    className=""
+                    className="md:w-[9.125rem] lg:w-32 lg:h-6"
                     priority
                 />
-                <span className="text-app-blurple dark:text-app-white">Clone</span>
+                <span className="hidden sm:block lg:hidden xl:block text-app-blurple dark:text-app-white">Clone</span>
             </div>
         ) : (
             <Image
