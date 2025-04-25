@@ -21,7 +21,7 @@ const NavigationMenuListItem = forwardRef<
             ref={ref}
             href={item?.href}
             className={cn(
-                "group mx-0 p-0 gap-x-1 gap-y-1 flex justify-start items-center text-app-white font-abcgintodiscord text-sm xl:text-[1rem] font-medium leading-[1.2rem] no-underline transition-opacity duration-[350ms] hover:opacity-65",
+                "group mx-0 p-0 gap-x-1 gap-y-1 flex justify-start items-center text-app-white font-abcgintodiscord text-sm xl:text-[1rem] font-medium leading-[1.2] no-underline transition-opacity duration-[350ms] hover:opacity-65",
                 className,
             )}
             {...(item?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}

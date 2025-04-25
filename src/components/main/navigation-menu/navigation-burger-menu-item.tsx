@@ -6,7 +6,6 @@ import NavigationBurgerMenuListItem from "./navigation-burger-menu-list-item"
 import NavigationBurgerMenuListItemTitle from "./navigation-burger-menu-list-item-title"
 
 const NavigationBurgerMenuItem = ({ item }: { item: NavigationMenuItemProps }) => {
-    console.log(item?.dropdownContent)
     if (item?.dropdownContent) {
         return (
             <AccordionItem value={item.label} className="mx-0 static block font-abcgintonormal font-medium text-[.9rem] text-left border-b-[1px] border-solid border-app-white/5 rounded-none">

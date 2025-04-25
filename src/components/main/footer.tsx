@@ -24,7 +24,7 @@ export function Footer({ className = "" }: FooterProps) {
                     {/* Logo, Language and Social Column */}
                     <div className="relative flex flex-col items-start col-span-1 row-span-1 md:col-span-3 md:row-span-6 lg:col-span-4 lg:row-span-1">
                         {/* Logo */}
-                        <Logo type="icon" width={59} height={44} linkClassName="mb-10 inline-block" />
+                        <Logo type="icon" width={59} height={44} className="w-auto h-auto" linkClassName="mb-10 inline-block" />
 
                         {/* Language Selector */}
                         <LanguageDropdown />
@@ -166,12 +166,14 @@ export function Footer({ className = "" }: FooterProps) {
                     </div>
                 </div>
 
-                <Image
-                    src="/images/logo/Wordmark.svg"
-                    alt={"Discord Clone Footer Logo"}
-                    className="mt-0 lg:mt-10 p-6 pt-20 md:p-5 lg:pt-[76px] lg:pb-10 lg:px-10 xl:px-0 !relative grid-cols-1"
-                    fill
-                />
+                <div className="mt-0 lg:mt-10 p-6 pt-20 md:p-5 lg:pt-[76px] lg:pb-10 lg:px-10 xl:px-0 relative grid-cols-1">
+                    <Image
+                        src="/images/logo/Wordmark.svg"
+                        alt={"Discord Clone Footer Logo"}
+                        className="!relative"
+                        fill
+                    />
+                </div>
             </div>
         </footer>
     )

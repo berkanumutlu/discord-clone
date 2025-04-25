@@ -13,7 +13,7 @@ export function NavigationMenuCustom({
     return (
         <div className="mx-auto relative hidden lg:block xl:static">
             <NavigationMenu className="navigation-menu">
-                <NavigationMenuList className="flex justify-start xl:justify-center items-start xl:items-center flex-row flex-1 flex-wrap xl:flex-nowrap space-x-0 xl:gap-x-0 bg-transparent overflow-visible">
+                <NavigationMenuList className="space-x-0 flex justify-start xl:justify-center items-start xl:items-center flex-row flex-1 flex-wrap xl:flex-nowrap xl:gap-x-0 bg-transparent overflow-visible">
                     {navigationMenuItems.map((item, index) => {
                         return (<NavigationMenuItemCustom key={index} href={item?.href} label={item?.label} variant={variant} dropdownContent={item?.dropdownContent} />)
                     })}

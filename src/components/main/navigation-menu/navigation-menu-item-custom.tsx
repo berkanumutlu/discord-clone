@@ -32,14 +32,14 @@ const NavigationMenuItemCustom = forwardRef<
         const dropdownGridTemplateColClass =
             (dropdownContent.links?.length ?? 0) === 1 ? "xl:grid-cols-[auto]" :
                 (dropdownContent.links?.length ?? 0) === 2 ? "xl:grid-cols-[auto_1fr]" :
-                    (dropdownContent.links?.length ?? 0) >= 3 ? "xl:grid-cols-[auto_1fr_auto]" : ""
+                    (dropdownContent.links?.length ?? 0) >= 3 ? "lg:grid-cols-[auto_auto_auto] xl:grid-cols-[auto_1fr_auto]" : ""
         const subMenuClass = "flex flex-col gap-x-3 gap-y-3 xl:text-[1.1rem]"
 
         return (
             <NavigationMenuItem ref={ref} className={className} {...props}>
                 <NavigationMenuTrigger
                     className={cn(
-                        "mx-0 p-[.625rem_.25rem_.625rem_.45rem] xl:pl-3 xl:pr-2 xl:[&[data-state=open]]:px-4 2xl:px-4 !h-auto min-h-[38px] xl:max-h-none flex justify-center items-center self-start lg:self-center !bg-transparent hover:!bg-app-blurple focus:!bg-app-blurple font-abcgintodiscord font-medium text-sm xl:text-base leading-4 xl:leading-[1.2rem] no-underline xl:tracking-normal rounded-xl transition-colors duration-400",
+                        "mx-0 p-[.625rem_.25rem_.625rem_.45rem] xl:pl-3 xl:pr-2 xl:[&[data-state=open]]:px-4 2xl:px-4 !h-auto min-h-[38px] xl:max-h-none flex justify-center items-center self-start lg:self-center !bg-transparent hover:!bg-app-blurple focus:!bg-app-blurple [&[data-state=open]]:!bg-app-blurple font-abcgintodiscord font-medium text-sm xl:text-base leading-4 xl:leading-[1.2rem] no-underline xl:tracking-normal rounded-xl transition-colors duration-400",
                         labelTextColor,
                     )}
                 >
@@ -48,18 +48,18 @@ const NavigationMenuItemCustom = forwardRef<
                 <NavigationMenuContent className="w-auto min-w-max">
                     <div className="m-0 lg:mx-auto p-0 lg:p-8 xl:p-10 h-auto relative block bg-app-blurple rounded-none lg:rounded-[40px] xl:overflow-visible">
                         <div className={cn(
-                            "mx-auto xl:mt-0 w-full xl:max-w-[61.375rem] relative grid auto-cols-fr grid-rows-[auto] xl:gap-x-[1.875rem] xl:gap-y-[1.875rem] z-[2]",
+                            "mx-auto xl:mt-0 w-full xl:max-w-[61.375rem] relative grid grid-cols-fr auto-cols-[1fr] grid-rows-[auto] gap-x-[1.875rem] gap-y-[1.875rem] z-[2]",
                             dropdownGridTemplateColClass,
                         )}>
                             {dropdownContent?.links?.map((group, groupIndex) => (
-                                <div key={groupIndex + '-' + group.title} className="pb-0 border-b border-app-white/10 [border-bottom-style:none]">
-                                    <ul className={subMenuClass}>
+                                <div key={groupIndex + '-' + group.title + '-div'} className="pb-0 border-b border-app-white/10 [border-bottom-style:none]">
+                                    <ul key={groupIndex + '-' + group.title + '-ul'} className={subMenuClass}>
                                         {group.title && <NavigationMenuListItemTitle title={group.title} />}
                                         {group.subMenu?.map((item, itemIndex) => {
                                             if (item.subMenu && item.subMenu.length > 0) {
                                                 return (
-                                                    <>
-                                                        <li key={itemIndex + '-' + item.title} className={subMenuClass}>
+                                                    <div key={itemIndex + '-' + item.title + '-subMenu'}>
+                                                        <li className={subMenuClass}>
                                                             {item.href ? (
                                                                 <NavigationMenuListItem item={item} />
                                                             ) : (
@@ -73,7 +73,7 @@ const NavigationMenuItemCustom = forwardRef<
                                                             </ul>
                                                         </li>
                                                         {itemIndex < (group.subMenu?.length ?? 0) - 1 && (<NavigationMenuDivider key={itemIndex} />)}
-                                                    </>
+                                                    </div>
                                                 )
                                             }
 
@@ -81,7 +81,7 @@ const NavigationMenuItemCustom = forwardRef<
                                                 <li key={itemIndex + '-' + item.title}>
                                                     <NavigationMenuListItem item={item}
                                                         className={cn(
-                                                            !group.title && "mb-6 xl:mb-3"
+                                                            !group.title && "mb-6 lg:mb-3"
                                                         )}
                                                     />
                                                 </li>
@@ -96,7 +96,7 @@ const NavigationMenuItemCustom = forwardRef<
                                 "nav-decor",
                                 dropdownContent?.decorImageClass,
                             )}>
-                                <Image src={decorImage} alt="Decoration Image" fill className="animate-fade-in-up-custom" />
+                                <Image src={decorImage} alt="Decoration Image" fill sizes="140px" className="animate-fade-in-up-custom" />
                             </div>
                         )}
                     </div>

@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 export type LogoType = "full" | "small" | "icon"
 export type LogoFormat = "svg" | "png"
@@ -61,27 +62,30 @@ export function Logo({
 
     // Construct the logo path
     const logoPath = `/images/logo/${getLogoDirectory()}/${getLogoType()}_${color}_RGB.${format}`
+    const logoUrl = logoPath || "/images/placeholder.svg"
 
     const logoContent = showText && type !== "icon"
         ? (
-            <div className={`flex items-center gap-x-3 ${className}`}>
+            <div className={cn(
+                "flex items-center gap-x-3 md:w-[9.125rem] lg:w-32 lg:h-6",
+                className
+            )}>
                 <Image
-                    src={logoPath || "/images/placeholder.svg"}
+                    src={logoUrl}
                     alt="Discord Clone logo"
                     width={width}
                     height={height}
-                    className="md:w-[9.125rem] lg:w-32 lg:h-6"
                     priority
                 />
                 <span className="hidden sm:block lg:hidden xl:block text-app-blurple dark:text-app-white">Clone</span>
             </div>
         ) : (
             <Image
-                src={logoPath || "/images/placeholder.svg"}
+                src={logoUrl}
                 alt="Discord Clone logo"
                 width={width}
                 height={height}
-                className={className}
+                className={cn(className)}
                 priority
             />
         )
