@@ -82,7 +82,7 @@ export function Header({
                         type={logoType}
                         width={logoType === "icon" ? 48 : logoType === "full" ? 240 : 146}
                         height={logoType === "icon" ? 48 : logoType === "full" ? 56 : 24}
-                        linkClassName="w-32 sm:w-36 xl:w-[9.125rem] 2xl:w-full h-10 fixed left-auto flex justify-start items-center float-left text-app-black font-abcgintodiscord no-underline"
+                        linkClassName="w-32 sm:w-36 xl:w-[9.125rem] 2xl:w-36 h-10 fixed left-auto flex justify-start items-center float-left text-app-black font-abcgintodiscord no-underline"
                     />
 
                     {/* Navigation Menu */}

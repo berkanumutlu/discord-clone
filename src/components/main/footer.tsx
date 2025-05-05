@@ -20,11 +20,11 @@ export function Footer({ className = "" }: FooterProps) {
         )}>
             <div className="mt-20 mx-auto max-w-full">
                 {/* Main Footer Grid */}
-                <div className="px-6 md:px-10 2xl:px-0 grid grid-cols-1 md:grid-cols-footer-grid-cols lg:grid-cols-footer-grid-cols-lg 2xl:grid-cols-footer-grid-cols-2xl gap-6 md:gap-x-[116px] md:gap-y-[62px] lg:gap-x-5 lg:gap-y-12 xl:gap-5">
+                <div className="px-6 md:px-10 3xl:px-0 grid grid-cols-1 md:grid-cols-footer-grid-cols lg:grid-cols-footer-grid-cols-lg 2xl:grid-cols-footer-grid-cols-2xl gap-6 md:gap-x-[116px] md:gap-y-[62px] lg:gap-x-5 lg:gap-y-12 xl:gap-5">
                     {/* Logo, Language and Social Column */}
                     <div className="relative flex flex-col items-start col-span-1 row-span-1 md:col-span-3 md:row-span-6 lg:col-span-4 lg:row-span-1">
                         {/* Logo */}
-                        <Logo type="icon" width={59} height={44} className="w-auto h-auto" linkClassName="mb-10 inline-block" />
+                        <Logo type="icon" width={59} height={44} linkClassName="mb-10 inline-block" />
 
                         {/* Language Selector */}
                         <LanguageDropdown />
@@ -166,12 +166,13 @@ export function Footer({ className = "" }: FooterProps) {
                     </div>
                 </div>
 
-                <div className="mt-0 lg:mt-10 p-6 pt-20 md:p-5 lg:pt-[76px] lg:pb-10 lg:px-10 xl:px-0 relative grid-cols-1">
+                <div className="mt-0 lg:mt-10 p-6 pt-20 md:p-5 lg:pt-[76px] lg:pb-10 lg:px-10 3xl:px-0 relative grid-cols-1">
                     <Image
-                        src="/images/logo/Wordmark.svg"
+                        src={"/images/logo/Wordmark.svg"}
                         alt={"Discord Clone Footer Logo"}
                         className="!relative"
                         fill
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -196,7 +197,7 @@ function SocialIcon({ href, icon, alt }: { href: string; icon: string; alt: stri
             rel="noopener noreferrer"
             className="w-6 h-8 mr-[29px]"
         >
-            <Image src={icon || "/images/placeholder.svg"} alt={alt} width={24} height={25} />
+            <Image src={icon || "/images/placeholder.svg"} alt={alt} width={24} height={25} loading="lazy" />
         </Link>
     )
 }
