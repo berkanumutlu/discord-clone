@@ -1,57 +1,53 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
-import ClientLayout from "./client-layout";
-import { ClerkProvider } from "@clerk/nextjs";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import dynamic from 'next/dynamic';
+import "./globals.css"
+import type { Metadata } from "next"
+import dynamic from "next/dynamic"
+import { ClerkProvider } from "@clerk/nextjs"
+import { ThemeProvider } from "@/components/providers/theme-provider"
+import GSAPProvider from "@/components/providers/gsap-provider"
+import ClientLayout from "./client-layout"
 
-const font = Open_Sans({ subsets: ['latin'] });
-
-const DynamicModalProvider = dynamic(() => import('@/components/providers/modal-provider').then(mod => mod.ModalProvider), { ssr: false });
-const DynamicSocketProvider = dynamic(() => import('@/components/providers/socket-provider').then(mod => mod.SocketProvider), { ssr: false });
-const DynamicQueryProvider = dynamic(() => import('@/components/providers/query-provider').then(mod => mod.QueryProvider), { ssr: false });
+const DynamicModalProvider = dynamic(() => import('@/components/providers/modal-provider').then(mod => mod.ModalProvider), { ssr: false })
+const DynamicSocketProvider = dynamic(() => import('@/components/providers/socket-provider').then(mod => mod.SocketProvider), { ssr: false })
+const DynamicQueryProvider = dynamic(() => import('@/components/providers/query-provider').then(mod => mod.QueryProvider), { ssr: false })
 
 export const metadata: Metadata = {
   title: "Discord Clone By Berkan Ümütlü",
   description: "Built with Next.js 14, React, Socket.io, Prisma, Tailwind, PostgreSQL",
   icons: {
-    apple: '/logo/apple-touch-icon.ico'
+    apple: '/images/logo/apple-touch-icon.ico'
   }
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning={true}>
-        <body className={cn(
-          font.className,
-          "antialiased dark:bg-[#313338]"
-        )}>
+        <body className="dark:bg-[#313338]">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem={false}
             storageKey="discord-theme"
           >
-            <main className="main">
+            <div className="page-wrapper">
               <DynamicSocketProvider>
                 <ClientLayout>
                   <DynamicModalProvider />
                   <DynamicQueryProvider>
-                    {children}
+                    <GSAPProvider>
+                      {children}
+                    </GSAPProvider>
                   </DynamicQueryProvider>
                 </ClientLayout>
               </DynamicSocketProvider>
-            </main>
+            </div>
           </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
-  );
+  )
 }
