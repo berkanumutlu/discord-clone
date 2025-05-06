@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Download } from "lucide-react"
 import { createHomeClydeImageAnimation, createHomeCoinImageAnimation, createHomeEggImageAnimation, createHomePanImageAnimation, createHomeRadishImageAnimation, createLineTextAnimation } from "@/lib/animations"
+import { useMedia } from "@/context/media-query-context"
 import { PageLayout } from "@/components/main/page-layout"
 import CustomVideo from "@/components/main/custom-video"
 import { Logo } from "@/components/main/logo"
@@ -18,27 +19,10 @@ export default function HomeClient() {
     const homeRadishImageRef = useRef<HTMLImageElement>(null)
     const homePanImageRef = useRef<HTMLImageElement>(null)
 
-    const [isTablet, setIsTablet] = useState(false)
-
-    // Check screen size
-    useEffect(() => {
-        const checkIfTablet = () => {
-            setIsTablet(window.matchMedia("(min-width: 768px)").matches)
-        }
-
-        // Check on mount
-        checkIfTablet()
-
-        // Listen for resize events
-        window.addEventListener("resize", checkIfTablet)
-
-        return () => {
-            window.removeEventListener("resize", checkIfTablet)
-        }
-    }, [])
+    const { isMaxWidth } = useMedia()
 
     useEffect(() => {
-        if (!isTablet) return
+        if (isMaxWidth(767)) return
 
         const homeEggImageAnimation: ReturnType<typeof createHomeEggImageAnimation> | null = homeEggImageRef?.current ? createHomeEggImageAnimation(homeEggImageRef.current) : null
         const homeClydeImageAnimation: ReturnType<typeof createHomeClydeImageAnimation> | null = homeCyldeImageRef?.current ? createHomeClydeImageAnimation(homeCyldeImageRef.current) : null
@@ -56,7 +40,7 @@ export default function HomeClient() {
             if (homeRadishImageAnimation) homeRadishImageAnimation.kill()
             if (homePanImageAnimation) homePanImageAnimation.kill()
         }
-    }, [isTablet])
+    }, [isMaxWidth])
 
     return (
         <PageLayout

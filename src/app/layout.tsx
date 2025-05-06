@@ -2,6 +2,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import dynamic from "next/dynamic"
 import { ClerkProvider } from "@clerk/nextjs"
+import { MediaQueryProvider } from "@/context/media-query-context"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import GSAPProvider from "@/components/providers/gsap-provider"
 import ClientLayout from "./client-layout"
@@ -39,7 +40,9 @@ export default function RootLayout({
                   <DynamicModalProvider />
                   <DynamicQueryProvider>
                     <GSAPProvider>
-                      {children}
+                      <MediaQueryProvider>
+                        {children}
+                      </MediaQueryProvider>
                     </GSAPProvider>
                   </DynamicQueryProvider>
                 </ClientLayout>
