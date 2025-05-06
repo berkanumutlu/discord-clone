@@ -11,40 +11,46 @@ function isDesktop(): boolean {
 }
 
 export function createHomeEggImageAnimation(element: HTMLElement) {
-    gsap.set(element, { y: "-48.5%" })
+    const startY = "-48.5%"
+    const endY = "21.5%"
+
+    gsap.set(element, { y: startY })
 
     return gsap.fromTo(
         element,
-        { y: "-48.5%" },
+        { y: startY },
         {
-            y: "21.5%",
+            y: endY,
             ease: "none",
             scrollTrigger: {
                 trigger: element,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.5,
-                id: `home-egg-animation-${Math.random()}`,
+                id: `home-egg-image-animation-${Math.random()}`,
             },
         },
     )
 }
 
 export function createHomeClydeImageAnimation(element: HTMLImageElement) {
-    gsap.set(element, { y: "-32.6%" })
+    const startY = "-32.6%"
+    const endY = isDesktop() ? "32.8%" : "5%"
+
+    gsap.set(element, { y: startY })
 
     return gsap.fromTo(
         element,
-        { y: "-32.6" },
+        { y: startY },
         {
-            y: isDesktop() ? "32.8%" : "5%",
+            y: endY,
             ease: "none",
             scrollTrigger: {
                 trigger: element,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.5,
-                id: `home-clyde-animation-${Math.random()}`,
+                id: `home-clyde-image-animation-${Math.random()}`,
             },
         },
     )
@@ -85,60 +91,138 @@ export function createLineTextAnimation(element: HTMLElement, params: { duration
 }
 
 export function createHomeCoinImageAnimation(element: HTMLImageElement) {
-    gsap.set(element, { y: "-84.5%" })
+    const startY = "-84.5%"
+    const endY = "24.2%"
+
+    gsap.set(element, { y: startY })
 
     return gsap.fromTo(
         element,
-        { y: "-84.5%" },
+        { y: startY },
         {
-            y: "24.2%",
+            y: endY,
             ease: "none",
             scrollTrigger: {
                 trigger: element,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.5,
-                id: `home-coin-animation-${Math.random()}`,
+                id: `home-coin-image-animation-${Math.random()}`,
             },
         },
     )
 }
 
 export function createHomeRadishImageAnimation(element: HTMLImageElement) {
-    gsap.set(element, { y: "-42.7%" })
+    const startY = "-42.7%"
+    const endY = "27.4%"
+
+    gsap.set(element, { y: startY })
 
     return gsap.fromTo(
         element,
-        { y: "-42.7%" },
+        { y: startY },
         {
-            y: "27.4%",
+            y: endY,
             ease: "none",
             scrollTrigger: {
                 trigger: element,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.5,
-                id: `home-radish-animation-${Math.random()}`,
+                id: `home-radish-image-animation-${Math.random()}`,
             },
         },
     )
 }
 
 export function createHomePanImageAnimation(element: HTMLImageElement) {
-    gsap.set(element, { y: "-16.1%" })
+    const startY = "-16.1%"
+    const endY = "30.5%"
+
+    gsap.set(element, { y: startY })
 
     return gsap.fromTo(
         element,
-        { y: "-16.1%" },
+        { y: startY },
         {
-            y: "30.5%",
+            y: endY,
             ease: "none",
             scrollTrigger: {
                 trigger: element,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.5,
-                id: `home-radish-animation-${Math.random()}`,
+                id: `home-pan-image-animation-${Math.random()}`,
+            },
+        },
+    )
+}
+
+export function createDownloadCoinImageAnimation(element: HTMLImageElement) {
+    const startY = "27.8%"
+    const endY = "105.2%"
+
+    gsap.set(element, { y: startY })
+
+    return gsap.fromTo(
+        element,
+        { y: startY },
+        {
+            y: endY,
+            ease: "none",
+            scrollTrigger: {
+                trigger: element,
+                start: "top",
+                end: "bottom top",
+                scrub: 1.2,
+                id: `download-coin-image-animation-${Math.random()}`,
+            },
+        },
+    )
+}
+
+export function createDownloadRadishImageAnimation(element: HTMLImageElement) {
+    const startY = "0%"
+    const endY = "37.5%"
+
+    gsap.set(element, { y: startY })
+
+    return gsap.fromTo(
+        element,
+        { y: startY },
+        {
+            y: endY,
+            ease: "none",
+            scrollTrigger: {
+                trigger: element,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+                id: `download-radish-image-animation-${Math.random()}`,
+            },
+        },
+    )
+}
+
+export function createDownloadTrophyImageAnimation(element: HTMLImageElement) {
+    const startY = "-31.25%"
+    const endY = "9.375%"
+
+    gsap.set(element, { y: startY })
+
+    return gsap.fromTo(
+        element,
+        { y: startY },
+        {
+            y: endY,
+            ease: "none",
+            scrollTrigger: {
+                trigger: element,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.5,
+                id: `download-trophy-image-animation-${Math.random()}`,
             },
         },
     )

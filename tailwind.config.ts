@@ -33,6 +33,7 @@ const config: Config = {
 				mono: ["Consolas", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Monaco", "Courier New", "Courier", "monospace"],*/
 				abcgintonormal: ['"ABC Ginto Normal"', 'sans-serif'],
 				abcgintodiscord: ['"Abcgintodiscord"', 'sans-serif'],
+				abcgintodiscordnord: ['"Abcgintodiscordnord"', 'sans-serif'],
 				abcgintonordextrabold: ['"Abcgintonord 800"', 'sans-serif'],
 			},
 			colors: {
@@ -217,8 +218,11 @@ const config: Config = {
 				"home-texture-7-bg-image": "url('/images/background/home_texture_bg_7.webp')",
 				"home-line-bg-image": "url('/images/background/home_line_bg_2025.png')",
 				"footer-bg-image": "url('/images/background/footer_bg.png')",
+				"download-bg-image": "url('/images/background/BG-downloads.webp')",
+				"download-banner-bg-image": "url('/images/background/Background_(3).png')",
 			},
 			backgroundSize: {
+				'auto-90p': 'auto 90%',
 				'auto-100p': 'auto 100%',
 				'0p': '0%',
 				'25p': '25%',
