@@ -190,6 +190,7 @@ export default function HomeClient() {
                                                         type: "video/webm",
                                                     },
                                                 ]}
+                                                divClassName="home--group-chat-img video _2025 w-background-video w-background-video-atom"
                                             />
                                         </div>
                                     </div>
@@ -253,6 +254,7 @@ export default function HomeClient() {
                                                             type: "video/webm",
                                                         },
                                                     ]}
+                                                    divClassName="home--group-chat-img video _2025 w-background-video w-background-video-atom"
                                                 />
                                             </div>
                                         </div>
@@ -314,6 +316,7 @@ export default function HomeClient() {
                                                         type: "video/webm",
                                                     },
                                                 ]}
+                                                divClassName="home--group-chat-img video _2025 w-background-video w-background-video-atom"
                                             />
                                         </div>
                                     </div>
@@ -386,6 +389,7 @@ export default function HomeClient() {
                                                         type: "video/webm",
                                                     },
                                                 ]}
+                                                divClassName="home--group-chat-img video _2025 w-background-video w-background-video-atom"
                                             />
                                         </div>
                                     </div>
@@ -477,6 +481,7 @@ export default function HomeClient() {
                                                         type: "video/webm",
                                                     },
                                                 ]}
+                                                divClassName="home--group-chat-img video _2025 w-background-video w-background-video-atom"
                                             />
                                         </div>
                                     </div>
@@ -530,6 +535,7 @@ export default function HomeClient() {
                                                         type: "video/webm",
                                                     },
                                                 ]}
+                                                divClassName="home--group-chat-img video _2025 w-background-video w-background-video-atom"
                                             />
                                         </div>
                                     </div>
@@ -572,7 +578,7 @@ export default function HomeClient() {
                             <div className="mt-4 md:mt-6 flex flex-col sm:flex-row flex-nowrap sm:flex-wrap justify-center items-center text-center">
                                 <Link
                                     href={"/download"}
-                                    className="mt-0 p-[10px_16px] md:p-[12px_24px] w-full min-w-[auto] md:min-w-[237px] 2xl:min-w-[262px] max-w-none min-h-[50px] 2xl:min-h-[65px] max-h-none flex flex-[none] justify-center items-center gap-0 bg-app-white bg-[16px] md:bg-[25px] bg-24px 2xl:bg-32px bg-no-repeat text-app-black font-abcgintodiscord font-normal text-[16px] md:text-[18px] 2xl:text-[20px] leading-5 md:leading-6 2xl:leading-[26px] text-center rounded-xl transition-all duration-300"
+                                    className="mt-0 p-[10px_16px] md:p-[12px_24px] w-full min-w-[auto] md:min-w-[237px] 2xl:min-w-[262px] max-w-none min-h-[50px] 2xl:min-h-[65px] max-h-none flex flex-[none] justify-center items-center gap-0 bg-app-white hover:bg-plum-6 bg-[16px] md:bg-[25px] bg-24px 2xl:bg-32px bg-no-repeat text-app-black font-abcgintodiscord font-normal text-[16px] md:text-[18px] 2xl:text-[20px] leading-5 md:leading-6 2xl:leading-[26px] text-center rounded-xl transition-all duration-300"
                                 >
                                     <Download width={24} height={24} className="mr-2 2xl:mr-0 3xl:mr-1" />Download for Windows
                                 </Link>

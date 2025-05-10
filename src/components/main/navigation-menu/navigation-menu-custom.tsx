@@ -42,7 +42,7 @@ export const navigationMenuItems: NavigationMenuItemProps[] = [
     },
     {
         label: "Discover",
-        href: "/discover",
+        href: "/servers",
     },
     {
         label: "Safety",
@@ -174,7 +174,7 @@ export const navigationMenuItems: NavigationMenuItemProps[] = [
                                 { title: "Developer Home", href: "/developers" },
                                 { title: "Developer Documentation", href: "/developers/docs/intro", isExternal: true },
                                 { title: "Developer Applications", href: "/developers/applications", isExternal: true },
-                                { title: "Developer Help Center", href: "/support-dev.discord.com/hc/en-us", isExternal: true },
+                                { title: "Developer Help Center", href: "https://support-dev.discord.com/hc/en-us", isExternal: true },
                             ],
                         },
                     ],

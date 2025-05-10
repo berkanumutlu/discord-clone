@@ -21,7 +21,7 @@ const NavigationBurgerMenu = ({
     return (
         <Sheet>
             <SheetTrigger asChild className="flex lg:hidden justify-center items-center">
-                <Button variant="ghost" size="icon" className="w-10 h-10 relative flex flex-none justify-center items-center bg-app-white/10 hover:bg-app-white/30 rounded-[.875rem] transition-colors duration-500 overflow-hidden cursor-pointer touch-manipulation">
+                <Button variant="ghost" size="icon" className="w-10 h-10 relative flex flex-none justify-center items-center bg-app-white/10 hover:bg-app-white/30 text-app-white rounded-[.875rem] transition-colors duration-500 overflow-hidden cursor-pointer touch-manipulation">
                     <AlignLeft className="!w-6 !h-6 flex justify-center items-center" />
                 </Button>
             </SheetTrigger>

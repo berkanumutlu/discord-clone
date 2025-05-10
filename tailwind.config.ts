@@ -13,6 +13,20 @@ const config: Config = {
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
+	safelist: [
+		"mb-7",
+		"bg-[linear-gradient(135deg,#8547c6_25%,#b845c1_62%,#ab5d8a_95%)]",
+		"max-w-[51px]",
+		"md:max-w-none",
+		"row-start-1",
+		"col-start-3",
+		"row-end-2",
+		"col-end-4",
+		"md:row-start-1",
+		"md:col-start-3",
+		"md:row-end-2",
+		"md:col-end-4",
+	],
 	theme: {
 		extend: {
 			screens: {
@@ -32,9 +46,11 @@ const config: Config = {
 				display: ["Ginto Nord", "Whitney", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
 				mono: ["Consolas", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Monaco", "Courier New", "Courier", "monospace"],*/
 				abcgintonormal: ['"ABC Ginto Normal"', 'sans-serif'],
+				abcgintonormalbold: ['"ABCGintoNormal-Bold"', 'sans-serif'],
 				abcgintodiscord: ['"Abcgintodiscord"', 'sans-serif'],
 				abcgintodiscordnord: ['"Abcgintodiscordnord"', 'sans-serif'],
 				abcgintonordextrabold: ['"Abcgintonord 800"', 'sans-serif'],
+				ggsans: ['"Ggsans"', 'sans-serif'],
 			},
 			colors: {
 				background: 'hsl(var(--background))',
@@ -82,6 +98,7 @@ const config: Config = {
 					// Colors
 					"not-quite-black": "rgba(var(--app-not-quite-black))",
 					blurple: "rgba(var(--app-blurple))",
+					"blurple-hover": "rgba(var(--app-blurple-hover))",
 					black: "rgba(var(--app-black))",
 					white: "rgba(var(--app-white))",
 					"dark-charcoal": "rgba(var(--app-dark-charcoal))",
@@ -156,6 +173,14 @@ const config: Config = {
 					'75%': { opacity: '1', transform: 'translateY(-10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' },
 				},
+				"opacityIn": {
+					from: { opacity: "0" },
+					to: { opacity: "1" },
+				},
+				"opacityOut": {
+					from: { opacity: "1" },
+					to: { opacity: "0" },
+				},
 				rotate20: {
 					'0%, 100%': { transform: 'translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)', },
 					'50%': { transform: 'translate3d(0px, 0px, 0px) scale3d(1.1, 1.1, 1) rotateX(0deg) rotateY(0deg) rotateZ(10deg) skew(0deg, 10deg)', },
@@ -187,6 +212,17 @@ const config: Config = {
 					'70%': { width: '105%', filter: 'blur(0.5px)' },
 					'100%': { width: '100%', filter: 'blur(0px)' },
 				},
+				"expand-down": {
+					"0%": { height: "0px", opacity: "0" },
+					"5%": { opacity: "1" },
+					"100%": { height: "var(--expand-height)", opacity: "1" },
+				},
+				"expand-up": {
+					"0%": { height: "var(--expand-height)", opacity: "1" },
+					"90%": { opacity: "1" },
+					"91%": { opacity: "0" },
+					"100%": { height: "0px", opacity: "0" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -197,12 +233,17 @@ const config: Config = {
 				"rotate-20-smooth-reverse": "rotate20SmoothReverse 25s ease-in-out infinite",
 				"transform-y-pulse": "transformYPulse 5s ease-in-out infinite",
 				"width-pulse": "widthPulse 5s ease-in-out infinite",
+				"expand-down": "expand-down .5s ease-in-out forwards",
+				"expand-up": "expand-up .5s ease-in-out forwards",
+				"opacity-in": "opacityIn 0.5s ease-out forwards",
+				"opacity-out": "opacityOut 0s ease-out forwards",
 			},
 			animationDuration: {
 				'7s': '7000ms',
 			},
 			transitionDuration: {
 				250: '250ms',
+				350: '350ms',
 				400: '400ms',
 			},
 			backgroundImage: {
@@ -220,15 +261,20 @@ const config: Config = {
 				"footer-bg-image": "url('/images/background/footer_bg.png')",
 				"download-bg-image": "url('/images/background/BG-downloads.webp')",
 				"download-banner-bg-image": "url('/images/background/Background_(3).png')",
+				"nitro-bg-image": "linear-gradient(#0000, #ec91f5 86%, #ec91f5), url('/images/background/nitro_Section.svg')",
+				"nitro-banner-bg-image": "url('/images/background/nitro_Group 482478.svg'), linear-gradient(135deg, #8547c6 10%, #b845c1 50%, #ab5d8a)",
 			},
 			backgroundSize: {
 				'auto-90p': 'auto 90%',
 				'auto-100p': 'auto 100%',
 				'0p': '0%',
 				'25p': '25%',
+				'31p': '31%',
+				'33p': '33%',
 				'50p': '50%',
 				'75p': '75%',
 				'90p': '90%',
+				'90p-auto': '90%, auto',
 				'910p': '91%',
 				'93p': '93%',
 				'95p': '95%',

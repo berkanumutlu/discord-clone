@@ -112,6 +112,8 @@
     /* #23272A */
     --app-blurple: 88, 101, 242;
     /* #5865F2 */
+    --app-blurple-hover: 114, 137, 218;
+    /* #7289da */
     --app-black: 6, 10, 11;
     /* #060A0B */
     --app-white: 255, 255, 255;
@@ -296,10 +298,14 @@
   }
 
   body {
-    @apply min-h-screen flex flex-col bg-app-bg-primary text-app-black font-primary font-normal text-[16px] leading-[150%];
+    @apply min-h-screen flex flex-col bg-background dark:bg-app-bg-secondary text-app-black font-primary font-normal text-[16px] leading-[150%];
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  a {
+    @apply text-primary font-ggsans font-normal text-[16px] no-underline
   }
 
   a:active,
@@ -623,6 +629,22 @@
 
 .page-wrapper {
   height: 100%;
+}
+
+.link-16px {
+  color: rgba(var(--app-white));
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.link-16px.color-blue {
+  color: rgba(var(--app-blurple));
+}
+
+.text-span,
+.link-407 {
+  color: rgba(var(--app-white));
+  text-decoration: underline
 }
 
 /* Navigation Menu */
@@ -3621,7 +3643,6 @@
 }
 
 /* Home Block Layout Section */
-
 .home--2col_layout {
   grid-column-gap: 2.1625rem;
   grid-row-gap: 2.1625rem;

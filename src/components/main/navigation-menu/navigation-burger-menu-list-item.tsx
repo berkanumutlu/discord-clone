@@ -8,7 +8,7 @@ const NavigationBurgerMenuListItem = ({ className, item }: { className?: string,
         <Link
             href={item?.href || "#"}
             className={cn(
-                "group mx-0 p-0 gap-x-1 gap-y-1 flex justify-start items-center text-app-white font-abcgintodiscord font-medium text-lg md:text-base leading-[1.2] no-underline transition-opacity duration-[350ms] hover:opacity-65",
+                "group mx-0 p-0 gap-x-1 gap-y-1 flex justify-start items-center text-app-white font-abcgintodiscord font-medium text-lg md:text-base leading-[1.2] no-underline transition-opacity duration-350 hover:opacity-65",
                 className,
             )}
             {...(item?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}

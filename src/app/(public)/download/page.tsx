@@ -80,7 +80,8 @@ const DownloadPage = () => {
                             <Image
                                 src={"/images/download/download_Multiple Devices.webp"}
                                 alt={"Screenshot of Discord on Desktop and mobile, showing friends playing a game together while staying connected through voice and video chat. A player is streaming their game to their friends, with the players' characters running across a desert landscape. The video feeds show them laughing and chatting - capturing that feeling of hanging out in the same room even when playing online."}
-                                fill
+                                width={1154}
+                                height={827}
                                 sizes={"(max-width: 2366px) 100vw, 2366px"}
                                 loading="lazy"
                                 className="mt-5 sm:mt-0 md:-mt-5 lg:mt-0 3xl:max-w-[1154px] inline-block !relative select-none"

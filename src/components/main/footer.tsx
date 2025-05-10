@@ -48,7 +48,7 @@ export function Footer({ className = "" }: FooterProps) {
                         <nav className="space-y-3">
                             <FooterLink href="/download">Download</FooterLink>
                             <FooterLink href="/nitro">Nitro</FooterLink>
-                            <FooterLink href="https://discordstatus.com/">Status</FooterLink>
+                            <FooterLink href="https://discordstatus.com/" isExternal={true}>Status</FooterLink>
                             <FooterLink href="/application-directory">App Directory</FooterLink>
                             <FooterLink href="/mobile">Mobile Experience</FooterLink>
                         </nav>
@@ -68,7 +68,7 @@ export function Footer({ className = "" }: FooterProps) {
                         <h3 className="mb-4 text-app-white/50 font-abcgintodiscord font-normal text-base leading-5">Resources</h3>
                         <nav className="space-y-3">
                             <FooterLink href="/college">College</FooterLink>
-                            <FooterLink href="https://support.discord.com/hc">Support</FooterLink>
+                            <FooterLink href="https://support.discord.com/hc" isExternal={true}>Support</FooterLink>
                             <FooterLink href="/safety">Safety</FooterLink>
                             <FooterLink href="/blog">Blog</FooterLink>
                             <FooterLink href="/streamkit">StreamKit</FooterLink>
@@ -77,8 +77,8 @@ export function Footer({ className = "" }: FooterProps) {
                             <FooterLink href="/developers">Developers</FooterLink>
                             <FooterLink href="/gaming">Gaming</FooterLink>
                             <FooterLink href="/quests">Quests</FooterLink>
-                            <FooterLink href="https://discordmerch.com/evergreenfooter">Official 3rd Party Merch</FooterLink>
-                            <FooterLink href="https://support.discord.com/hc/en-us/community/topics">Feedback</FooterLink>
+                            <FooterLink href="https://discordmerch.com/evergreenfooter" isExternal={true}>Official 3rd Party Merch</FooterLink>
+                            <FooterLink href="https://support.discord.com/hc/en-us/community/topics" isExternal={true}>Feedback</FooterLink>
                         </nav>
                     </div>
 
@@ -104,7 +104,7 @@ export function Footer({ className = "" }: FooterProps) {
                                 <AccordionContent className="pt-0 pb-4 leading-[18px]">
                                     <FooterLink href="/download">Download</FooterLink>
                                     <FooterLink href="/nitro">Nitro</FooterLink>
-                                    <FooterLink href="https://discordstatus.com/">Status</FooterLink>
+                                    <FooterLink href="https://discordstatus.com" isExternal={true}>Status</FooterLink>
                                     <FooterLink href="/application-directory">App Directory</FooterLink>
                                     <FooterLink href="/mobile">Mobile Experience</FooterLink>
                                 </AccordionContent>
@@ -124,7 +124,7 @@ export function Footer({ className = "" }: FooterProps) {
                                 <AccordionTrigger className="py-6 text-app-white font-abcgintodiscord text-lg leading-5 hover:no-underline">Resources</AccordionTrigger>
                                 <AccordionContent className="pt-0 pb-4 leading-[18px]">
                                     <FooterLink href="/college">College</FooterLink>
-                                    <FooterLink href="https://support.discord.com/hc">Support</FooterLink>
+                                    <FooterLink href="https://support.discord.com/hc" isExternal={true}>Support</FooterLink>
                                     <FooterLink href="/safety">Safety</FooterLink>
                                     <FooterLink href="/blog">Blog</FooterLink>
                                     <FooterLink href="/streamkit">StreamKit</FooterLink>
@@ -133,8 +133,8 @@ export function Footer({ className = "" }: FooterProps) {
                                     <FooterLink href="/developers">Developers</FooterLink>
                                     <FooterLink href="/gaming">Gaming</FooterLink>
                                     <FooterLink href="/quests">Quests</FooterLink>
-                                    <FooterLink href="https://discordmerch.com/evergreenfooter">Official 3rd Party Merch</FooterLink>
-                                    <FooterLink href="https://support.discord.com/hc/en-us/community/topics">Feedback</FooterLink>
+                                    <FooterLink href="https://discordmerch.com/evergreenfooter" isExternal={true}>Official 3rd Party Merch</FooterLink>
+                                    <FooterLink href="https://support.discord.com/hc/en-us/community/topics" isExternal={true}>Feedback</FooterLink>
                                 </AccordionContent>
                             </AccordionItem>
 
@@ -181,9 +181,15 @@ export function Footer({ className = "" }: FooterProps) {
 }
 
 // Helper Components
-function FooterLink({ href, children, onClick, }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void }) {
+function FooterLink({ href, children, onClick, isExternal = false, }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; isExternal?: boolean; }) {
     return (
-        <Link href={href} className="my-0 py-4 md:py-0 first:pt-0 block text-app-white font-normal text-sm leading-[18px] md:text-base no-underline hover:underline transition-all" onClick={onClick}>
+        <Link
+            href={href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            onClick={onClick}
+            className="my-0 py-4 md:py-0 first:pt-0 block text-app-white font-abcgintodiscord font-normal text-sm leading-[18px] md:text-base no-underline hover:underline transition-all"
+        >
             {children}
         </Link>
     )

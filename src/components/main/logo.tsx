@@ -1,15 +1,13 @@
 "use client"
 
-import { useTheme } from "next-themes"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-
-export type LogoType = "full" | "small" | "icon"
-export type LogoFormat = "svg" | "png"
+import { LogoColor, LogoFormat, LogoType } from "@/types"
 
 export interface LogoProps {
     type?: LogoType
+    color?: LogoColor
     format?: LogoFormat
     width?: number
     height?: number
@@ -21,6 +19,7 @@ export interface LogoProps {
 
 export function Logo({
     type = "small",
+    color = "white",
     format = "svg",
     width = 180,
     height = 38,
@@ -29,11 +28,6 @@ export function Logo({
     className = "",
     linkClassName = "",
 }: LogoProps) {
-    const { theme } = useTheme()
-
-    // Determine the color based on theme
-    const color = theme === "dark" ? "white" : "blurple"
-
     // Determine the directory based on logo type
     const getLogoDirectory = () => {
         switch (type) {
@@ -47,6 +41,7 @@ export function Logo({
                 return "full-logo-lockup-small"
         }
     }
+
     const getLogoType = () => {
         switch (type) {
             case "full":
@@ -67,7 +62,7 @@ export function Logo({
     const logoContent = showText && type !== "icon"
         ? (
             <div className={cn(
-                "flex items-center gap-x-3 md:w-[9.125rem] lg:w-32 lg:h-6",
+                "md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
                 className
             )}>
                 <Image
@@ -77,7 +72,7 @@ export function Logo({
                     height={height}
                     priority
                 />
-                <span className="hidden sm:block lg:hidden xl:block text-app-blurple dark:text-app-white">Clone</span>
+                <span className={cn("hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
             </div>
         ) : (
             <Image
