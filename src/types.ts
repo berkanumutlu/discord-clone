@@ -16,6 +16,12 @@ export type NextApiResponseServerIo = NextApiResponse & {
     }
 }
 
+export interface LanguageDropdownProps {
+    initialLanguage?: string
+    onChange?: (language: string) => void
+    className?: string
+}
+
 export type LogoType = "full" | "small" | "icon"
 export type LogoFormat = "svg" | "png"
 export type LogoColor = "white" | "black" | "blurple"

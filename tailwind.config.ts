@@ -127,12 +127,23 @@ const config: Config = {
 					// Background colors
 					"bg-primary": "rgba(var(--app-bg-primary))",
 					"bg-secondary": "rgba(var(--app-bg-secondary))",
+					"bg-secondary-alt": "var(--app-bg-secondary-alt)",
 					"bg-tertiary": "rgba(var(--app-bg-tertiary))",
+					"bg-input": "var(--app-input-background)",
+					"bg-button-hover": "var(--app-button-background-hover)",
+					"bg-button-2": "var(--app-button-background-2)",
+					"bg-button-2-hover": "var(--app-button-background-2-hover)",
+					"bg-brand-experiment": "var(--brand-experiment)",
+					"bg-brand-experiment-560": "var(--brand-experiment-560)",
 
 					// Text colors
 					"text-normal": "rgba(var(--app-text-normal))",
+					"text-normal-2": "var(--app-text-normal-2))",
 					"text-muted": "rgba(var(--app-text-muted))",
+					"text-muted-2": "var(--app-text-muted-2)",
 					"text-link": "rgba(var(--app-text-link))",
+					"header-primary": "var(--header-primary)",
+					"header-secondary": "var(--header-secondary)",
 
 					// Interactive colors
 					"interactive-normal": "rgba(var(--app-interactive-normal))",
@@ -223,6 +234,11 @@ const config: Config = {
 					"91%": { opacity: "0" },
 					"100%": { height: "0px", opacity: "0" },
 				},
+				"shake": {
+					"0%, 100%": { transform: 'translateX(0)' },
+					"10%, 30%, 50%, 70%, 90%": { transform: 'translateX(-5px)' },
+					"20%, 40%, 60%, 80%": { transform: 'translateX(5px)' },
+				}
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -237,11 +253,13 @@ const config: Config = {
 				"expand-up": "expand-up .5s ease-in-out forwards",
 				"opacity-in": "opacityIn 0.5s ease-out forwards",
 				"opacity-out": "opacityOut 0s ease-out forwards",
+				"shake": "shake 0.5s",
 			},
 			animationDuration: {
 				'7s': '7000ms',
 			},
 			transitionDuration: {
+				170: '170ms',
 				250: '250ms',
 				350: '350ms',
 				400: '400ms',

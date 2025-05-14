@@ -122,7 +122,7 @@ export default function HomeClient() {
                         <aside id="landing-cta" className="block">
                             <div className="relative flex flex-col md:flex-row justify-center items-center flex-wrap">
                                 <Link
-                                    href={"/download"}
+                                    href={"/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64d"}
                                     className="mx-0 mt-6 md:mr-6 2xl:mr-[39px] px-6 py-[15px] min-w-[232px] 2xl:min-w-[262px] h-12 min-h-14 2xl:min-h-[65px] flex items-center bg-app-white hover:bg-plum-6 text-app-not-quite-black font-abcgintodiscord font-normal text-[18px] 2xl:text-xl leading-6 2xl:leading-[26px] tracking-[.25px] rounded-xl transition-all duration-300 box-border"
                                 >
                                     <Download width={24} height={24} className="mr-2" />Download for Windows
@@ -577,7 +577,7 @@ export default function HomeClient() {
                             </div>
                             <div className="mt-4 md:mt-6 flex flex-col sm:flex-row flex-nowrap sm:flex-wrap justify-center items-center text-center">
                                 <Link
-                                    href={"/download"}
+                                    href={"/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"}
                                     className="mt-0 p-[10px_16px] md:p-[12px_24px] w-full min-w-[auto] md:min-w-[237px] 2xl:min-w-[262px] max-w-none min-h-[50px] 2xl:min-h-[65px] max-h-none flex flex-[none] justify-center items-center gap-0 bg-app-white hover:bg-plum-6 bg-[16px] md:bg-[25px] bg-24px 2xl:bg-32px bg-no-repeat text-app-black font-abcgintodiscord font-normal text-[16px] md:text-[18px] 2xl:text-[20px] leading-5 md:leading-6 2xl:leading-[26px] text-center rounded-xl transition-all duration-300"
                                 >
                                     <Download width={24} height={24} className="mr-2 2xl:mr-0 3xl:mr-1" />Download for Windows

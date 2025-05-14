@@ -1,5 +1,39 @@
 import { nitroBannerType, nitroFAQCategoryType, nitroFAQType, nitroPlanFeatureProps, nitroPerkType, nitroPlanProps } from "@/types"
 
+export const languages = [
+    "Čeština",
+    "Dansk",
+    "Deutsch",
+    "English",
+    "English (UK)",
+    "Español",
+    "Español (América Latina)",
+    "Français",
+    "Hrvatski",
+    "Italiano",
+    "lietuvių kalba",
+    "Magyar",
+    "Nederlands",
+    "Norsk",
+    "Polski",
+    "Português (Brasil)",
+    "Română",
+    "Suomi",
+    "Svenska",
+    "Tiếng Việt",
+    "Türkçe",
+    "Ελληνικά",
+    "български",
+    "Русский",
+    "Українська",
+    "हिंदी",
+    "ไทย",
+    "한국어",
+    "中文",
+    "中文(繁體)",
+    "日本語",
+]
+
 export const nitroBannerList: nitroBannerType[] = [
     {
         image: "/images/nitro/Nitro_Basic_full_logo_horizontal_black_RGB_1_(1).svg",

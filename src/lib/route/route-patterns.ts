@@ -2,10 +2,11 @@
 export const protectedRoutePatterns = [
     "/servers/(.*)",
     "/channels/(.*)",
-    "/api(.*)"
+    "/api(.*)",
 ]
 
 // Ignored route patterns
 export const ignoredRoutePatterns = [
-    "/api/uploadthing(.*)"
+    "/api/uploadthing(.*)",
+    "/servers/detail/(.*)",
 ]

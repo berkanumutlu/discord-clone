@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const NitroPage = () => {
+    const placeholderImage = "/images/placeholder.svg"
     const [isSubPerkListExpanded, setIsSubPerkListExpanded] = useState(false)
     const subPerkListRef = useRef<HTMLDivElement>(null)
 
@@ -96,7 +97,7 @@ const NitroPage = () => {
                                 item?.className
                             )}>
                                 <Image
-                                    src={item?.image}
+                                    src={item?.image || placeholderImage}
                                     alt={""}
                                     width={196}
                                     height={24}
@@ -106,10 +107,10 @@ const NitroPage = () => {
                                         item?.imageClassName
                                     )}
                                 />
-                                {item?.featureList?.map((sub_item, sub_index) => (
-                                    <div key={sub_index} className="mb-4 relative flex flex-row flex-wrap justify-start sm:justify-center items-center lg:items-start">
+                                {item?.featureList?.map((subItem, subIndex) => (
+                                    <div key={subIndex} className="mb-4 relative flex flex-row flex-wrap justify-start sm:justify-center items-center lg:items-start">
                                         <Image
-                                            src={sub_item.image}
+                                            src={subItem.image || placeholderImage}
                                             alt={""}
                                             width={20}
                                             height={20}
@@ -117,7 +118,7 @@ const NitroPage = () => {
                                             className="mt-1 mr-2.5 max-w-5 inline-block select-none"
                                         />
                                         <div className="pr-6 text-app-white font-ggsans text-[16px] md:text-[20px] leading-6 md:leading-7 no-underline text-left">
-                                            {sub_item.label}
+                                            {subItem.label}
                                         </div>
                                     </div>
                                 ))}
@@ -144,7 +145,7 @@ const NitroPage = () => {
                                 </div>
                                 {item?.image?.url && (
                                     <Image
-                                        src={item.image.url}
+                                        src={item.image.url || placeholderImage}
                                         alt={item.image?.alt || ""}
                                         fill
                                         loading="lazy"
@@ -169,7 +170,7 @@ const NitroPage = () => {
                                 <div className="min-h-[110px] md:min-h-[134px] md:h-[140px] inline-grid items-center">
                                     {item?.image?.url && (
                                         <Image
-                                            src={item.image.url || "/placeholder.svg"}
+                                            src={item.image.url || placeholderImage}
                                             alt={item.image?.alt || ""}
                                             width={222}
                                             height={134}
@@ -215,7 +216,7 @@ const NitroPage = () => {
                                             item.images.map((imageItem, imageIndex) => (
                                                 <Image
                                                     key={imageIndex}
-                                                    src={imageItem?.src || "/images/placeholder.svg"}
+                                                    src={imageItem?.src || placeholderImage}
                                                     alt={imageItem?.alt || ""}
                                                     width={imageItem?.width || 0}
                                                     height={imageItem?.height || 0}
@@ -234,18 +235,18 @@ const NitroPage = () => {
                                     <div className="relative flex row-span-1 col-span-1 items-center text-[#060607] md:text-[#2e3338] font-ggsans font-normal text-[16px] md:text-[14px] lg:text-[18px] leading-5 md:leading-6 cursor-pointer lg:cursor-default">
                                         {item?.name}
                                     </div>
-                                    {nitroPlanList?.map((planItem) => {
+                                    {nitroPlanList?.map((planItem, planItemIndex) => {
                                         switch (item?.planValues?.[planItem.id]) {
                                             case true: {
                                                 return (
-                                                    <div className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
+                                                    <div key={planItemIndex} className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
                                                         <Check className="max-w-[21px] sm:max-w-full sm:size-[36px] inline-block" />
                                                     </div>
                                                 )
                                             }
                                             case false: {
                                                 return (
-                                                    <div className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
+                                                    <div key={planItemIndex} className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
                                                         <X className="max-w-[21px] sm:max-w-full sm:size-[36px] inline-block text-app-text-muted" />
                                                     </div>
                                                 )
@@ -253,7 +254,7 @@ const NitroPage = () => {
                                             default: {
                                                 if (item?.planValues?.[planItem.id]) {
                                                     return (
-                                                        <div className="mx-auto pt-2.5 min-h-[auto] md:min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
+                                                        <div key={planItemIndex} className="mx-auto pt-2.5 min-h-[auto] md:min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
                                                             <div className="mt-2 mb-[18px] text-[#060607] font-normal md:font-bold text-[14px] sm:text-[16px] leading-5 md:leading-[26px] text-center md:text-left">
                                                                 {item?.planValues?.[planItem.id] as string}
                                                             </div>
@@ -261,7 +262,7 @@ const NitroPage = () => {
                                                     )
                                                 }
                                                 return (
-                                                    <div className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
+                                                    <div key={planItemIndex} className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
                                                         <X className="max-w-[21px] sm:max-w-full sm:size-[36px] inline-block text-app-text-muted" />
                                                     </div>
                                                 )
@@ -274,7 +275,7 @@ const NitroPage = () => {
                                 {nitroPlanList?.map((item, index) => (
                                     <Fragment key={index}>
                                         <Image
-                                            src={item?.images?.[0]?.src || "/images/placeholder.svg"}
+                                            src={item?.images?.[0]?.src || placeholderImage}
                                             alt={item?.images?.[0]?.alt || ""}
                                             width={item?.images?.[0]?.width || 0}
                                             height={item?.images?.[0]?.height || 0}
@@ -297,7 +298,7 @@ const NitroPage = () => {
                                 )}>
                                     {item?.highlight?.image && (
                                         <Image
-                                            src={item.highlight.image?.src || "/images/placeholder.svg"}
+                                            src={item.highlight.image?.src || placeholderImage}
                                             alt={item.highlight.image?.alt || ""}
                                             width={item.highlight.image?.width || 0}
                                             height={item.highlight.image?.height || 0}
@@ -351,9 +352,7 @@ const NitroPage = () => {
                                                         >{subItem.question}<Plus width={24} height={24} className="absolute inset-[auto_24px_auto_auto] inline-block transform-3d transition-all duration-300 group-data-[state=open]:rotate-45" /></AccordionTrigger>
                                                         <AccordionContent className="py-0 px-6 min-w-full static block bg-[#ddd0]">
                                                             {/* // TODO: XSS */}
-                                                            <div className="mb-6 pr-10 text-app-white font-ggsans text-[16px] leading-6 no-underline text-left" dangerouslySetInnerHTML={{ __html: subItem.answer }}>
-
-                                                            </div>
+                                                            <div className="mb-6 pr-10 text-app-white font-ggsans text-[16px] leading-6 no-underline text-left" dangerouslySetInnerHTML={{ __html: subItem.answer }}></div>
                                                         </AccordionContent>
                                                     </AccordionItem>
                                                 )
@@ -413,4 +412,4 @@ const NitroPage = () => {
     )
 }
 
-export default NitroPage;
+export default NitroPage

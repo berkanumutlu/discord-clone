@@ -59,7 +59,7 @@ const DownloadPage = () => {
                         </div>
                         <div className="p-0.5 relative flex justify-center items-center bg-[#5865f200] text-app-white font-abcgintonormal font-medium text-[.875rem] md:text-[1rem] leading-[1.3] rounded-xl transition-colors duration-400 text-center whitespace-nowrap sm:whitespace-[unset] overflow-hidden">
                             <Link
-                                href={"/download"}
+                                href={"/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"}
                                 className="button-with-after-effect p-[.875rem_1.5rem] pt-[.9375rem] h-12 relative flex justify-center items-center bg-app-blurple text-app-white font-abcgintonormal font-medium text-[.875rem] md:text-[1rem] leading-[1.3] rounded-xl transition-colors xl:transition-all duration-400 xl:duration-300  text-center whitespace-nowrap sm:whitespace-[unset] z-[2]"
                             >
                                 <div className="mr-[7px] md:mr-[8.5px] 2xl:mr-[13.5px] size-[18px] md:size-5 block text-base leading-5 whitespace-normal">
