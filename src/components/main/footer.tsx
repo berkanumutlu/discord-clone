@@ -3,14 +3,61 @@
 import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { useAuth } from "@clerk/nextjs"
 import { cn } from "@/lib/utils"
 import { FooterProps } from "@/types"
-import { placeholderImageUrl } from "@/data"
+import { footerMenuItems, placeholderImageUrl, signedInUrl, signInUrl, socialLinks } from "@/data"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { LanguageDropdown } from "@/components/language-dropdown"
 import { Logo } from "./logo"
 
-export function Footer({ className = "" }: FooterProps) {
+export function Footer({ footerStyle = "advanced", className = "" }: FooterProps) {
+    const { isSignedIn } = useAuth()
+
+    if (footerStyle === "basic") {
+        const authButtonUrl = isSignedIn ? signedInUrl : signInUrl
+        const authButtonText = isSignedIn ? "Open Discord" : "Sign up"
+
+        return (
+            <footer className={cn(
+                "py-20 lg:pb-16 w-full flex flex-col items-center bg-app-not-quite-black text-app-white font-primary",
+                className
+            )}>
+                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                    <div className="mb-14 h-60 flex flex-col col-span-4 md:row-span-2">
+                        <div className="mt-6 flex items-center"></div>
+                        <div className="mt-6 flex flex-wrap items-center">
+                            {socialLinks?.map((item, index) => (
+                                <SocialIcon key={index} href={item.href} icon={item.icon} alt={item?.label} footerStyle={footerStyle} />
+                            ))}
+                        </div>
+                    </div>
+                    {footerMenuItems?.map((item, index) => (
+                        <div key={index} className="mb-10 col-span-2">
+                            <h3 className="pt-2 font-primary text-app-blurple text-[16px] leading-6 cursor-default">{item.title}</h3>
+                            {item?.links && (
+                                <nav className="mt-2 space-y-2">
+                                    {item?.links.map((linkItem, linkIndex) => (
+                                        <FooterLink key={linkIndex} href={linkItem.href} isExternal={linkItem?.isExternal} footerStyle={footerStyle}>{linkItem.label}</FooterLink>
+                                    ))}
+                                </nav>
+                            )}
+                        </div>
+                    ))}
+                </div>
+                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                    <div className="col-span-4 md:col-span-8 lg:col-span-12">
+                        <div className="mb-8 w-full h-px bg-app-blurple"></div>
+                        <div className="flex justify-between items-center">
+                            <Logo width={124} height={34} />
+                            <Link href={authButtonUrl} className="p-[7px_16px] inline-flex items-center bg-app-blurple hover:bg-app-blurple-hover text-app-white font-medium text-[14px] leading-6 no-underline hover:underline rounded-[40px] hover:shadow-[0_8px_15px_rgba(0,0,0,.2)] transition-colors duration-200 ease-in-out">{authButtonText}</Link>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        )
+    }
+
     return (
         <footer className={cn(
             "pt-5 pb-0 relative flex flex-col flex-nowrap justify-start items-center bg-app-black bg-footer-bg-image bg-cover bg-no-repeat font-abcgintodiscord select-none overflow-clip z-[99]",
@@ -31,135 +78,58 @@ export function Footer({ className = "" }: FooterProps) {
                         <div className="mt-12 hidden lg:block">
                             <p className="mb-4 text-app-white/50 font-normal text-base leading-5">Social</p>
                             <div className="mt-4 flex items-center">
-                                <SocialIcon href="https://twitter.com/discord" icon="/images/social/x.svg" alt="X/Twitter" />
-                                <SocialIcon href="https://www.instagram.com/discord/" icon="/images/social/instagram.svg" alt="Instagram" />
-                                <SocialIcon href="https://www.facebook.com/discord/" icon="/images/social/facebook.svg" alt="Facebook" />
-                                <SocialIcon href="https://www.youtube.com/discord" icon="/images/social/youtube.svg" alt="YouTube" />
-                                <SocialIcon href="https://www.tiktok.com/@discord" icon="/images/social/tiktok.svg" alt="TikTok" />
+                                {socialLinks?.map((item, index) => (
+                                    <SocialIcon key={index} href={item.href} icon={item.icon} alt={item?.label} footerStyle={footerStyle} />
+                                ))}
                             </div>
                         </div>
                     </div>
 
                     {/* Navigation Columns - Desktop */}
-                    <div className="hidden md:inline-block lg:block col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-3">
-                        <h3 className="mb-4 text-app-white/50 font-abcgintodiscord font-normal text-base leading-5">Product</h3>
-                        <nav className="space-y-3">
-                            <FooterLink href="/download">Download</FooterLink>
-                            <FooterLink href="/nitro">Nitro</FooterLink>
-                            <FooterLink href="https://discordstatus.com/" isExternal={true}>Status</FooterLink>
-                            <FooterLink href="/application-directory">App Directory</FooterLink>
-                            <FooterLink href="/mobile">Mobile Experience</FooterLink>
-                        </nav>
-                    </div>
-
-                    <div className="hidden md:inline-block lg:block col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-3">
-                        <h3 className="mb-4 text-app-white/50 font-abcgintodiscord font-normal text-base leading-5">Company</h3>
-                        <nav className="space-y-3">
-                            <FooterLink href="/company">About</FooterLink>
-                            <FooterLink href="/careers">Jobs</FooterLink>
-                            <FooterLink href="/branding">Brand</FooterLink>
-                            <FooterLink href="/newsroom">Newsroom</FooterLink>
-                        </nav>
-                    </div>
-
-                    <div className="hidden md:inline-block lg:block col-span-1 row-span-1 md:col-span-2 md:row-span-3 lg:col-span-2 lg:row-span-3">
-                        <h3 className="mb-4 text-app-white/50 font-abcgintodiscord font-normal text-base leading-5">Resources</h3>
-                        <nav className="space-y-3">
-                            <FooterLink href="/college">College</FooterLink>
-                            <FooterLink href="https://support.discord.com/hc" isExternal={true}>Support</FooterLink>
-                            <FooterLink href="/safety">Safety</FooterLink>
-                            <FooterLink href="/blog">Blog</FooterLink>
-                            <FooterLink href="/streamkit">StreamKit</FooterLink>
-                            <FooterLink href="/creators">Creators</FooterLink>
-                            <FooterLink href="/community">Community</FooterLink>
-                            <FooterLink href="/developers">Developers</FooterLink>
-                            <FooterLink href="/gaming">Gaming</FooterLink>
-                            <FooterLink href="/quests">Quests</FooterLink>
-                            <FooterLink href="https://discordmerch.com/evergreenfooter" isExternal={true}>Official 3rd Party Merch</FooterLink>
-                            <FooterLink href="https://support.discord.com/hc/en-us/community/topics" isExternal={true}>Feedback</FooterLink>
-                        </nav>
-                    </div>
-
-                    <div className="hidden md:inline-block lg:block col-span-1 row-span-1 md:col-span-2 md:row-span-3 lg:col-span-2 lg:row-span-3">
-                        <h3 className="mb-4 text-app-white/50 font-abcgintodiscord font-normal text-base leading-5">Policies</h3>
-                        <nav className="space-y-3">
-                            <FooterLink href="/terms">Terms</FooterLink>
-                            <FooterLink href="/privacy">Privacy</FooterLink>
-                            <FooterLink href="#" onClick={(e) => e.preventDefault()}>Cookie Settings</FooterLink>
-                            <FooterLink href="/guidelines">Guidelines</FooterLink>
-                            <FooterLink href="/acknowledgements">Acknowledgements</FooterLink>
-                            <FooterLink href="/licenses">Licenses</FooterLink>
-                            <FooterLink href="/company-information">Company Information</FooterLink>
-                        </nav>
-                    </div>
+                    {footerMenuItems?.map((item, index) => (
+                        <div key={index} className="hidden md:inline-block lg:block col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-3">
+                            <h3 className="mb-4 text-app-white/50 font-abcgintodiscord font-normal text-base leading-5">{item.title}</h3>
+                            {item?.links && (
+                                <nav className="space-y-3">
+                                    {item?.links.map((linkItem, linkIndex) => (
+                                        <FooterLink key={linkIndex} href={linkItem.href} isExternal={linkItem?.isExternal} footerStyle={footerStyle}>{linkItem.label}</FooterLink>
+                                    ))}
+                                </nav>
+                            )}
+                        </div>
+                    ))}
 
                     {/* Navigation Columns - Mobile */}
-                    <div className="md:hidden col-span-1">
-                        <div className="text-app-white/50 font-abcgintodiscord font-normal text-sm lg:text-base">Menu</div>
-                        <Accordion type="single" collapsible className="w-full">
-                            <AccordionItem value="product" className="block border-b-2 border-app-white/10 overflow-clip z-[1]">
-                                <AccordionTrigger className="py-6 text-app-white font-abcgintodiscord text-lg leading-5 hover:no-underline">Product</AccordionTrigger>
-                                <AccordionContent className="pt-0 pb-4 leading-[18px]">
-                                    <FooterLink href="/download">Download</FooterLink>
-                                    <FooterLink href="/nitro">Nitro</FooterLink>
-                                    <FooterLink href="https://discordstatus.com" isExternal={true}>Status</FooterLink>
-                                    <FooterLink href="/application-directory">App Directory</FooterLink>
-                                    <FooterLink href="/mobile">Mobile Experience</FooterLink>
-                                </AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="company" className="block border-b-2 border-app-white/10 overflow-clip z-[1]">
-                                <AccordionTrigger className="py-6 text-app-white font-abcgintodiscord text-lg leading-5 hover:no-underline">Company</AccordionTrigger>
-                                <AccordionContent className="pt-0 pb-4 leading-[18px]">
-                                    <FooterLink href="/company">About</FooterLink>
-                                    <FooterLink href="/careers">Jobs</FooterLink>
-                                    <FooterLink href="/branding">Brand</FooterLink>
-                                    <FooterLink href="/newsroom">Newsroom</FooterLink>
-                                </AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="resources" className="block border-b-2 border-app-white/10 overflow-clip z-[1]">
-                                <AccordionTrigger className="py-6 text-app-white font-abcgintodiscord text-lg leading-5 hover:no-underline">Resources</AccordionTrigger>
-                                <AccordionContent className="pt-0 pb-4 leading-[18px]">
-                                    <FooterLink href="/college">College</FooterLink>
-                                    <FooterLink href="https://support.discord.com/hc" isExternal={true}>Support</FooterLink>
-                                    <FooterLink href="/safety">Safety</FooterLink>
-                                    <FooterLink href="/blog">Blog</FooterLink>
-                                    <FooterLink href="/streamkit">StreamKit</FooterLink>
-                                    <FooterLink href="/creators">Creators</FooterLink>
-                                    <FooterLink href="/community">Community</FooterLink>
-                                    <FooterLink href="/developers">Developers</FooterLink>
-                                    <FooterLink href="/gaming">Gaming</FooterLink>
-                                    <FooterLink href="/quests">Quests</FooterLink>
-                                    <FooterLink href="https://discordmerch.com/evergreenfooter" isExternal={true}>Official 3rd Party Merch</FooterLink>
-                                    <FooterLink href="https://support.discord.com/hc/en-us/community/topics" isExternal={true}>Feedback</FooterLink>
-                                </AccordionContent>
-                            </AccordionItem>
-
-                            <AccordionItem value="policies" className="block border-none overflow-clip z-[1]">
-                                <AccordionTrigger className="py-6 text-app-white font-abcgintodiscord text-lg leading-5 hover:no-underline">Policies</AccordionTrigger>
-                                <AccordionContent className="pt-0 pb-4 leading-[18px]">
-                                    <FooterLink href="/terms">Terms</FooterLink>
-                                    <FooterLink href="/privacy">Privacy</FooterLink>
-                                    <FooterLink href="#" onClick={(e) => e.preventDefault()}>Cookie Settings</FooterLink>
-                                    <FooterLink href="/guidelines">Guidelines</FooterLink>
-                                    <FooterLink href="/acknowledgements">Acknowledgements</FooterLink>
-                                    <FooterLink href="/licenses">Licenses</FooterLink>
-                                    <FooterLink href="/company-information">Company Information</FooterLink>
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                    </div>
+                    {footerMenuItems && footerMenuItems?.length > 0 && (
+                        <div className="md:hidden col-span-1">
+                            <div className="text-app-white/50 font-abcgintodiscord font-normal text-sm lg:text-base">Menu</div>
+                            <Accordion type="single" collapsible className="w-full 
+                        [&>div.footer-menu-item-mobile]:border-b-2 [&>div.footer-menu-item-mobile:last-child]:border-none [&>div.footer-menu-item-mobile]:border-app-white/10">
+                                {footerMenuItems?.map((item, index) => (
+                                    <AccordionItem key={index} value={item.title} className="footer-menu-item-mobile block overflow-clip z-[1]">
+                                        {item?.links && item?.links?.length > 0 && (
+                                            <>
+                                                <AccordionTrigger className="py-6 text-app-white font-abcgintodiscord text-lg leading-5 hover:no-underline">{item.title}</AccordionTrigger>
+                                                <AccordionContent className="pt-0 pb-4 leading-[18px]">
+                                                    {item.links.map((linkItem, linkIndex) => (
+                                                        <FooterLink key={linkIndex} href={linkItem.href} isExternal={linkItem?.isExternal} footerStyle={footerStyle}>{linkItem.label}</FooterLink>
+                                                    ))}
+                                                </AccordionContent>
+                                            </>
+                                        )}
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </div>
+                    )}
 
                     {/* Social Media - Mobile, Tablet */}
                     <div className="mt-14 md:mt-0 lg:mt-6 lg:hidden md:col-span-4 md:row-span-1">
                         <p className="mb-4 text-app-white/50 font-normal text-base leading-5">Social</p>
                         <div className="flex flex-wrap">
-                            <SocialIcon href="https://twitter.com/discord" icon="/images/social/x.svg" alt="X/Twitter" />
-                            <SocialIcon href="https://www.instagram.com/discord/" icon="/images/social/instagram.svg" alt="Instagram" />
-                            <SocialIcon href="https://www.facebook.com/discord/" icon="/images/social/facebook.svg" alt="Facebook" />
-                            <SocialIcon href="https://www.youtube.com/discord" icon="/images/social/youtube.svg" alt="YouTube" />
-                            <SocialIcon href="https://www.tiktok.com/@discord" icon="/images/social/tiktok.svg" alt="TikTok" />
+                            {socialLinks?.map((item, index) => (
+                                <SocialIcon key={index} href={item.href} icon={item.icon} alt={item?.label} footerStyle={footerStyle} />
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -179,29 +149,37 @@ export function Footer({ className = "" }: FooterProps) {
 }
 
 // Helper Components
-function FooterLink({ href, children, onClick, isExternal = false, }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; isExternal?: boolean; }) {
+function FooterLink({ href, className, children, onClick, isExternal = false, footerStyle }: { href: string; className?: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; isExternal?: boolean; footerStyle?: string }) {
     return (
         <Link
             href={href}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
             onClick={onClick}
-            className="my-0 py-4 md:py-0 first:pt-0 block text-app-white font-abcgintodiscord font-normal text-sm leading-[18px] md:text-base no-underline hover:underline transition-all"
+            className={cn(
+                "block text-app-white font-normal leading-6 no-underline hover:underline transition-all",
+                footerStyle === "basic" && "font-primary text-[16px]",
+                footerStyle === "advanced" && "my-0 py-4 md:py-0 first:pt-0 font-abcgintodiscord text-[14px] md:text-[16px]",
+                className
+            )}
         >
             {children}
         </Link>
     )
 }
 
-function SocialIcon({ href, icon, alt }: { href: string; icon: string; alt: string }) {
+function SocialIcon({ href, icon, alt, footerStyle }: { href: string; icon: string; alt?: string; footerStyle?: string }) {
     return (
         <Link
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-6 h-8 mr-[29px]"
+            className={cn(
+                footerStyle === "basic" && "size-6 mr-6",
+                footerStyle === "advanced" && "w-6 h-8 mr-[29px]",
+            )}
         >
-            <Image src={icon || placeholderImageUrl} alt={alt} width={24} height={25} loading="lazy" />
+            <Image src={icon || placeholderImageUrl} alt={alt ?? ""} width={24} height={footerStyle === "basic" ? 24 : 25} loading="lazy" />
         </Link>
     )
 }

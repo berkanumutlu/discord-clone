@@ -1,7 +1,9 @@
-import { nitroBannerType, nitroFAQCategoryType, nitroFAQType, nitroPlanFeatureProps, nitroPerkType, nitroPlanProps, NavigationMenuItemProps } from "@/types"
+import { nitroBannerType, nitroFAQCategoryType, nitroFAQType, nitroPlanFeatureProps, nitroPerkType, nitroPlanProps, NavigationMenuItemProps, socialLink, FooterMenuSection } from "@/types"
 
+/* Global */
+export const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? "/sign-in"
+export const signedInUrl = "/channels/@me"
 export const placeholderImageUrl = "/images/placeholder.svg"
-
 export const languages = [
     "Čeština",
     "Dansk",
@@ -35,7 +37,13 @@ export const languages = [
     "中文(繁體)",
     "日本語",
 ]
-
+export const socialLinks: socialLink[] = [
+    { label: "X/Twitter", href: "https://twitter.com/discord", icon: "/images/social/x.svg" },
+    { label: "Instagram", href: "https://www.instagram.com/discord/", icon: "/images/social/instagram.svg" },
+    { label: "Facebook", href: "https://www.facebook.com/discord/", icon: "/images/social/facebook.svg" },
+    { label: "YouTube", href: "https://www.youtube.com/discord", icon: "/images/social/youtube.svg" },
+    { label: "TikTok", href: "https://www.tiktok.com/@discord", icon: "/images/social/tiktok.svg" },
+]
 export const navigationMenuItems: NavigationMenuItemProps[] = [
     {
         label: "Download",
@@ -192,7 +200,58 @@ export const navigationMenuItems: NavigationMenuItemProps[] = [
         href: "/careers",
     },
 ]
+export const footerMenuItems: FooterMenuSection[] = [
+    {
+        title: "Product",
+        links: [
+            { label: "Download", href: "/download" },
+            { label: "Nitro", href: "/nitro" },
+            { label: "Status", href: "https://discordstatus.com", isExternal: true },
+            { label: "App Directory", href: "/application-directory" },
+            { label: "Mobile Experience", href: "/mobile" },
+        ],
+    },
+    {
+        title: "Company",
+        links: [
+            { label: "About", href: "/company" },
+            { label: "Jobs", href: "/careers" },
+            { label: "Brand", href: "/branding" },
+            { label: "Newsroom", href: "/newsroom" },
+        ],
+    },
+    {
+        title: "Resources",
+        links: [
+            { label: "College", href: "/college" },
+            { label: "Support", href: "https://support.discord.com/hc", isExternal: true },
+            { label: "Safety", href: "/safety" },
+            { label: "Blog", href: "/blog" },
+            { label: "StreamKit", href: "/streamkit" },
+            { label: "Creators", href: "/creators" },
+            { label: "Community", href: "/community" },
+            { label: "Developers", href: "/developers" },
+            { label: "Gaming", href: "/gaming" },
+            { label: "Quests", href: "/quests" },
+            { label: "Official 3rd Party Merch", href: "https://discordmerch.com/evergreenfooter", isExternal: true },
+            { label: "Feedback", href: "https://support.discord.com/hc/en-us/community/topics", isExternal: true },
+        ],
+    },
+    {
+        title: "Policies",
+        links: [
+            { label: "Terms", href: "/terms" },
+            { label: "Privacy", href: "/privacy" },
+            { label: "Cookie Settings", href: "#", isExternal: false },
+            { label: "Guidelines", href: "/guidelines" },
+            { label: "Acknowledgements", href: "/acknowledgements" },
+            { label: "Licenses", href: "/licenses" },
+            { label: "Company Information", href: "/company-information" },
+        ],
+    },
+]
 
+/* Nitro Page */
 export const nitroBannerList: nitroBannerType[] = [
     {
         image: "/images/nitro/Nitro_Basic_full_logo_horizontal_black_RGB_1_(1).svg",
@@ -203,7 +262,7 @@ export const nitroBannerList: nitroBannerType[] = [
             { image: "/icons/Vector_(15).svg", label: "Custom emoji anywhere" },
             { image: "/icons/super-reaction-white.svg", label: "Unlimited Super Reactions" },
             { image: "/icons/Vector_(16).svg", label: "Special Nitro badge on your profile" },
-        ]
+        ],
     },
     {
         image: "/images/nitro/Stacked.svg",
@@ -218,17 +277,15 @@ export const nitroBannerList: nitroBannerType[] = [
             { image: "/icons/Stream_Quality_white.svg", label: "HD video streaming" },
             { image: "/icons/Large.svg", label: "2 Server Boosts" },
             { image: "/icons/Filled_Icons.svg", label: "Custom profiles and more!" },
-        ]
+        ],
     },
 ]
-
 export const nitroMainPerkList: nitroPerkType[] = [
     { image: { url: "/images/nitro/Clips_to_pics.svg", alt: "From clips to pics, share away with bigger file uploads" }, title: "From clips to pics, share away with bigger file uploads" },
     { image: { url: "/images/nitro/Stream_apps.svg", alt: "Stream apps and games in sweet, sweet HD" }, title: "Stream apps and games in sweet, sweet HD" },
     { image: { url: "/images/nitro/Project-Speedy-Emoji-Static.svg", alt: "Hype and meme with custom emoji anywhere" }, title: "Hype and meme with custom emoji anywhere" },
     { image: { url: "/images/nitro/Frame_881.svg" }, title: "Unlock perks for your communities with 2 Server Boosts", titleClassName: "max-w-[405px]" },
 ]
-
 export const nitroSubPerkList: nitroPerkType[] = [
     { image: { url: "/images/nitro/PM_NitroAprilDrop_PerkCard_Illustration_1.svg" }, title: "Color Themes", description: "Add your vibe to Discord with unique theme colors." },
     { image: { url: "/images/nitro/Nitro-Shop-Perk-Card-Asset.svg" }, title: "Special Shop Perks", description: "Enjoy member pricing plus Nitro exclusive items in the Shop." },
@@ -237,7 +294,6 @@ export const nitroSubPerkList: nitroPerkType[] = [
     { image: { url: "/images/nitro/Group.svg" }, title: "Unlimited Super Reactions", description: "Hype up the chat with action-packed, animated reactions." },
     { image: { url: "/images/nitro/More_Backgrounds.svg" }, title: "More Backgrounds", description: "Customize video calls with your own video backgrounds." },
 ]
-
 export const nitroPlanList: nitroPlanProps[] = [
     {
         id: "basic",
@@ -259,7 +315,6 @@ export const nitroPlanList: nitroPlanProps[] = [
         highlight: { image: { src: "/images/nitro/Tag.svg", width: 112, height: 25 } },
     },
 ]
-
 export const nitroPlanFeatureList: nitroPlanFeatureProps[] = [
     {
         id: "super-reactions",
@@ -422,14 +477,12 @@ export const nitroPlanFeatureList: nitroPlanFeatureProps[] = [
         },
     },
 ]
-
 export const nitroFAQCategoryList: nitroFAQCategoryType[] = [
     { id: 1, title: "General", value: "general" },
     { id: 2, title: "Payments", value: "payments" },
     { id: 3, title: "Gifting and Promotions", value: "gifting_and_promotions" },
     { id: 4, title: "Other", value: "other" },
 ]
-
 export const nitroFAQList: nitroFAQType[] = [
     { categoryId: 1, question: "What’s Nitro?", answer: "Nitro is a subscription service that unlocks features and perks across Discord, giving you more ways to have fun and express yourself." },
     { categoryId: 1, question: "How does Nitro work?", answer: "When you subscribe to Nitro, you get access to features that were previously locked for you - like using custom emoji anywhere, uploading bigger files, setting a custom video background, and more. When the subscription ends, you’ll lose access to the perks." },

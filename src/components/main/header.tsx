@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useAuth } from "@clerk/nextjs"
 import { cn } from "@/lib/utils"
 import { HeaderProps } from "@/types"
+import { signedInUrl, signInUrl } from "@/data"
 import { Logo } from "./logo"
 import { NavigationMenuCustom } from "./navigation-menu/navigation-menu-custom"
 import NavigationBurgerMenu from "./navigation-menu/navigation-burger-menu"
@@ -20,8 +21,6 @@ export function Header({
     navStyle = "advanced",
 }: HeaderProps) {
     const { isSignedIn } = useAuth()
-    const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? "/sign-in"
-    const signedInUrl = "/channels/@me"
     const authButtonUrl = isSignedIn ? signedInUrl : signInUrl
     const authButtonText = isSignedIn ? "Open Discord" : "Log In"
 
@@ -37,7 +36,7 @@ export function Header({
     }
 
     // Determine container class
-    const containerClass = container === "fluid" ? "px-6 md:px-8 xl:px-10 w-full" : "mx-auto px-6 lg:px-8 max-w-7xl"
+    const containerClass = container === "fluid" ? "px-6 md:px-8 xl:px-10 w-full" : "mx-auto px-6 md:px-10 max-w-7xl"
 
     const [scrolled, setScrolled] = useState(false)
 

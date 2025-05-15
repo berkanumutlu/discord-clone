@@ -76,4 +76,4 @@ const NavigationBurgerMenuItem = ({ item }: { item: NavigationMenuItemProps }) =
     )
 }
 
-export default NavigationBurgerMenuItem;
+export default NavigationBurgerMenuItem

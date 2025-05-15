@@ -40,6 +40,9 @@ const Servers = () => {
                 position: "static",
                 navStyle: "basic",
             }}
+            footer={{
+                footerStyle: "basic"
+            }}
         >
             <div className="mb-[15px] lg:mb-12 relative overflow-x-hidden">
                 <Image
@@ -76,7 +79,7 @@ const Servers = () => {
                 </div>
             </div>
             <div className="w-full flex flex-col items-center">
-                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                     <div className="mb-3 lg:mb-10 h-[40px] lg:h-[52px] flex col-span-12 lg:col-span-10 lg:col-start-2">
                         <div className="mr-3 lg:mr-4 pr-3 lg:pr-4 h-auto flex flex-[1] items-center bg-app-bg-input text-[14px] lg:text-[16px] rounded-lg focus-within:shadow-[0_0_0_1px_#5b43f0,0_0_0_2px_#bdb3f9,0_0_0_3px_#bdb3f9]">
                             <div className="flex flex-[1] flex-col">
@@ -110,7 +113,7 @@ const Servers = () => {
                         </Button>
                     </div>
                 </div>
-                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                     <div className="mb-[38px] lg:mb-0 h-10 lg:h-auto col-span-12 lg:col-span-3 lg:col-start-2 z-[1]">
                         <div className="hidden lg:block z-[1]">
                             <div className="mr-2 mb-3 p-[10px_12px] lg:p-[11px_14px] flex flex-row items-center bg-app-dim-grey/15 rounded-lg lg:rounded transition-colors duration-300 ease cursor-pointer">
@@ -251,7 +254,7 @@ const Servers = () => {
                         </div>
                     </div>
                 </div>
-                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                     <div className="mt-[22px] w-full col-start-1 col-span-12">
                         <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
                     </div>

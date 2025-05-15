@@ -26,12 +26,15 @@ const ServerDetailPage = ({
                 position: "static",
                 navStyle: "basic",
             }}
+            footer={{
+                footerStyle: "basic"
+            }}
         >
             <div className="relative">
                 <div className="flex flex-row whitespace-pre-line break-words">
                     <div className="w-full flex flex-col items-center font-primary">
                         <div className="w-full h-[178px] lg:h-[320px] max-h-[320px] absolute top-0 bg-[#404eed]"></div>
-                        <div className="mt-24 lg:mt-[120px] px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5 z-0">
+                        <div className="mt-24 lg:mt-[120px] px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5 z-0">
                             <Image
                                 src={placeholderImageUrl}
                                 alt={"Discovery splash banner for Server Name Discord server"}
@@ -42,7 +45,7 @@ const ServerDetailPage = ({
                             />
                         </div>
                         <div className="z-[1]">
-                            <div className="mt-[-52px] px-6 md:px-10 w-full max-w-[1260px] hidden lg:grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                            <div className="mt-[-52px] px-6 md:px-10 w-full max-w-[1260px] hidden lg:grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                                 <Image
                                     src={placeholderImageUrl}
                                     alt={"Discovery icon for Server Name Discord server"}
@@ -90,7 +93,7 @@ const ServerDetailPage = ({
                                     </div>
                                     <div className="mb-6 lg:mb-[25px] pt-6 lg:pt-[26px] flex flex-row border-t-[1px] border-solid border-[rgba(6,6,7,.08)]">
                                         <div className="w-full flex flex-col items-center">
-                                            <div className="w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+                                            <div className="w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                                                 <div className="mb-6 flex items-center col-span-6">
                                                     <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
                                                         <MessageSquareMore className="w-5" />

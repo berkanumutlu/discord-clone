@@ -3,20 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { LogoColor, LogoFormat, LogoType } from "@/types"
+import { LogoProps } from "@/types"
 import { placeholderImageUrl } from "@/data"
-
-export interface LogoProps {
-    type?: LogoType
-    color?: LogoColor
-    format?: LogoFormat
-    width?: number
-    height?: number
-    showText?: boolean
-    href?: string
-    className?: string
-    linkClassName?: string
-}
 
 export function Logo({
     type = "small",

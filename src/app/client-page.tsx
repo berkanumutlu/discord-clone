@@ -116,7 +116,7 @@ export default function HomeClient() {
                             <div className="relative flex flex-col md:flex-row justify-center items-center flex-wrap">
                                 <Link
                                     href={"/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64d"}
-                                    className="mx-0 mt-6 md:mr-6 2xl:mr-[39px] px-6 py-[15px] min-w-[232px] 2xl:min-w-[262px] h-12 min-h-14 2xl:min-h-[65px] flex items-center bg-app-white hover:bg-plum-6 text-app-not-quite-black font-abcgintodiscord font-normal text-[18px] 2xl:text-xl leading-6 2xl:leading-[26px] tracking-[.25px] rounded-xl transition-all duration-300 box-border"
+                                    className="mx-0 mt-6 md:mr-6 px-6 py-[15px] min-w-[232px] 2xl:min-w-[262px] h-12 min-h-14 2xl:min-h-[65px] flex items-center bg-app-white hover:bg-plum-6 text-app-not-quite-black font-abcgintodiscord font-normal text-[18px] 2xl:text-xl leading-6 2xl:leading-[26px] tracking-[.25px] rounded-xl transition-all duration-300 box-border"
                                 >
                                     <Download width={24} height={24} className="mr-2" />Download for Windows
                                 </Link>

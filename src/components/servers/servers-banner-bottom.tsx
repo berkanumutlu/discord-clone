@@ -6,7 +6,7 @@ const ServerBannerBottom = () => {
 
     return (
         <div className="py-12 lg:py-[120px] lg:w-full flex flex-col lg:flex-row lg:justify-center bg-app-off-white">
-            <div className="px-6 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
+            <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                 <div className="flex lg:hidden justify-center col-span-12 lg:col-span-7">
                     <Image
                         src={"/images/servers/3c7040a5863c9c1d22a74089216c50dc.webp"}
