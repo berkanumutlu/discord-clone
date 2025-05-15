@@ -1,9 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import { placeholderImageUrl } from "@/data"
 
 const ServerInfoCard = () => {
-    const placeholderImage = "/images/placeholder.svg"
-
     return (
         <div className="mb-4 lg:mb-5 p-2 w-full h-auto inline-block hover:bg-[rgba(106,116,128,.16)] rounded-lg transition-colors duration-300 ease">
             <Link
@@ -11,7 +10,7 @@ const ServerInfoCard = () => {
                 className="flex flex-row text-app-text-link font-primary no-underline"
             >
                 <Image
-                    src={placeholderImage}
+                    src={placeholderImageUrl}
                     alt={"Discovery splash banner for Server Name Discord server"}
                     width={1500}
                     height={500}
@@ -19,7 +18,7 @@ const ServerInfoCard = () => {
                     className="mr-4 w-full max-w-64 h-36 hidden lg:block rounded-lg object-cover z-[1] bg-gray-700"
                 />
                 <Image
-                    src={placeholderImage}
+                    src={placeholderImageUrl}
                     alt={"Discovery icon for Server Name Discord server"}
                     width={24}
                     height={24}
@@ -30,7 +29,7 @@ const ServerInfoCard = () => {
                     <div className="lg:mb-2 flex flex-row lg:items-center">
                         <div className="lg:mr-2 lg:h-8 hidden lg:block z-[1]">
                             <Image
-                                src={placeholderImage}
+                                src={placeholderImageUrl}
                                 alt={"Discovery icon for Server Name Discord server"}
                                 width={24}
                                 height={24}

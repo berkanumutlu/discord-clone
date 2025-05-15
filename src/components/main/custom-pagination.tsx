@@ -145,7 +145,8 @@ export function CustomPagination({ currentPage, totalPages, onPageChange }: Cust
                                     />
                                 ) : (
                                     <PaginationEllipsis
-                                        className="my-2 mx-1 p-1.5 w-7 min-w-7 h-7 flex justify-center items-end hover:bg-app-bg-secondary-alt text-[#757575] font-display font-semibold text-[16px] leading-[120%] text-center rounded-[14px] cursor-pointer [&_svg]:size-3"
+                                        className="my-2 mx-1 p-1.5 w-7 min-w-7 h-7 flex justify-center items-end hover:bg-app-bg-secondary-alt text-[#757575] font-display font-semibold text-[16px] leading-[120%] text-center rounded-[14px] cursor-pointer
+                                        [&_svg]:size-3"
                                         onClick={() => handlePageEllipsisClick(position)}
                                     />
                                 )}

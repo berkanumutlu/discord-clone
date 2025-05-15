@@ -43,14 +43,7 @@ export default function HomeClient() {
     }, [isMaxWidth])
 
     return (
-        <PageLayout
-            header={{
-                variant: "transparent",
-                container: "fluid",
-                showNav: true,
-            }}
-            className="overflow-hidden _2025"
-        >
+        <PageLayout className="overflow-hidden _2025 bg-[#1a2081]">
             {/* Home Hero Section */}
             <section className="mt-0 pt-16 md:pt-32 xl:pt-32 2xl:pt-36 3xl:pt-32 pb-0 sm:pb-[2.4375rem] md:pb-[3.5rem] xl:pb-[7.8125rem] h-auto lg:h-screen 2xl:h-auto max-h-none lg:max-h-[700px] xl:max-h-[900px] 2xl:max-h-none 3xl:max-h-[1080px] relative bg-home-hero-bg-image bg-no-repeat bg-[50%_-80%] md:bg-[65%_-25%] xl:bg-[50%_-15%] 2xl:bg-[100%_-33%] 3xl:bg-[60%_-33%] bg-250p sm:bg-90p 2xl:bg-95.5p 3xl:bg-96p bg-scroll">
                 <div className="px-6 md:px-10 2xl:px-0 w-full min-h-[148px] sm:min-h-[unset] 3xl:static">

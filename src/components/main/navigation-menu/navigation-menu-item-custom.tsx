@@ -2,17 +2,12 @@ import { forwardRef } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { ArrowUpRight } from "lucide-react"
+import { NavigationMenuCustomProps, NavigationMenuItemContentProps } from "@/types"
+import { placeholderImageUrl } from "@/data"
 import { NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
-import { NavigationMenuCustomProps } from "./navigation-menu-custom"
 import NavigationMenuListItemTitle from "./navigation-menu-list-item-title"
-import NavigationMenuListItem, { NavigationMenuItemContentLinkProps } from "./navigation-menu-list-item"
+import NavigationMenuListItem from "./navigation-menu-list-item"
 import NavigationMenuDivider from "./navigation-menu-divider"
-
-export interface NavigationMenuItemContentProps {
-    decorImage?: string
-    decorImageClass?: string
-    links?: NavigationMenuItemContentLinkProps[]
-}
 
 const NavigationMenuItemCustom = forwardRef<
     React.ElementRef<typeof NavigationMenuItem>,
@@ -21,12 +16,13 @@ const NavigationMenuItemCustom = forwardRef<
         href?: string
         isExternal?: boolean
         variant?: NavigationMenuCustomProps["variant"]
+        navStyle?: NavigationMenuCustomProps["navStyle"]
         dropdownContent?: NavigationMenuItemContentProps
     }
->(({ className, label, href = "#", isExternal = false, variant = "transparent", dropdownContent = {}, ...props }, ref) => {
+>(({ className, label, href = "#", isExternal = false, variant = "transparent", navStyle = "advanced", dropdownContent = {}, ...props }, ref) => {
     const labelTextColor = variant === "light" ? "text-app-black dark:text-app-white" : "text-app-white"
-    const hasDropdownContent = dropdownContent?.links && dropdownContent?.links?.length > 0
-    const decorImage = dropdownContent?.decorImage ? "/images/decor" + dropdownContent.decorImage : "/images/placeholder.svg"
+    const hasDropdownContent = navStyle === "advanced" && (dropdownContent?.links && dropdownContent?.links?.length > 0)
+    const decorImage = dropdownContent?.decorImage ? "/images/decor" + dropdownContent.decorImage : placeholderImageUrl
 
     if (hasDropdownContent) {
         const dropdownGridTemplateColClass =
@@ -39,7 +35,7 @@ const NavigationMenuItemCustom = forwardRef<
             <NavigationMenuItem ref={ref} className={className} {...props}>
                 <NavigationMenuTrigger
                     className={cn(
-                        "mx-0 p-[.625rem_.25rem_.625rem_.45rem] xl:pl-3 xl:pr-2 xl:[&[data-state=open]]:px-4 2xl:px-4 !h-auto min-h-[38px] xl:max-h-none flex justify-center items-center self-start lg:self-center !bg-transparent hover:!bg-app-blurple focus:!bg-app-blurple [&[data-state=open]]:!bg-app-blurple font-abcgintodiscord font-medium text-sm xl:text-base leading-4 xl:leading-[1.2rem] no-underline xl:tracking-normal rounded-xl transition-colors duration-400",
+                        "mx-0 p-[.625rem_.25rem_.625rem_.45rem] xl:pl-3 xl:pr-2 2xl:px-4 !h-auto min-h-[38px] xl:max-h-none flex justify-center items-center self-start lg:self-center !bg-transparent hover:!bg-app-blurple focus:!bg-app-blurple text-app-white hover:text-app-white font-abcgintodiscord font-medium text-sm xl:text-base leading-4 xl:leading-[1.2rem] no-underline xl:tracking-normal rounded-xl transition-colors duration-400 xl:[&[data-state=open]]:px-4 [&[data-state=open]]:!bg-app-blurple [&[data-state=open]]:text-app-white",
                         labelTextColor,
                     )}
                 >
@@ -112,7 +108,8 @@ const NavigationMenuItemCustom = forwardRef<
                 className={cn(
                     navigationMenuTriggerStyle(),
                     labelTextColor,
-                    "mx-0 p-[.625rem_.45rem] xl:px-3 2xl:px-4 h-auto min-h-[38px] flex justify-center items-center self-start lg:self-center bg-transparent hover:bg-app-blurple focus:bg-app-blurple font-abcgintodiscord font-medium text-sm xl:text-base leading-4 xl:leading-[1.2rem] no-underline xl:tracking-normal rounded-xl transition-colors duration-400"
+                    navStyle === "advanced" && "mx-0 p-[.625rem_.45rem] xl:px-3 2xl:px-4 h-auto min-h-[38px] flex justify-center items-center self-start lg:self-center bg-transparent hover:bg-app-blurple focus:bg-app-blurple !text-app-white font-abcgintodiscord font-medium text-[14px] xl:text-[16px] leading-4 xl:leading-[1.2rem] no-underline xl:tracking-normal rounded-xl transition-colors duration-400",
+                    navStyle === "basic" && "m-2 xl:m-2.5 p-2 xl:p-2.5 !bg-transparent !text-app-white font-semibold text-[16px] no-underline hover:underline",
                 )}
                 {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
             >

@@ -1,14 +1,8 @@
 import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
 import { ArrowUpRight } from "lucide-react"
+import { NavigationMenuItemContentLinkProps } from "@/types"
 import { NavigationMenuLink } from "@/components/ui/navigation-menu"
-
-export interface NavigationMenuItemContentLinkProps {
-    title: string
-    href?: string
-    isExternal?: boolean
-    subMenu?: NavigationMenuItemContentLinkProps[]
-}
 
 const NavigationMenuListItem = forwardRef<
     React.ElementRef<"a">,

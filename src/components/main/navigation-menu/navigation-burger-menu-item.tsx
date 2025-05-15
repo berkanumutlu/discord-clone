@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { NavigationMenuItemProps } from "@/types"
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { NavigationMenuItemProps } from "./navigation-menu-custom"
 import NavigationBurgerMenuListItem from "./navigation-burger-menu-list-item"
 import NavigationBurgerMenuListItemTitle from "./navigation-burger-menu-list-item-title"
 
@@ -71,7 +71,7 @@ const NavigationBurgerMenuItem = ({ item }: { item: NavigationMenuItemProps }) =
 
     return (
         <AccordionItem value={item.label} className="mx-0 static block font-abcgintonormal font-medium text-[.9rem] text-left border-b-[1px] border-solid border-app-white/5 rounded-none">
-            <Link href={item.href} className="mx-0 p-[1.5rem_.45rem_1.5rem_0] m-h-[38px] flex justify-start items-center self-start font-abcgintodiscord font-medium text-lg leading-[1.3] md:text-base md:leading-4 no-underline tracking-normal border-b-[1px] border-solid border-app-white/5 rounded-none transition-colors duration-400">{item.label}</Link>
+            <Link href={item.href} className="mx-0 p-[1.5rem_.45rem_1.5rem_0] m-h-[38px] flex justify-start items-center self-start text-app-white font-abcgintodiscord font-medium text-[18px] md:text-[16px] leading-[1.3] md:leading-4 no-underline tracking-normal border-b-[1px] border-solid border-app-white/5 rounded-none transition-colors duration-400">{item.label}</Link>
         </AccordionItem>
     )
 }

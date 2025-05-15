@@ -5,14 +5,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Check, Plus, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { nitroBannerList, nitroFAQCategoryList, nitroFAQList, nitroMainPerkList, nitroPlanFeatureList, nitroPlanList, nitroSubPerkList } from "@/data"
+import { nitroBannerList, nitroFAQCategoryList, nitroFAQList, nitroMainPerkList, nitroPlanFeatureList, nitroPlanList, nitroSubPerkList, placeholderImageUrl } from "@/data"
 import { PageLayout } from "@/components/main/page-layout"
 import CustomVideo from "@/components/main/custom-video"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const NitroPage = () => {
-    const placeholderImage = "/images/placeholder.svg"
     const [isSubPerkListExpanded, setIsSubPerkListExpanded] = useState(false)
     const subPerkListRef = useRef<HTMLDivElement>(null)
 
@@ -43,13 +42,7 @@ const NitroPage = () => {
     }
 
     return (
-        <PageLayout
-            header={{
-                variant: "transparent",
-                container: "fluid",
-                showNav: true,
-            }}
-        >
+        <PageLayout>
             <section className="mt-[-82px] pt-[160px] sm:pt-[200px] lg:pt-0 pb-[1000px] sm:pb-[1049px] md:pb-[1060px] lg:pb-0 w-full h-auto lg:h-[740px] 3xl:h-[38vw] relative flex flex-col justify-center items-center bg-nitro-bg-image [background-position:0_0,50%] bg-cover bg-no-repeat overflow-hidden">
                 <div className="mx-auto mt-[60px] md:mt-[70px] lg:mt-[80px] w-[90%] max-w-[1120px] h-auto relative flex flex-col lg:flex-row justify-start items-center self-start overflow-visible">
                     <div className="w-full sm:w-[unset] max-w-[350px] sm:max-w-[420px] relative flex flex-col justify-start lg:justify-center items-center lg:items-start self-center text-center z-[9]">
@@ -97,7 +90,7 @@ const NitroPage = () => {
                                 item?.className
                             )}>
                                 <Image
-                                    src={item?.image || placeholderImage}
+                                    src={item?.image || placeholderImageUrl}
                                     alt={""}
                                     width={196}
                                     height={24}
@@ -110,7 +103,7 @@ const NitroPage = () => {
                                 {item?.featureList?.map((subItem, subIndex) => (
                                     <div key={subIndex} className="mb-4 relative flex flex-row flex-wrap justify-start sm:justify-center items-center lg:items-start">
                                         <Image
-                                            src={subItem.image || placeholderImage}
+                                            src={subItem.image || placeholderImageUrl}
                                             alt={""}
                                             width={20}
                                             height={20}
@@ -145,7 +138,7 @@ const NitroPage = () => {
                                 </div>
                                 {item?.image?.url && (
                                     <Image
-                                        src={item.image.url || placeholderImage}
+                                        src={item.image.url || placeholderImageUrl}
                                         alt={item.image?.alt || ""}
                                         fill
                                         loading="lazy"
@@ -170,7 +163,7 @@ const NitroPage = () => {
                                 <div className="min-h-[110px] md:min-h-[134px] md:h-[140px] inline-grid items-center">
                                     {item?.image?.url && (
                                         <Image
-                                            src={item.image.url || placeholderImage}
+                                            src={item.image.url || placeholderImageUrl}
                                             alt={item.image?.alt || ""}
                                             width={222}
                                             height={134}
@@ -216,7 +209,7 @@ const NitroPage = () => {
                                             item.images.map((imageItem, imageIndex) => (
                                                 <Image
                                                     key={imageIndex}
-                                                    src={imageItem?.src || placeholderImage}
+                                                    src={imageItem?.src || placeholderImageUrl}
                                                     alt={imageItem?.alt || ""}
                                                     width={imageItem?.width || 0}
                                                     height={imageItem?.height || 0}
@@ -275,7 +268,7 @@ const NitroPage = () => {
                                 {nitroPlanList?.map((item, index) => (
                                     <Fragment key={index}>
                                         <Image
-                                            src={item?.images?.[0]?.src || placeholderImage}
+                                            src={item?.images?.[0]?.src || placeholderImageUrl}
                                             alt={item?.images?.[0]?.alt || ""}
                                             width={item?.images?.[0]?.width || 0}
                                             height={item?.images?.[0]?.height || 0}
@@ -298,7 +291,7 @@ const NitroPage = () => {
                                 )}>
                                     {item?.highlight?.image && (
                                         <Image
-                                            src={item.highlight.image?.src || placeholderImage}
+                                            src={item.highlight.image?.src || placeholderImageUrl}
                                             alt={item.highlight.image?.alt || ""}
                                             width={item.highlight.image?.width || 0}
                                             height={item.highlight.image?.height || 0}

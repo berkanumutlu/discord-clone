@@ -1,7 +1,8 @@
 import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
-import { Header, type HeaderProps } from "./header"
-import { Footer, type FooterProps } from "./footer"
+import { FooterProps, HeaderProps } from "@/types"
+import { Header } from "./header"
+import { Footer } from "./footer"
 
 interface PageLayoutProps {
     children: ReactNode

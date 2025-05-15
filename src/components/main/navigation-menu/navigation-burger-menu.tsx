@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import { AlignLeft, X } from "lucide-react"
+import { navigationMenuItems } from "@/data"
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetOverlay, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Accordion } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { Logo } from "../logo"
-import { navigationMenuItems } from "./navigation-menu-custom"
 import NavigationBurgerMenuItem from "./navigation-burger-menu-item"
 
 interface NavigationBurgerMenuProps {
@@ -30,7 +30,8 @@ const NavigationBurgerMenu = ({
                 side="right"
                 onPointerDownOutside={e => e.preventDefault()}
                 onInteractOutside={e => e.preventDefault()} // For mobile long-press
-                className="ml-auto p-6 md:p-8 w-full sm:w-1/2 h-full !max-w-[unset] flex flex-col justify-start items-stretch gap-y-4 bg-app-blurple border-l-0 rounded-none md:rounded-tl-[2.5rem] md:rounded-bl-[2.5rem] z-[102] [&>button:first-of-type]:hidden">
+                className="ml-auto p-6 md:p-8 w-full sm:w-1/2 h-full !max-w-[unset] flex flex-col justify-start items-stretch gap-y-4 bg-app-blurple border-l-0 rounded-none md:rounded-tl-[2.5rem] md:rounded-bl-[2.5rem] z-[102]
+                [&>button:first-of-type]:hidden">
                 <SheetHeader className="mb-12 space-y-0 flex flex-row justify-between items-center self-stretch">
                     <SheetTitle>
                         <Logo type="icon" width={32} height={23} />

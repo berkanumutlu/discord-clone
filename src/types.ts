@@ -26,6 +26,45 @@ export type LogoType = "full" | "small" | "icon"
 export type LogoFormat = "svg" | "png"
 export type LogoColor = "white" | "black" | "blurple"
 
+export interface HeaderProps {
+    variant?: "transparent" | "solid" | "light"
+    container?: "fluid" | "normal"
+    position?: "fixed" | "static"
+    logoType?: "full" | "small" | "icon"
+    className?: string
+    showNav?: boolean
+    navStyle?: NavigationMenuCustomProps["navStyle"]
+}
+
+export interface FooterProps {
+    className?: string
+}
+
+export interface NavigationMenuCustomProps {
+    variant?: "transparent" | "solid" | "light"
+    navStyle?: "basic" | "advanced"
+}
+
+export interface NavigationMenuItemContentProps {
+    decorImage?: string
+    decorImageClass?: string
+    links?: NavigationMenuItemContentLinkProps[]
+}
+
+export interface NavigationMenuItemContentLinkProps {
+    title: string
+    href?: string
+    isExternal?: boolean
+    subMenu?: NavigationMenuItemContentLinkProps[]
+}
+
+export interface NavigationMenuItemProps {
+    label: string
+    href: string
+    variant?: NavigationMenuCustomProps["variant"]
+    dropdownContent?: NavigationMenuItemContentProps
+}
+
 export type nitroBannerType = {
     image: string
     imageClassName?: string

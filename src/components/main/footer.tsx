@@ -4,13 +4,11 @@ import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { FooterProps } from "@/types"
+import { placeholderImageUrl } from "@/data"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { LanguageDropdown } from "@/components/language-dropdown"
 import { Logo } from "./logo"
-
-interface FooterProps {
-    className?: string
-}
 
 export function Footer({ className = "" }: FooterProps) {
     return (
@@ -203,9 +201,7 @@ function SocialIcon({ href, icon, alt }: { href: string; icon: string; alt: stri
             rel="noopener noreferrer"
             className="w-6 h-8 mr-[29px]"
         >
-            <Image src={icon || "/images/placeholder.svg"} alt={alt} width={24} height={25} loading="lazy" />
+            <Image src={icon || placeholderImageUrl} alt={alt} width={24} height={25} loading="lazy" />
         </Link>
     )
 }
-
-export type { FooterProps }

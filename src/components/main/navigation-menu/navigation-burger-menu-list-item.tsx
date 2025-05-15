@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { NavigationMenuItemContentLinkProps } from "./navigation-menu-list-item"
+import { NavigationMenuItemContentLinkProps } from "@/types"
 
 const NavigationBurgerMenuListItem = ({ className, item }: { className?: string, item: NavigationMenuItemContentLinkProps }) => {
     return (

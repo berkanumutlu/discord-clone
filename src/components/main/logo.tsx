@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { LogoColor, LogoFormat, LogoType } from "@/types"
+import { placeholderImageUrl } from "@/data"
 
 export interface LogoProps {
     type?: LogoType
@@ -57,7 +58,7 @@ export function Logo({
 
     // Construct the logo path
     const logoPath = `/images/logo/${getLogoDirectory()}/${getLogoType()}_${color}_RGB.${format}`
-    const logoUrl = logoPath || "/images/placeholder.svg"
+    const logoUrl = logoPath || placeholderImageUrl
 
     const logoContent = showText && type !== "icon"
         ? (

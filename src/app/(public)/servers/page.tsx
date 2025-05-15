@@ -36,9 +36,9 @@ const Servers = () => {
     return (
         <PageLayout
             header={{
-                variant: "transparent",
                 container: "normal",
-                showNav: true,
+                position: "static",
+                navStyle: "basic",
             }}
         >
             <div className="mb-[15px] lg:mb-12 relative overflow-x-hidden">
@@ -58,7 +58,7 @@ const Servers = () => {
                     loading="lazy"
                     className="h-[400px] absolute right-[-1px] hidden lg:block select-none z-[1]"
                 />
-                <div className="w-full h-[400px] relative bg-[linear-gradient(#4E1BF5,#6668EB)]">
+                <div className="w-full h-full relative bg-[linear-gradient(#4E1BF5,#6668EB)]">
                     <Image
                         src={"/images/servers/1897ff969a451c312dec38ab32c66060.svg"}
                         alt={""}
@@ -171,9 +171,9 @@ const Servers = () => {
                         </div>
                         <div className="block lg:hidden">
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="p-[11px_12px] w-full flex justify-between items-center border border-solid border-[rgba(79,84,92,.6)] rounded">
+                                <DropdownMenuTrigger className="group p-[11px_12px] w-full flex justify-between items-center border border-solid border-[rgba(79,84,92,.6)] rounded">
                                     <div className="text-[14px] leading-[18px]">Categories</div>
-                                    <ChevronDown className="!size-6" />
+                                    <ChevronDown className="!size-6 transition duration-200 group-data-[state=open]:rotate-180" />
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent
                                     className="w-full"

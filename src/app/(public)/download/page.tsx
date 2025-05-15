@@ -31,14 +31,7 @@ const DownloadPage = () => {
     }, [isDesktop])
 
     return (
-        <PageLayout
-            header={{
-                variant: "transparent",
-                container: "fluid",
-                showNav: true,
-            }}
-            className="download"
-        >
+        <PageLayout className="download">
             <section className="pt-36 md:pt-48 xl:pt-60 flex justify-center items-start bg-download-bg-image bg-[50%_0] bg-auto-100p md:bg-auto-90p lg:bg-cover bg-no-repeat text-center">
                 <div className="m-0 px-6 md:px-10 w-full 3xl:w-[unset] max-w-[1540px] 2xl:relative">
                     <Image
