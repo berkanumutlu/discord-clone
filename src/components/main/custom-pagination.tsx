@@ -130,7 +130,7 @@ export function CustomPagination({ currentPage, totalPages, onPageChange }: Cust
 
                         return (
                             <PaginationItem key={`ellipsis-${index}`} className={cn(
-                                "hidden lg:flex text-[#757575] text-center",
+                                "hidden lg:flex text-[#757575] dark:text-[#8a8a8a] text-center",
                                 showPageInput.show && showPageInput.position === position ? "w-full" : "my-2 mx-1 w-7",
                                 page === "ellipsis2" ? "!flex" : ""
                             )}>
@@ -141,7 +141,7 @@ export function CustomPagination({ currentPage, totalPages, onPageChange }: Cust
                                         value={pageInputValue}
                                         onChange={handlePageInputChange}
                                         onKeyDown={handlePageInputKeyDown}
-                                        className="p-1 w-[60px] h-[34px] bg-app-bg-secondary-alt focus-visible:ring-0 focus-visible:ring-offset-0"
+                                        className="p-1 w-[60px] h-[34px] bg-app-bg-secondary-alt text-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                                     />
                                 ) : (
                                     <PaginationEllipsis

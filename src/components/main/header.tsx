@@ -37,15 +37,14 @@ export function Header({
 
     // Determine container class
     const containerClass = container === "fluid" ? "px-6 md:px-8 xl:px-10 w-full" : "mx-auto px-6 md:px-10 max-w-7xl"
-
-    const [scrolled, setScrolled] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
             if (window.innerWidth < 1024) {
-                setScrolled(window.scrollY > 10)
+                setIsScrolled(window.scrollY > 10)
             } else {
-                setScrolled(false)
+                setIsScrolled(false)
             }
         }
 
@@ -63,7 +62,7 @@ export function Header({
     return (
         <header className={cn(
             "nav-header fixed lg:absolute inset-0 bottom-auto block font-abcgintonormal transition-colors duration-300 z-[101] xl:z-[99]",
-            scrolled ? "bg-app-blurple" : getBgColor(),
+            isScrolled ? "bg-app-blurple" : getBgColor(),
             className
         )}>
             <div className={cn(
@@ -102,7 +101,7 @@ export function Header({
                         <Link
                             href={authButtonUrl}
                             className={cn(
-                                "items-center bg-app-white font-medium no-underline border-none",
+                                "header-auth-button items-center bg-app-white font-medium no-underline border-none",
                                 position === "fixed" && "mb-0 xl:my-0 px-4 py-[9px] xl:py-[10px] flex xl:block justify-start hover:bg-[#c7c8ce] text-app-black font-abcgintodiscord text-[16px] leading-[130%] xl:leading-[1.2] text-center tracking-normal xl:tracking-[0.25px] rounded-2xl transition-colors duration-300 xl:duration-250",
                                 position === "static" && "p-[7px_16px] inline-flex text-app-not-quite-black hover:text-app-blurple font-primary text-[14px] leading-6 hover:no-underline text-end rounded-[40px] hover:shadow-[0_8px_15px_rgba(0,0,0,.2)] transition-colors duration-200 ease-in-out",
                             )}

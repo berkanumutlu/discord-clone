@@ -51,7 +51,7 @@ export function Logo({
     const logoContent = showText && type !== "icon"
         ? (
             <div className={cn(
-                "md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
+                "logo-image-div md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
                 className
             )}>
                 <Image
@@ -60,8 +60,9 @@ export function Logo({
                     width={width}
                     height={height}
                     priority
+                    className="logo-image"
                 />
-                <span className={cn("hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
+                <span className={cn("logo-image-text hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
             </div>
         ) : (
             <Image
@@ -69,13 +70,13 @@ export function Logo({
                 alt="Discord Clone logo"
                 width={width}
                 height={height}
-                className={cn(className)}
+                className={cn("logo-image", className)}
                 priority
             />
         )
 
     if (href) {
-        return <Link href={href} className={linkClassName}>{logoContent}</Link>
+        return <Link href={href} className={cn("logo-image-link", linkClassName)}>{logoContent}</Link>
     }
 
     return logoContent

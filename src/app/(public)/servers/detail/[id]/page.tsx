@@ -52,7 +52,7 @@ const ServerDetailPage = ({
                                     width={104}
                                     height={104}
                                     loading="lazy"
-                                    className="ml-12 size-12 lg:size-[104px] max-w-none border-none lg:border-8 lg:border-solid lg:border-app-white rounded-lg lg:rounded-3xl object-cover bg-gray-500"
+                                    className="ml-12 size-12 lg:size-[104px] max-w-none border-none lg:border-8 lg:border-solid lg:border-primary-foreground lg:dark:border-app-bg-secondary rounded-lg lg:rounded-3xl object-cover bg-gray-500"
                                 />
                             </div>
                             <div className="mt-[26px] lg:mt-[18px] mb-20 lg:mb-[120px] px-6 md:px-10 w-full max-w-[1260px] lg:grid lg:grid-cols-[repeat(12,1fr)] gap-x-5">
@@ -95,7 +95,7 @@ const ServerDetailPage = ({
                                         <div className="w-full flex flex-col items-center">
                                             <div className="w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">
                                                 <div className="mb-6 flex items-center col-span-6">
-                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
+                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 rounded-[20px]">
                                                         <MessageSquareMore className="w-5" />
                                                     </div>
                                                     <div className="ml-4 flex flex-col justify-center">
@@ -104,7 +104,7 @@ const ServerDetailPage = ({
                                                     </div>
                                                 </div>
                                                 <div className="mb-6 flex items-center col-span-6">
-                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
+                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 rounded-[20px]">
                                                         <CalendarDays className="w-5" />
                                                     </div>
                                                     <div className="ml-4 flex flex-col justify-center">
@@ -113,7 +113,7 @@ const ServerDetailPage = ({
                                                     </div>
                                                 </div>
                                                 <div className="mb-6 flex items-center col-span-6">
-                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
+                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 rounded-[20px]">
                                                         <Laugh className="w-5" />
                                                     </div>
                                                     <div className="ml-4 flex flex-col justify-center">
@@ -121,7 +121,7 @@ const ServerDetailPage = ({
                                                     </div>
                                                 </div>
                                                 <div className="mb-6 flex items-center col-span-6">
-                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
+                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 rounded-[20px]">
                                                         <Newspaper className="w-5" />
                                                     </div>
                                                     <div className="ml-4 flex flex-col justify-center">
@@ -129,7 +129,7 @@ const ServerDetailPage = ({
                                                     </div>
                                                 </div>
                                                 <div className="mb-6 flex items-center col-span-6">
-                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
+                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 rounded-[20px]">
                                                         <PartyPopper className="w-5" />
                                                     </div>
                                                     <div className="ml-4 flex flex-col justify-center">
@@ -137,7 +137,7 @@ const ServerDetailPage = ({
                                                     </div>
                                                 </div>
                                                 <div className="mb-6 flex items-center col-span-6">
-                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-not-quite-black rounded-[20px]">
+                                                    <div className="p-2.5 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 rounded-[20px]">
                                                         <LaptopMinimal className="w-5" />
                                                     </div>
                                                     <div className="ml-4 flex flex-col justify-center">
@@ -148,8 +148,8 @@ const ServerDetailPage = ({
                                         </div>
                                     </div>
                                     <div className="mb-6 lg:mb-[25px] pt-6 lg:pt-[25px] flex flex-col border-t-[1px] border-solid border-[rgba(6,6,7,.08)]
-                                    [&_div.server-text-section]:mt-6 [&_div.server-text-section:first-child]:mt-0">
-                                        <div className="server-text-section">
+                                    [&>div.server-detail-text-section]:mt-6 [&>div.server-detail-text-section:first-child]:mt-0">
+                                        <div className="server-detail-text-section">
                                             <h2 className="mb-2 text-app-header-primary font-display font-bold text-[20px] leading-6">About</h2>
                                             <div className="text-app-text-normal-2 text-[14px] lg:text-[16px] leading-[18px] lg:leading-5">
                                                 <div className="font-primary text-inherit select-text
@@ -160,7 +160,7 @@ const ServerDetailPage = ({
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="server-text-section">
+                                        <div className="server-detail-text-section">
                                             <h2 className="mb-2 text-app-header-primary font-display font-bold text-[20px] leading-6">Supported Languages</h2>
                                             <div className="text-app-text-normal-2 text-[14px] lg:text-[16px] leading-[18px] lg:leading-5">English, Turkish</div>
                                         </div>
@@ -183,19 +183,19 @@ const ServerDetailPage = ({
                                     <div className="lg:mt-6 flex flex-col">
                                         <h3 className="my-2 text-app-header-secondary font-display font-bold text-[12px] leading-4 uppercase">Categories</h3>
                                         <div className="-mr-2 -mb-2 flex flex-row flex-wrap">
-                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-[rgb(249,249,249)] rounded capitalize">
+                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-primary-foreground rounded capitalize">
                                                 <div className="text-app-header-secondary text-[14px] leading-[18px]">Fandom</div>
                                             </div>
-                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-[rgb(249,249,249)] rounded capitalize">
+                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-primary-foreground rounded capitalize">
                                                 <div className="text-app-header-secondary text-[14px] leading-[18px]">Mobile</div>
                                             </div>
-                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-[rgb(249,249,249)] rounded capitalize">
+                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-primary-foreground rounded capitalize">
                                                 <div className="text-app-header-secondary text-[14px] leading-[18px]">Gaming</div>
                                             </div>
-                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-[rgb(249,249,249)] rounded capitalize">
+                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-primary-foreground rounded capitalize">
                                                 <div className="text-app-header-secondary text-[14px] leading-[18px]">General Chatting</div>
                                             </div>
-                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-[rgb(249,249,249)] rounded capitalize">
+                                            <div className="mr-2 mb-2 px-4 h-8 flex flex-row justify-center items-center bg-primary-foreground rounded capitalize">
                                                 <div className="text-app-header-secondary text-[14px] leading-[18px]">Console</div>
                                             </div>
                                         </div>
@@ -205,31 +205,31 @@ const ServerDetailPage = ({
                                         <div className="-mr-2 -mb-2 flex flex-row flex-wrap">
                                             <Link
                                                 href={"youtube.com"}
-                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-text-normal-2 no-underline rounded-[20px]"
+                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 no-underline rounded-[20px]"
                                             >
                                                 <YoutubeIcon className="size-6" />
                                             </Link>
                                             <Link
                                                 href={"twitter.com"}
-                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-text-normal-2 no-underline rounded-[20px]"
+                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 no-underline rounded-[20px]"
                                             >
                                                 <TwitterIcon className="size-6" />
                                             </Link>
                                             <Link
                                                 href={"facebook.com"}
-                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-text-normal-2 no-underline rounded-[20px]"
+                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 no-underline rounded-[20px]"
                                             >
                                                 <FacebookIcon className="size-6" />
                                             </Link>
                                             <Link
                                                 href={"instagram.com"}
-                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-text-normal-2 no-underline rounded-[20px]"
+                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 no-underline rounded-[20px]"
                                             >
                                                 <InstagramIcon className="size-6" />
                                             </Link>
                                             <Link
                                                 href={"twitch.tv"}
-                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-[rgb(249,249,249)] text-app-text-normal-2 no-underline rounded-[20px]"
+                                                className="mr-2 mb-2 size-10 flex justify-center items-center bg-primary-foreground text-app-text-normal-2 no-underline rounded-[20px]"
                                             >
                                                 <TwitchIcon className="size-6" />
                                             </Link>

@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useTheme } from "next-themes"
 import { Check, Plus, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { nitroBannerList, nitroFAQCategoryList, nitroFAQList, nitroMainPerkList, nitroPlanFeatureList, nitroPlanList, nitroSubPerkList, placeholderImageUrl } from "@/data"
@@ -12,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const NitroPage = () => {
+    const { theme } = useTheme()
     const [isSubPerkListExpanded, setIsSubPerkListExpanded] = useState(false)
     const subPerkListRef = useRef<HTMLDivElement>(null)
 
@@ -22,18 +24,46 @@ const NitroPage = () => {
     }
 
     useEffect(() => {
-        setPerkListDivHeight()
+        const logoImage = document.querySelector(".logo-image-div")
+        const authButton = document.querySelector(".header-auth-button")
+
+        const changeLogoColor = () => {
+            if (!logoImage || !authButton) return
+
+            if (theme === "light") {
+                logoImage.classList.add("invert")
+                authButton.classList.add("invert")
+            } else {
+                logoImage.classList.remove("invert")
+                authButton.classList.remove("invert")
+            }
+        }
+
+        const handleScroll = () => {
+            if (window.innerWidth >= 1024 && window.scrollY > 430) {
+                changeLogoColor()
+            } else {
+                logoImage?.classList.remove("invert")
+                authButton?.classList.remove("invert")
+            }
+        }
 
         const handleResize = () => {
+            handleScroll()
             setIsSubPerkListExpanded(false)
         }
 
+        setPerkListDivHeight()
+        handleScroll()
+
         window.addEventListener("resize", handleResize)
+        window.addEventListener("scroll", handleScroll)
 
         return () => {
             window.removeEventListener("resize", handleResize)
+            window.removeEventListener("scroll", handleScroll)
         }
-    }, [])
+    }, [theme])
 
     const toggleSubPerkList = (e: { preventDefault: () => void }) => {
         e.preventDefault()
@@ -173,7 +203,7 @@ const NitroPage = () => {
                                     )}
                                 </div>
                                 <div className="flex flex-col items-center gap-y-2">
-                                    <div className="min-h-5 font-abcgintonormalbold font-normal text-[20px] leading-[30px] md:leading-6 text-center">
+                                    <div className="min-h-5 text-app-not-quite-black font-abcgintonormalbold font-normal text-[20px] leading-[30px] md:leading-6 text-center">
                                         {item.title}
                                     </div>
                                     <div className="pl-[9px] max-w-[230px] text-[#4f5660] font-ggsans text-[14px] leading-5 text-center">
@@ -196,7 +226,7 @@ const NitroPage = () => {
                         <h2 className="mx-auto mb-12 lg:mb-20 max-w-[580px] text-app-not-quite-black font-abcgintonormalbold font-normal text-[32px] md:text-[48px] leading-[42px] sm:leading-[140%] md:leading-[56px] lg:leading-[58px] text-center">Pick the plan that works best for you</h2>
                         <div className="w-full h-[108%] sm:h-[80%] lg:h-[unset] relative">
                             <div className="pb-4 grid grid-rows-[auto] grid-cols-[2fr_1fr_1fr] md:grid-cols-[1.5fr_minmax(200px,200px)_minmax(186px,186px)] auto-cols-[1fr] gap-x-4 lg:gap-x-0 gap-y-0 border-b-[1px] border-solid border-[#c7ccd1]">
-                                <div className="max-w-[170px] hidden md:block row-span-1 col-span-1 font-abcgintonormalbold font-bold text-[20px] leading-[140%] opacity-100">Features</div>
+                                <div className="max-w-[170px] hidden md:block row-span-1 col-span-1 text-app-not-quite-black font-abcgintonormalbold font-bold text-[20px] leading-[140%] opacity-100">Features</div>
                                 {nitroPlanList?.map((item, index) => (
                                     <div
                                         key={index}
@@ -233,7 +263,7 @@ const NitroPage = () => {
                                             case true: {
                                                 return (
                                                     <div key={planItemIndex} className="min-h-[52px] relative flex row-span-1 col-span-1 flex-col justify-center items-center z-[1]">
-                                                        <Check className="max-w-[21px] sm:max-w-full sm:size-[36px] inline-block" />
+                                                        <Check className="max-w-[21px] sm:max-w-full sm:size-[36px] inline-block text-app-not-quite-black" />
                                                     </div>
                                                 )
                                             }
@@ -335,7 +365,7 @@ const NitroPage = () => {
                                                         key={"category-question-" + subIndex}
                                                         value={"category-" + subItem.categoryId + "-question-" + subIndex}
                                                         className={cn(
-                                                            "mx-auto mb-1.5 sm:mb-4 w-full relative inline-block bg-app-off-white data-[state=open]:bg-app-blurple text-center rounded-lg z-[1]",
+                                                            "mx-auto mb-1.5 sm:mb-4 w-full relative inline-block bg-app-off-white data-[state=open]:bg-app-blurple text-center border-b-0 rounded-lg z-[1]",
                                                             subItem?.className
                                                         )}
                                                     >

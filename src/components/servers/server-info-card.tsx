@@ -40,13 +40,13 @@ const ServerInfoCard = () => {
                         <div className="text-app-bg-primary font-bold text-[16px] leading-[18px]">Server Name</div>
                     </div>
                     <div className="mb-2 text-app-bg-primary font-medium text-[14px] leading-[18px]">The largest community-run Server Name server. Join for news, chat, LFG, events & more! For both Users and Creators.</div>
-                    <div className="flex flex-row">
-                        <div className="flex items-center text-[12px] leading-4">
-                            <div className="text-app-bg-secondary font-medium text-[12px] leading-4">233,086 Online</div>
+                    <div className="flex flex-row text-app-header-secondary font-medium text-[12px] leading-4">
+                        <div className="flex items-center">
+                            <div>233,086 Online</div>
                         </div>
-                        <div className="m-[auto_8px] size-1 bg-app-bg-secondary rounded-[50%]"></div>
-                        <div className="flex items-center text-[12px] leading-4">
-                            <div className="text-app-bg-secondary font-medium text-[12px] leading-4">1,240,816 Members</div>
+                        <div className="m-[auto_8px] size-1 bg-app-bg-button-secondary rounded-[50%]"></div>
+                        <div className="flex items-center">
+                            <div>1,240,816 Members</div>
                         </div>
                     </div>
                     <div className="mt-auto flex flex-wrap gap-2">

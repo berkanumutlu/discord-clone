@@ -102,13 +102,13 @@ const Servers = () => {
                             )}
                             {searchValue.length > 0 && (
                                 <div className="leading-[0]">
-                                    <CircleXIcon onClick={handleSearchInputClear} className="!size-[1.4rem] text-app-interactive-normal hover:text-app-black/70 transition-colors duration-200 rotate-90 cursor-pointer" />
+                                    <CircleXIcon onClick={handleSearchInputClear} className="!size-[1.4rem] text-app-interactive-normal hover:text-primary/70 hover:dark:text-primary/90 transition-colors duration-200 rotate-90 cursor-pointer" />
                                 </div>
                             )}
                         </div>
                         <Button className="p-0 w-[40px] lg:w-[52px] min-w-[unset] h-auto min-h-[unset] relative flex justify-center items-center bg-none bg-app-bg-button-2 hover:bg-app-bg-button-2-hover text-[14px] leading-4 border-none rounded-lg transition-colors duration-170 ease select-none">
                             <div className="my-0 mx-auto text-ellipsis whitespace-nowrap overflow-hidden">
-                                <Search className="!size-5" />
+                                <Search className="!size-5 dark:invert" />
                             </div>
                         </Button>
                     </div>
@@ -243,7 +243,7 @@ const Servers = () => {
                     </div>
                     <div className="col-span-12 lg:col-span-7">
                         <div className="lg:mb-4 hidden lg:block">
-                            <div className="font-bold text-[20px] leading-6">44772 Results Found</div>
+                            <div className="text-primary/85 font-bold text-[20px] leading-6">44772 Results Found</div>
                         </div>
                         <div>
                             {[...Array(12)].map((item, index) => (
