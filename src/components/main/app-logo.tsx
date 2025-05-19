@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import { LogoProps } from "@/types"
 import { placeholderImageUrl } from "@/data"
 
-export function Logo({
+export function AppLogo({
     type = "small",
     color = "white",
     format = "svg",
@@ -51,7 +51,7 @@ export function Logo({
     const logoContent = showText && type !== "icon"
         ? (
             <div className={cn(
-                "logo-image-div md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
+                "logoImageDiv md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
                 className
             )}>
                 <Image
@@ -60,9 +60,9 @@ export function Logo({
                     width={width}
                     height={height}
                     priority
-                    className="logo-image"
+                    className="logoImage"
                 />
-                <span className={cn("logo-image-text hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
+                <span className={cn("logoImageText hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
             </div>
         ) : (
             <Image
@@ -70,13 +70,13 @@ export function Logo({
                 alt="Discord Clone logo"
                 width={width}
                 height={height}
-                className={cn("logo-image", className)}
+                className={cn("logoImage", className)}
                 priority
             />
         )
 
     if (href) {
-        return <Link href={href} className={cn("logo-image-link", linkClassName)}>{logoContent}</Link>
+        return <Link href={href} className={cn("logoImageLink", linkClassName)}>{logoContent}</Link>
     }
 
     return logoContent

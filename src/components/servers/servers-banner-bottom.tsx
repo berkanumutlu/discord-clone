@@ -1,9 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import { signUpUrl } from "@/data"
 
 const ServerBannerBottom = () => {
-    const signUpUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL ?? "/sign-up"
-
     return (
         <div className="py-12 lg:py-[120px] lg:w-full flex flex-col lg:flex-row lg:justify-center bg-app-off-white dark:bg-app-dark-off-white">
             <div className="px-6 md:px-10 w-full max-w-[1260px] grid grid-cols-[repeat(4,1fr)] md:grid-cols-[repeat(8,1fr)] lg:grid-cols-[repeat(12,1fr)] gap-x-5">

@@ -124,28 +124,44 @@ const config: Config = {
 					"refresh-blue": "rgba(var(--app-refresh-blue))",
 					"navy-blue": "rgba(var(--app-navy-blue))",
 					"always-white": "rgba(var(--app-always-white))",
+					"brand-360": "var(--brand-360)",
+					"brand-400": "var(--brand-400)",
+					"brand-500": "var(--brand-500)",
+					"brand-560": "var(--brand-560)",
+					"brand-600": "var(--brand-600)",
+					"status-danger": "var(--status-danger)",
 
 					// Background colors
 					"bg-primary": "rgba(var(--app-bg-primary))",
 					"bg-secondary": "rgba(var(--app-bg-secondary))",
 					"bg-secondary-alt": "var(--app-bg-secondary-alt)",
 					"bg-tertiary": "rgba(var(--app-bg-tertiary))",
+					"bg-base-lower": "var(--app-background-base-lower)",
 					"bg-brand-experiment": "var(--brand-experiment)",
 					"bg-brand-experiment-560": "var(--brand-experiment-560)",
 					"bg-input": "var(--app-input-background)",
+					"bg-input-2": "var(--app-input-background-2)",
 					"bg-button-hover": "var(--app-button-background-hover)",
 					"bg-button-2": "var(--app-button-background-2)",
 					"bg-button-2-hover": "var(--app-button-background-2-hover)",
 					"bg-button-secondary": "var(--app-button-secondary-background)",
+					"bg-button-filled-brand-background": "var(--app-button-filled-brand-background)",
+					"bg-button-filled-brand-background-active": "var(--app-button-filled-brand-background-active)",
+					"bg-button-filled-brand-background-hover": "var(--app-button-filled-brand-background-hover)",
 
 					// Text colors
 					"text-normal": "rgba(var(--app-text-normal))",
 					"text-normal-2": "var(--app-text-normal-2)",
+					"text-normal-3": "var(--app-text-normal-3)",
 					"text-muted": "rgba(var(--app-text-muted))",
 					"text-muted-2": "var(--app-text-muted-2)",
+					"text-muted-3": "var(--app-text-muted-3)",
 					"text-link": "rgba(var(--app-text-link))",
-					"header-primary": "var(--header-primary)",
-					"header-secondary": "var(--header-secondary)",
+					"text-link-2": "var(--app-text-link-2)",
+					"text-danger": "var(--app-text-danger)",
+					"header-primary": "var(--app-header-primary)",
+					"header-secondary": "var(--app-header-secondary)",
+					"header-secondary-2": "var(--app-header-secondary-2)",
 
 					// Interactive colors
 					"interactive-normal": "rgba(var(--app-interactive-normal))",
@@ -155,6 +171,8 @@ const config: Config = {
 					// Border colors
 					"border-light": "rgba(var(--app-border-light))",
 					"border-dark": "rgba(var(--app-border-dark))",
+					"input-border": "var(--app-input-border)",
+					"button-filled-brand-border": "var(--app-button-filled-brand-border)",
 				},
 				plum: plumColors,
 			},
@@ -240,7 +258,13 @@ const config: Config = {
 					"0%, 100%": { transform: 'translateX(0)' },
 					"10%, 30%, 50%, 70%, 90%": { transform: 'translateX(-5px)' },
 					"20%, 40%, 60%, 80%": { transform: 'translateX(5px)' },
-				}
+				},
+				"spinnerWanderingCubes": {
+					"25%": { transform: 'translateX(22px) rotate(-90deg) scale(0.5)' },
+					"50%": { transform: 'translateX(22px) translateY(22px) rotate(-180deg)' },
+					"75%": { transform: 'translateX(0) translateY(22px) rotate(-270deg) scale(0.5)' },
+					"to": { transform: 'rotate(-1turn)' },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -256,15 +280,25 @@ const config: Config = {
 				"opacity-in": "opacityIn 0.5s ease-out forwards",
 				"opacity-out": "opacityOut 0s ease-out forwards",
 				"shake": "shake 0.5s",
+				"spinner-wandering-cubes": "spinnerWanderingCubes 1.8s ease-in-out infinite",
 			},
 			animationDuration: {
 				'7s': '7000ms',
+			},
+			animationDelay: {
+				'900': '900ms',
+				'm900': '-900ms',
 			},
 			transitionDuration: {
 				170: '170ms',
 				250: '250ms',
 				350: '350ms',
 				400: '400ms',
+				1800: '1800ms',
+			},
+			transitionDelay: {
+				'900': '900ms',
+				'm900': '-900ms',
 			},
 			backgroundImage: {
 				"home-image": "url('/images/home/home_hero_image.webp')",

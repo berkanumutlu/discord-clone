@@ -18,13 +18,19 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        primary: "bg-indigo-500 text-white hover:bg-indigo-500/90"
+        primary: "bg-indigo-500 text-white hover:bg-indigo-500/90",
+        brand: "bg-none bg-app-bg-button-filled-brand-background hover:bg-app-bg-button-filled-brand-background-hover text-app-white border-app-button-filled-brand-border"
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        "full-default": "w-full h-10 px-4 py-2",
+        "full-sm": "w-full h-9 rounded-md px-3",
+        "full-lg": "w-full min-h-11 rounded-md px-8",
+        "full-icon": "w-full h-10",
+        "brand-lg": "w-[130px] min-w-[130px] h-11 min-h-11 rounded-md px-8",
       },
     },
     defaultVariants: {

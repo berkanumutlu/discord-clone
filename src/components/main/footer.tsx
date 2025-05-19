@@ -9,7 +9,7 @@ import { FooterProps } from "@/types"
 import { footerMenuItems, placeholderImageUrl, signedInUrl, signInUrl, socialLinks } from "@/data"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { LanguageDropdown } from "@/components/language-dropdown"
-import { Logo } from "./logo"
+import { AppLogo } from "@/components/main/app-logo"
 
 export function Footer({ footerStyle = "advanced", className = "" }: FooterProps) {
     const { isSignedIn } = useAuth()
@@ -49,7 +49,7 @@ export function Footer({ footerStyle = "advanced", className = "" }: FooterProps
                     <div className="col-span-4 md:col-span-8 lg:col-span-12">
                         <div className="mb-8 w-full h-px bg-app-blurple"></div>
                         <div className="flex justify-between items-center">
-                            <Logo width={124} height={34} />
+                            <AppLogo width={124} height={34} />
                             <Link href={authButtonUrl} className="p-[7px_16px] inline-flex items-center bg-app-blurple hover:bg-app-blurple-hover text-app-white font-medium text-[14px] leading-6 no-underline hover:underline rounded-[40px] hover:shadow-[0_8px_15px_rgba(0,0,0,.2)] transition-colors duration-200 ease-in-out">{authButtonText}</Link>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ export function Footer({ footerStyle = "advanced", className = "" }: FooterProps
                     {/* Logo, Language and Social Column */}
                     <div className="relative flex flex-col items-start col-span-1 row-span-1 md:col-span-3 md:row-span-6 lg:col-span-4 lg:row-span-1">
                         {/* Logo */}
-                        <Logo type="icon" width={59} height={44} linkClassName="mb-10 inline-block" />
+                        <AppLogo type="icon" width={59} height={44} linkClassName="mb-10 inline-block" />
 
                         {/* Language Selector */}
                         <LanguageDropdown />

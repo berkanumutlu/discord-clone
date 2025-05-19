@@ -21,12 +21,12 @@ export interface LanguageDropdownProps {
     className?: string
 }
 export type LogoType = "full" | "small" | "icon"
-export type LogoFormat = "svg" | "png"
-export type LogoColor = "white" | "black" | "blurple"
+export type LogoFormatType = "svg" | "png"
+export type LogoColorType = "white" | "black" | "blurple"
 export interface LogoProps {
     type?: LogoType
-    color?: LogoColor
-    format?: LogoFormat
+    color?: LogoColorType
+    format?: LogoFormatType
     width?: number
     height?: number
     showText?: boolean
@@ -34,7 +34,7 @@ export interface LogoProps {
     className?: string
     linkClassName?: string
 }
-export type socialLink = {
+export type socialLinkType = {
     label?: string
     href: string
     icon: string
@@ -73,14 +73,14 @@ export interface NavigationMenuItemProps {
     variant?: NavigationMenuCustomProps["variant"]
     dropdownContent?: NavigationMenuItemContentProps
 }
-export type FooterMenuLink = {
+export type FooterMenuLinkType = {
     label: string
     href: string
     isExternal?: boolean
 }
-export type FooterMenuSection = {
+export type FooterMenuSectionType = {
     title: string
-    links: FooterMenuLink[]
+    links: FooterMenuLinkType[]
 }
 
 /* Nitro Page */

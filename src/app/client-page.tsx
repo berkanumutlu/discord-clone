@@ -8,7 +8,7 @@ import { createHomeClydeImageAnimation, createHomeCoinImageAnimation, createHome
 import { useMedia } from "@/context/media-query-context"
 import { PageLayout } from "@/components/main/page-layout"
 import CustomVideo from "@/components/main/custom-video"
-import { Logo } from "@/components/main/logo"
+import { AppLogo } from "@/components/main/app-logo"
 
 export default function HomeClient() {
     // Refs for animated elements
@@ -342,13 +342,13 @@ export default function HomeClient() {
                     <div ref={homeLineTextRef} className="flex justify-start items-center gap-[2.25rem] 3xl:gap-20 md:transform-3d md:will-change-transform select-none">
                         {[...Array(4)].map((item, index) => (
                             <div key={item + "-" + index} className="flex flex-[none] justify-start items-center gap-[3.5rem] 3xl:gap-20 font-abcgintonordextrabold">
-                                <Logo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
+                                <AppLogo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
                                 <div className="text-app-white font-[inherit] font-bold text-[47px] lg:text-[47px] 3xl:text-[82px] leading-5 lg:leading-[25px] 3xl:leading-[34px] tracking-[-.01em] uppercase">talk</div>
-                                <Logo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
+                                <AppLogo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
                                 <div className="text-app-white font-[inherit] font-bold text-[47px] lg:text-[47px] 3xl:text-[82px] leading-5 lg:leading-[25px] 3xl:leading-[34px] tracking-[-.01em] uppercase">play</div>
-                                <Logo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
+                                <AppLogo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
                                 <div className="text-app-white font-[inherit] font-bold text-[47px] lg:text-[47px] 3xl:text-[82px] leading-5 lg:leading-[25px] 3xl:leading-[34px] tracking-[-.01em] uppercase">chat</div>
-                                <Logo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
+                                <AppLogo type="icon" href="" className="max-w-[36px] 3xl:max-w-[50px]" />
                                 <div className="text-app-white font-[inherit] font-bold text-[47px] lg:text-[47px] 3xl:text-[82px] leading-5 lg:leading-[25px] 3xl:leading-[34px] tracking-[-.01em] uppercase">hang out</div>
                             </div>
                         ))}

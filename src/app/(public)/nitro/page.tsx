@@ -24,8 +24,8 @@ const NitroPage = () => {
     }
 
     useEffect(() => {
-        const logoImage = document.querySelector(".logo-image-div")
-        const authButton = document.querySelector(".header-auth-button")
+        const logoImage = document.querySelector(".logoImageDiv")
+        const authButton = document.querySelector(".headerAuthButton")
 
         const changeLogoColor = () => {
             if (!logoImage || !authButton) return
@@ -217,7 +217,7 @@ const NitroPage = () => {
                         <Link
                             href={"#"}
                             onClick={toggleSubPerkList}
-                            className="p-[12px_32px_15px] py-3.5 w-full sm:w-[unset] absolute flex justify-center items-center bg-app-not-quite-black hover:bg-app-dark-button-hover dark:bg-app-bg-primary dark:hover:bg-plum-2 text-app-white dark:text-app-black font-ggsans font-bold text-[20px] sm:text-[16px] leading-6 no-underline text-center border-none rounded-[94px] sm:rounded-[28px] hover:shadow-[0_2px_9px_#060a0b6b] dark:hover:shadow-[0_2px_9px_#d9dada6b] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap"
+                            className="p-[12px_32px_15px] py-3.5 w-full sm:w-[unset] absolute flex justify-center items-center bg-app-not-quite-black hover:bg-app-dark-button-hover dark:bg-plum-4 dark:hover:bg-plum-2 text-app-white dark:text-app-black font-ggsans font-bold text-[20px] sm:text-[16px] leading-6 no-underline text-center border-none rounded-[94px] sm:rounded-[28px] hover:shadow-[0_2px_9px_#060a0b6b] dark:hover:shadow-[0_2px_9px_#d9dada6b] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap"
                         >
                             {isSubPerkListExpanded ? "Show less perks" : "Show all perks"}
                         </Link>

@@ -7,7 +7,7 @@ import { useAuth } from "@clerk/nextjs"
 import { cn } from "@/lib/utils"
 import { HeaderProps } from "@/types"
 import { signedInUrl, signInUrl } from "@/data"
-import { Logo } from "./logo"
+import { AppLogo } from "@/components/main/app-logo"
 import { NavigationMenuCustom } from "./navigation-menu/navigation-menu-custom"
 import NavigationBurgerMenu from "./navigation-menu/navigation-burger-menu"
 
@@ -75,7 +75,7 @@ export function Header({
                     position === "static" && "h-20",
                 )}>
                     {/* Logo */}
-                    <Logo
+                    <AppLogo
                         type={logoType}
                         width={logoType === "icon" ? 48 : logoType === "full" ? 240 : 146}
                         height={logoType === "icon" ? 48 : logoType === "full" ? 56 : 24}
@@ -101,7 +101,7 @@ export function Header({
                         <Link
                             href={authButtonUrl}
                             className={cn(
-                                "header-auth-button items-center bg-app-white font-medium no-underline border-none",
+                                "headerAuthButton items-center bg-app-white font-medium no-underline border-none",
                                 position === "fixed" && "mb-0 xl:my-0 px-4 py-[9px] xl:py-[10px] flex xl:block justify-start hover:bg-[#c7c8ce] text-app-black font-abcgintodiscord text-[16px] leading-[130%] xl:leading-[1.2] text-center tracking-normal xl:tracking-[0.25px] rounded-2xl transition-colors duration-300 xl:duration-250",
                                 position === "static" && "p-[7px_16px] inline-flex text-app-not-quite-black hover:text-app-blurple font-primary text-[14px] leading-6 hover:no-underline text-end rounded-[40px] hover:shadow-[0_8px_15px_rgba(0,0,0,.2)] transition-colors duration-200 ease-in-out",
                             )}

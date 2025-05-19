@@ -1,8 +1,10 @@
-import { nitroBannerType, nitroFAQCategoryType, nitroFAQType, nitroPlanFeatureProps, nitroPerkType, nitroPlanProps, NavigationMenuItemProps, socialLink, FooterMenuSection } from "@/types"
+import { nitroBannerType, nitroFAQCategoryType, nitroFAQType, nitroPlanFeatureProps, nitroPerkType, nitroPlanProps, NavigationMenuItemProps, socialLinkType, FooterMenuSectionType } from "@/types"
 
 /* Global */
+export const isThirdPartyAuthenticationEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
 export const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? "/sign-in"
 export const signedInUrl = "/channels/@me"
+export const signUpUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL ?? "/sign-up"
 export const placeholderImageUrl = "/images/placeholder.svg"
 export const languages = [
     "Čeština",
@@ -37,7 +39,7 @@ export const languages = [
     "中文(繁體)",
     "日本語",
 ]
-export const socialLinks: socialLink[] = [
+export const socialLinks: socialLinkType[] = [
     { label: "X/Twitter", href: "https://twitter.com/discord", icon: "/images/social/x.svg" },
     { label: "Instagram", href: "https://www.instagram.com/discord/", icon: "/images/social/instagram.svg" },
     { label: "Facebook", href: "https://www.facebook.com/discord/", icon: "/images/social/facebook.svg" },
@@ -200,7 +202,7 @@ export const navigationMenuItems: NavigationMenuItemProps[] = [
         href: "/careers",
     },
 ]
-export const footerMenuItems: FooterMenuSection[] = [
+export const footerMenuItems: FooterMenuSectionType[] = [
     {
         title: "Product",
         links: [

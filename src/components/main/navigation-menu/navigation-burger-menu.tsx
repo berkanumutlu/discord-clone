@@ -6,7 +6,7 @@ import { navigationMenuItems } from "@/data"
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetOverlay, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Accordion } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
-import { Logo } from "../logo"
+import { AppLogo } from "@/components/main/app-logo"
 import NavigationBurgerMenuItem from "./navigation-burger-menu-item"
 
 interface NavigationBurgerMenuProps {
@@ -34,7 +34,7 @@ const NavigationBurgerMenu = ({
                 [&>button:first-of-type]:hidden">
                 <SheetHeader className="mb-12 space-y-0 flex flex-row justify-between items-center self-stretch">
                     <SheetTitle>
-                        <Logo type="icon" width={32} height={23} />
+                        <AppLogo type="icon" width={32} height={23} />
                     </SheetTitle>
                     <SheetDescription>
                         <SheetClose asChild>
