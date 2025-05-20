@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         primary: "bg-indigo-500 text-white hover:bg-indigo-500/90",
-        brand: "bg-none bg-app-bg-button-filled-brand-background hover:bg-app-bg-button-filled-brand-background-hover text-app-white border-app-button-filled-brand-border"
+        brand: "bg-none bg-app-bg-button-filled-brand hover:bg-app-bg-button-filled-brand-hover active:bg-button-filled-brand-active text-app-white border-app-border-button-filled-brand"
       },
       size: {
         default: "h-10 px-4 py-2",

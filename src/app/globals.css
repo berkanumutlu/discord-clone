@@ -174,12 +174,17 @@
     --primary-600: hsl(222.857 6.667% 20.588% /1);
     --primary-860: hsl(240 7.692% 2.549% /1);
     --neutral-9: hsl(220 4.918% 11.961% /1);
+    --neutral-16: hsl(228 4.425% 22.157% /1);
     --neutral-22: hsl(231.429 4.459% 30.784% /1);
+    --neutral-34: hsl(233.333 3.734% 47.255% /1);
+    --neutral-64: hsl(232.5 6.557% 76.078% /1);
     --neutral-69: hsl(231.429 6.542% 79.02% /1);
-    --blue-new-26: hsl(213.934 85.915% 72.157% /1);
+    --neutral-73: hsl(230 6.383% 91.569% /1);
+    --blue-new-26: hsl(213.934 85.915% 27.843% /1);
     --blurple-28: hsl(229.189 94.872% 22.941% /1);
     --blurple-37: hsl(231.298 90.345% 71.569% /1);
     --blurple-49: hsl(234.935 85.556% 64.706% /1);
+    --blurple-50: hsl(234.935 85.556% 64.706% /1);
     --blurple-59: hsl(233.115 49.194% 51.373% /1);
     --blurple-65: hsl(232 47.511% 43.333% /1);
     --red-new-29: hsl(1.417 86.395% 71.176% /1);
@@ -202,8 +207,11 @@
     --app-bg-secondary-alt: color-mix(in oklab, var(--primary-160) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
     --app-bg-tertiary: 54, 57, 63;
     /* #36393F */
+    --app-bg-tertiary-2: color-mix(in oklab, var(--neutral-73) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
     --brand-experiment: hsl(235, 85.6%, 64.7%);
     --brand-experiment-560: hsl(235, 51.4%, 52.4%);
+    --app-background-modifier-selected: hsl(240 4% 39.216% /0.2);
+    --app-background-floating: color-mix(in oklab, var(--neutral-64) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
     --app-background-base-lower: color-mix(in oklab, var(--neutral-69) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
     --app-input-background: color-mix(in oklab, hsl(0 0% 100% / 0.08) 100%, hsl(var(--theme-base-color-hsl, 0 0% 100%) / 0.08) var(--theme-base-color-amount, 0%));
     --app-input-background-2: color-mix(in oklab, hsl(0 0% 100% /0.2) 100%, hsl(var(--theme-base-color-hsl, 0 0% 100%) / 0.2) var(--theme-base-color-amount, 0%));
@@ -214,6 +222,8 @@
     --app-button-filled-brand-background: var(--brand-500);
     --app-button-filled-brand-background-active: var(--brand-600);
     --app-button-filled-brand-background-hover: var(--brand-560);
+    --app-checkbox-background-default: color-mix(in oklab, hsl(240 4% 60.784% /0.0392156862745098) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.0392156862745098) var(--theme-base-color-amount, 0%));
+    --app-checkbox-background-checked: color-mix(in oklab, var(--blurple-50) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
 
     /* Text colors */
     --app-text-normal: 220, 221, 222;
@@ -235,18 +245,25 @@
     /* Interactive colors */
     --app-interactive-normal: 185, 187, 190;
     /* #B9BBBE */
+    --app-interactive-normal-2: color-mix(in oklab, var(--neutral-16) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
     --app-interactive-hover: 220, 221, 222;
     /* #DCDDDE */
-    --app-interactive-active: 255, 255, 255;
-    /* #FFFFFF */
+    --app-interactive-active: 0, 0, 0;
+    /* #000000 */
 
     /* Border colors */
     --app-border-light: 78, 80, 88;
     /* #4E5058 */
     --app-border-dark: 45, 47, 51;
     /* #2D2F33 */
+    --app-border-subtle: color-mix(in oklab, hsl(240 4% 39.216% /0.1215686274509803) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.1215686274509803) var(--theme-base-color-amount, 0%));
     --app-input-border: color-mix(in oklab, hsl(240 4% 39.216% /0.2) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.2) var(--theme-base-color-amount, 0%));
     --app-button-filled-brand-border: hsl(0 0% 0% /0.0784313725490196);
+    --app-checkbox-border-default: color-mix(in oklab, var(--neutral-34) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+    --app-checkbox-border-checked: color-mix(in oklab, var(--blurple-50) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+
+    /* Shadow Colors */
+    --app-shadow-high: hsl(0 0% 0% /0.24);
 
     /* Plum Colors */
     --plum-0: hsl(240 9.091% 97.843% /1);
@@ -342,22 +359,33 @@
     --primary-600: hsl(222.857 6.667% 79.412% /1);
     --primary-860: hsl(240 7.692% 97.451% /1);
     --neutral-9: hsl(220 4.918% 88.039% /1);
+    --neutral-16: hsl(228 4.425% 77.843% /1);
     --neutral-22: hsl(231.429 4.459% 69.216% /1);
+    --neutral-34: hsl(233.333 3.734% 52.745% /1);
+    --neutral-64: hsl(232.5 6.557% 23.922% /1);
     --neutral-69: hsl(231.429 6.542% 20.98% /1);
+    --neutral-73: hsl(230 6.383% 18.431% /1);
+    --blue-new-26: hsl(213.934 85.915% 72.157% /1);
     --blurple-28: hsl(229.189 94.872% 77.059% /1);
 
     /* Background colors */
     --app-bg-primary: 220, 216, 213;
     /* #DCD8D5 */
+    --app-bg-tertiary-2: color-mix(in oklab, var(--neutral-73) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+    --app-background-modifier-selected: hsl(240 4% 60.784% /0.2);
     --app-input-background: color-mix(in oklab, hsl(0 0% 0% /0.08) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.08) var(--theme-base-color-amount, 0%));
     --app-input-background-2: color-mix(in oklab, hsl(0 0% 0% /0.2) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.2) var(--theme-base-color-amount, 0%));
 
     /* Text colors */
+
     /* Interactive colors */
+    --app-interactive-active: 255, 255, 255;
+    /* #FFFFFF */
 
     /* Border colors */
     --app-input-border: color-mix(in oklab, hsl(240 4% 60.784% /0.2) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.2) var(--theme-base-color-amount, 0%));
     --app-button-filled-brand-border: hsl(0 0% 100% /0.0784313725490196);
+    --app-border-subtle: color-mix(in oklab, hsl(240 4% 60.784% /0.1215686274509803) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.1215686274509803) var(--theme-base-color-amount, 0%));
 
     /* Plum Colors */
   }
@@ -395,6 +423,10 @@
   a,
   button {
     @apply select-none
+  }
+
+  button[disabled] {
+    @apply cursor-not-allowed
   }
 
   input:focus-visible,
@@ -732,6 +764,19 @@
 .link-407 {
   color: rgba(var(--app-white));
   text-decoration: underline
+}
+
+.anchor_edefb8 {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--app-text-link-2);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.anchorUnderlineOnHover_edefb8:hover {
+  text-decoration: underline;
 }
 
 /* Navigation Menu */
@@ -2205,6 +2250,11 @@
   .heading--h3.is_teen {
     @apply text-[9.6vw];
   }
+}
+
+/* Auth Form */
+.authForm {
+  @apply p-[20px_16px] sm:p-8 w-full sm:w-[480px] max-w-[480px] min-h-screen sm:min-h-[unset] lg:max-w-none bg-app-bg-base-lower text-app-text-muted-3 text-[18px] rounded-lg shadow-[0_2px_10px_0] shadow-black/20 animate-fade-in-down select-none
 }
 
 /* Home Stars */
@@ -4699,15 +4749,6 @@
   font-family: Abcgintodiscord, sans-serif;
 }
 
-/* React Phone Input 2 */
-.react-tel-input .country-list .country.highlight {
-  @apply !bg-app-bg-secondary-alt
-}
-
-.react-tel-input .country-list .country:hover {
-  @apply dark:bg-app-bg-tertiary
-}
-
 @media screen and (min-width:1280px) {
   .body-text--xl.is-center {
     font-size: 1.5rem;
@@ -5059,6 +5100,15 @@
   .body-text--xll-large.text-weight-medium.z-index-2.is-m-large {
     font-size: 1.25rem;
   }
+}
+
+/* React Phone Input 2 */
+.react-tel-input .country-list .country.highlight {
+  @apply !bg-app-bg-secondary-alt
+}
+
+.react-tel-input .country-list .country:hover {
+  @apply dark:bg-app-bg-tertiary
 }
 
 @import "~@uploadthing/react/styles.css";

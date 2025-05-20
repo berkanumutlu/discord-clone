@@ -1,11 +1,12 @@
 "use client"
 
 import Image from "next/image"
+import { SignIn } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { SignIn } from "@clerk/nextjs"
+import { isThirdPartyAuthenticationEnabled } from "@/lib/utils"
 import { LoginFormValuesType, loginSchema } from "@/lib/validation/auth"
-import { isThirdPartyAuthenticationEnabled, signUpUrl } from "@/data"
+import { signUpUrl } from "@/data"
 import { AppLogo } from "@/components/main/app-logo"
 import { Form } from "@/components/ui/form"
 import { CustomFormLink } from "@/components/form/custom-form-link"
@@ -25,7 +26,7 @@ export default function Page() {
     const isLoading = form.formState.isSubmitting
 
     // If there is a third party auth
-    if (isThirdPartyAuthenticationEnabled) {
+    if (isThirdPartyAuthenticationEnabled()) {
         return <SignIn />
     }
 
@@ -39,7 +40,7 @@ export default function Page() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="p-[20px_16px] sm:p-8 w-full lg:w-[784px] max-w-[480px] min-h-screen sm:min-h-[unset] lg:max-w-none bg-app-bg-base-lower text-app-text-muted-3 text-[18px] rounded-lg shadow-[0_2px_10px_0] shadow-black/20 select-none">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="authForm lg:w-[784px]">
                 <AppLogo href="" showText={false} className="mb-4 w-[130px] h-9 sm:hidden flex-shrink-0 justify-self-center select-none" />
                 <div className="w-full flex flex-row flex-nowrap justify-start items-center gap-x-16 text-center">
                     <div className="flex flex-col flex-grow items-start z-[1]">
@@ -52,12 +53,14 @@ export default function Page() {
                                 className="mb-5"
                                 required={true}
                                 autoFocus={true}
+                                tabIndex={1}
                             />
                             <CustomFormInput
                                 label="Password"
                                 type="password"
                                 name="password"
                                 required={true}
+                                tabIndex={2}
                             />
                             {/* TODO: Forgot your password? actions */}
                             <CustomFormLink
@@ -69,8 +72,9 @@ export default function Page() {
                                 variant="brand"
                                 size="full-lg"
                                 type="submit"
-                                isLoading={isLoading}
+                                tabIndex={3}
                                 className="mb-2"
+                                isLoading={isLoading}
                             />
                             <div className="mt-1 inline-flex">
                                 <span className="text-app-text-muted-3 text-[14px] leading-4">Need an account?</span>

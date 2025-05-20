@@ -1,11 +1,26 @@
 import { nitroBannerType, nitroFAQCategoryType, nitroFAQType, nitroPlanFeatureProps, nitroPerkType, nitroPlanProps, NavigationMenuItemProps, socialLinkType, FooterMenuSectionType } from "@/types"
 
 /* Global */
-export const isThirdPartyAuthenticationEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
 export const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? "/sign-in"
 export const signedInUrl = "/channels/@me"
 export const signUpUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL ?? "/sign-up"
 export const placeholderImageUrl = "/images/placeholder.svg"
+export const days = Array.from({ length: 31 }, (_, i) => ({
+    value: String(i + 1),
+    label: String(i + 1),
+}))
+export const months = Array.from({ length: 12 }, (_, i) => {
+    const date = new Date(2000, i, 1)
+    return {
+        value: String(i + 1),
+        label: new Intl.DateTimeFormat("en-GB", { month: "long" }).format(date),
+    }
+})
+const currentYear = new Date().getFullYear() - 3
+export const years = Array.from({ length: 150 }, (_, i) => ({
+    value: String(currentYear - i),
+    label: String(currentYear - i),
+}))
 export const languages = [
     "Čeština",
     "Dansk",

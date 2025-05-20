@@ -136,18 +136,23 @@ const config: Config = {
 					"bg-secondary": "rgba(var(--app-bg-secondary))",
 					"bg-secondary-alt": "var(--app-bg-secondary-alt)",
 					"bg-tertiary": "rgba(var(--app-bg-tertiary))",
-					"bg-base-lower": "var(--app-background-base-lower)",
+					"bg-tertiary-2": "var(--app-bg-tertiary-2)",
 					"bg-brand-experiment": "var(--brand-experiment)",
 					"bg-brand-experiment-560": "var(--brand-experiment-560)",
+					"bg-base-lower": "var(--app-background-base-lower)",
+					"bg-modifier-selected": "var(--app-background-modifier-selected)",
+					"bg-floating": "var(--app-background-floating)",
 					"bg-input": "var(--app-input-background)",
 					"bg-input-2": "var(--app-input-background-2)",
 					"bg-button-hover": "var(--app-button-background-hover)",
 					"bg-button-2": "var(--app-button-background-2)",
 					"bg-button-2-hover": "var(--app-button-background-2-hover)",
 					"bg-button-secondary": "var(--app-button-secondary-background)",
-					"bg-button-filled-brand-background": "var(--app-button-filled-brand-background)",
-					"bg-button-filled-brand-background-active": "var(--app-button-filled-brand-background-active)",
-					"bg-button-filled-brand-background-hover": "var(--app-button-filled-brand-background-hover)",
+					"bg-button-filled-brand": "var(--app-button-filled-brand-background)",
+					"bg-button-filled-brand-active": "var(--app-button-filled-brand-background-active)",
+					"bg-button-filled-brand-hover": "var(--app-button-filled-brand-background-hover)",
+					"bg-checkbox-default": "var(--app-checkbox-background-default)",
+					"bg-checkbox-checked": "var(--app-checkbox-background-checked)",
 
 					// Text colors
 					"text-normal": "rgba(var(--app-text-normal))",
@@ -165,14 +170,18 @@ const config: Config = {
 
 					// Interactive colors
 					"interactive-normal": "rgba(var(--app-interactive-normal))",
+					"interactive-normal-2": "var(--app-interactive-normal-2)",
 					"interactive-hover": "rgba(var(--app-interactive-hover))",
 					"interactive-active": "rgba(var(--app-interactive-active))",
 
 					// Border colors
 					"border-light": "rgba(var(--app-border-light))",
 					"border-dark": "rgba(var(--app-border-dark))",
-					"input-border": "var(--app-input-border)",
-					"button-filled-brand-border": "var(--app-button-filled-brand-border)",
+					"border-subtle": "var(--app-border-subtle)",
+					"border-input": "var(--app-input-border)",
+					"border-button-filled-brand": "var(--app-button-filled-brand-border)",
+					"border-checkbox-default": "var(--app-checkbox-border-default)",
+					"border-checkbox-checked": "var(--app-checkbox-border-checked)",
 				},
 				plum: plumColors,
 			},
@@ -180,6 +189,9 @@ const config: Config = {
 				lg: "var(--radius)",
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)"
+			},
+			boxShadow: {
+				'app-high': '0px 12px 24px 0px var(--app-shadow-high)',
 			},
 			keyframes: {
 				"accordion-down": {
@@ -203,6 +215,10 @@ const config: Config = {
 					'25%': { opacity: '1' },
 					'75%': { opacity: '1', transform: 'translateY(-10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				"fadeInDown": {
+					"0%": { opacity: '0', transform: 'translateY(-20px) translateZ(-20px) scaleZ(2)' },
+					"100%": { opacity: '1', transform: 'translateY(0px) translateZ(0px) scaleZ(1)' },
 				},
 				"opacityIn": {
 					from: { opacity: "0" },
@@ -270,13 +286,14 @@ const config: Config = {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 				"fade-in-up-custom": "fadeInUpCustom 0.75s ease-in-out forwards",
+				"fade-in-down": "fadeInDown 0.170s ease-in-out",
 				"rotate-20": "rotate20 5s ease-in-out infinite",
 				"rotate-20-smooth": "rotate20Smooth 25s ease-in-out infinite",
 				"rotate-20-smooth-reverse": "rotate20SmoothReverse 25s ease-in-out infinite",
 				"transform-y-pulse": "transformYPulse 5s ease-in-out infinite",
 				"width-pulse": "widthPulse 5s ease-in-out infinite",
-				"expand-down": "expand-down .5s ease-in-out forwards",
-				"expand-up": "expand-up .5s ease-in-out forwards",
+				"expand-down": "expand-down 0.5s ease-in-out forwards",
+				"expand-up": "expand-up 0.5s ease-in-out forwards",
 				"opacity-in": "opacityIn 0.5s ease-out forwards",
 				"opacity-out": "opacityOut 0s ease-out forwards",
 				"shake": "shake 0.5s",
