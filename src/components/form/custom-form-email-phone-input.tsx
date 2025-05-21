@@ -19,6 +19,7 @@ interface CustomFormEmailPhoneInputProps {
     labelClassName?: string
     required?: InputProps["required"]
     autoFocus?: boolean
+    autoComplete?: InputProps["autoComplete"]
     tabIndex?: number
     hasFormMessage?: boolean
 }
@@ -33,6 +34,7 @@ export const CustomFormEmailPhoneInput = ({
     labelClassName,
     required = false,
     autoFocus = false,
+    autoComplete,
     tabIndex,
     hasFormMessage = false,
 }: CustomFormEmailPhoneInputProps) => {
@@ -152,6 +154,7 @@ export const CustomFormEmailPhoneInput = ({
                                             name,
                                             required,
                                             autoFocus,
+                                            autoComplete,
                                             tabIndex,
                                             'aria-label': 'Phone Number'
                                         }}
@@ -168,6 +171,7 @@ export const CustomFormEmailPhoneInput = ({
                                             "peer p-[12px_10px] w-full h-11 bg-transparent text-app-text-normal-3 text-[16px] border-none rounded-lg transition-colors duration-200 ease-in-out",
                                             inputClassName
                                         )}
+                                        autoComplete={autoComplete}
                                     />
                                 )}
                             </div>

@@ -50,7 +50,7 @@ const Servers = () => {
                     alt={""}
                     width={405}
                     height={400}
-                    loading="lazy"
+                    priority
                     className="h-[400px] absolute left-[-1px] hidden lg:block select-none z-[1]"
                 />
                 <Image

@@ -37,7 +37,7 @@ export const registerSchema = z.object({
         .optional(),
     username: z
         .string()
-        .min(1, { message: "This field is required" })
+        .min(1, { message: "Required" })
         .min(2, { message: "This must be 2-32 characters." })
         .max(32, { message: "Username must be less than 32 characters" })
         .regex(usernameRegex, {
@@ -45,7 +45,7 @@ export const registerSchema = z.object({
         }),
     password: z
         .string()
-        .min(1, { message: "This field is required" })
+        .min(1, { message: "Required" })
         .min(8, { message: "Password must be at least 8 characters" })
         .refine((val) => /[A-Z]/.test(val), {
             message: "Password must contain at least one uppercase letter",

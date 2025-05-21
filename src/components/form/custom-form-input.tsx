@@ -17,7 +17,7 @@ interface CustomFormInputProps {
     labelClassName?: string
     required?: InputProps["required"]
     autoFocus?: boolean
-    autocomplete?: InputProps["autoComplete"]
+    autoComplete?: InputProps["autoComplete"]
     tabIndex?: number
     hasFormMessage?: boolean
 }
@@ -32,7 +32,7 @@ export const CustomFormInput = ({
     labelClassName,
     required = false,
     autoFocus = false,
-    autocomplete,
+    autoComplete,
     tabIndex,
     hasFormMessage = false,
 }: CustomFormInputProps) => {
@@ -65,7 +65,7 @@ export const CustomFormInput = ({
                             ref={inputRef}
                             type={type}
                             tabIndex={tabIndex}
-                            autoComplete={autocomplete}
+                            autoComplete={autoComplete}
                             className={cn(
                                 "peer p-[12px_10px] w-full h-11 bg-app-bg-input-2 text-app-text-normal-3 text-[16px] border border-solid border-app-border-input focus:border-app-text-link-2 rounded-lg transition-colors duration-200 ease-in-out",
                                 fieldState?.invalid && "border-2 border-app-status-danger",

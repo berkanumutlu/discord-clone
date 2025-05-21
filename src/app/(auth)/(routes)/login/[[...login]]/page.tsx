@@ -54,6 +54,7 @@ export default function Page() {
                                 required={true}
                                 autoFocus={true}
                                 tabIndex={1}
+                                autoComplete="username"
                             />
                             <CustomFormInput
                                 label="Password"
@@ -61,6 +62,7 @@ export default function Page() {
                                 name="password"
                                 required={true}
                                 tabIndex={2}
+                                autoComplete="current-password"
                             />
                             {/* TODO: Forgot your password? actions */}
                             <CustomFormLink
