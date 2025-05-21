@@ -1,7 +1,7 @@
 import { useSignIn } from '@clerk/nextjs';
 import { render, screen, fireEvent, waitFor, renderHook, act } from '@testing-library/react';
 import { mockSignInData } from '../__mocks__/data';
-import SignInPage from '@/app/(auth)/(routes)/sign-in/[[...sign-in]]/page';
+import SignInPage from '@/app/(auth)/(routes)/login/[[...login]]/page';
 
 type EmailCodeFactor = {
     strategy: 'email_code';

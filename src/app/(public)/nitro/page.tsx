@@ -40,7 +40,13 @@ const NitroPage = () => {
         }
 
         const handleScroll = () => {
-            if (window.innerWidth >= 1024 && window.scrollY > 430) {
+            const nitroMainSectionElement = document.querySelector(".nitroMainSection")
+            let scrollYPosition = 430
+            if (nitroMainSectionElement) {
+                scrollYPosition = (nitroMainSectionElement as HTMLElement)?.offsetTop - 75
+            }
+
+            if (window.innerWidth >= 1024 && window.scrollY > scrollYPosition) {
                 changeLogoColor()
             } else {
                 logoImage?.classList.remove("invert")
@@ -111,7 +117,7 @@ const NitroPage = () => {
                     />
                 </div>
             </section>
-            <section className="mt-20 sm:mt-0 pt-[30px] sm:pt-[100px] pb-[60px] sm:pb-20 lg:pb-5 relative overflow-visible">
+            <section className="nitroMainSection mt-20 sm:mt-0 pt-[30px] sm:pt-[100px] pb-[60px] sm:pb-20 lg:pb-5 relative overflow-visible">
                 <div className="mx-auto w-[90%] max-w-[1180px] relative font-ggsans xl:text-left z-10">
                     <div className="max-auto mt-[-810px] sm:mt-[-850px] md:mt-[-860px] lg:mt-[-230px] mb-20 3xl:mb-[90px] w-full relative flex flex-col lg:flex-row flex-wrap lg:flex-nowrap justify-between items-stretch gap-4 md:gap-0 no-underline">
                         {nitroBannerList?.map((item, index) => (

@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useAuth } from "@clerk/nextjs"
 import { cn } from "@/lib/utils"
 import { HeaderProps } from "@/types"
-import { signedInUrl, signInUrl } from "@/data"
+import { afterSignInUrl, signInUrl } from "@/data"
 import { AppLogo } from "@/components/main/app-logo"
 import { NavigationMenuCustom } from "./navigation-menu/navigation-menu-custom"
 import NavigationBurgerMenu from "./navigation-menu/navigation-burger-menu"
@@ -21,7 +21,7 @@ export function Header({
     navStyle = "advanced",
 }: HeaderProps) {
     const { isSignedIn } = useAuth()
-    const authButtonUrl = isSignedIn ? signedInUrl : signInUrl
+    const authButtonUrl = isSignedIn ? afterSignInUrl : signInUrl
     const authButtonText = isSignedIn ? "Open Discord" : "Log In"
 
     // Determine background color based on variant

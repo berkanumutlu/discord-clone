@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useAuth } from "@clerk/nextjs"
 import { cn } from "@/lib/utils"
 import { FooterProps } from "@/types"
-import { footerMenuItems, placeholderImageUrl, signedInUrl, signInUrl, socialLinks } from "@/data"
+import { footerMenuItems, placeholderImageUrl, afterSignInUrl, signUpUrl, socialLinks } from "@/data"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { LanguageDropdown } from "@/components/language-dropdown"
 import { AppLogo } from "@/components/main/app-logo"
@@ -15,7 +15,7 @@ export function Footer({ footerStyle = "advanced", className = "" }: FooterProps
     const { isSignedIn } = useAuth()
 
     if (footerStyle === "basic") {
-        const authButtonUrl = isSignedIn ? signedInUrl : signInUrl
+        const authButtonUrl = isSignedIn ? afterSignInUrl : signUpUrl
         const authButtonText = isSignedIn ? "Open Discord" : "Sign up"
 
         return (

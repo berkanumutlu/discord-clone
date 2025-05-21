@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useSignUp } from "@clerk/nextjs";
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { mockSignUpData } from "../__mocks__/data";
-import SignUpPage from '@/app/(auth)/(routes)/sign-up/[[...sign-up]]/page';
+import SignUpPage from '@/app/(auth)/(routes)/register/[[...register]]/page';
 
 const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
 const mockPush = jest.fn();
