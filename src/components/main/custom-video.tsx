@@ -1,29 +1,21 @@
-import type { HTMLAttributes } from "react"
+import type { HTMLAttributes, VideoHTMLAttributes } from "react"
 
-type Source = {
+export type CustomVideoSourceType = {
     src: string
     type?: string
 }
 
-interface VideoHTMLAttributes {
-    width?: string | number
-    height?: string | number
-    poster?: string
-    preload?: "auto" | "metadata" | "none"
-    controls?: boolean
-}
-
-type CustomVideoProps = {
+export type CustomVideoProps = {
     id?: string
     divClassName?: string
     src?: string
-    sources?: Source[]
+    sources?: CustomVideoSourceType[]
     autoPlay?: boolean
     loop?: boolean
     muted?: boolean
     playsInline?: boolean
     backgroundImage?: string
-} & Omit<HTMLAttributes<HTMLVideoElement>, "autoPlay" | "loop" | "muted" | "playsInline"> & VideoHTMLAttributes
+} & Omit<HTMLAttributes<HTMLVideoElement>, "autoPlay" | "loop" | "muted" | "playsInline"> & VideoHTMLAttributes<HTMLVideoElement>
 
 export default function CustomVideo({
     id,

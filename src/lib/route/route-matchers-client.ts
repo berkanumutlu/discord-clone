@@ -1,4 +1,4 @@
-import { protectedRoutePatterns, ignoredRoutePatterns } from "./route-patterns"
+import { protectedRoutePatterns, ignoredRoutePatterns } from "@/lib/route/route-patterns"
 
 // Client-side version of route matching
 export function isProtectedRoute(path: string): boolean {

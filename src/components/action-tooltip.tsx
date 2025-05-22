@@ -14,6 +14,7 @@ interface ActionTooltipProps {
     disabled?: boolean
     showOnlyWhenDisabled?: boolean
     contentClassName?: string
+    contentTextClassName?: string
 }
 
 export const ActionTooltip = ({
@@ -26,33 +27,23 @@ export const ActionTooltip = ({
     disabled = false,
     showOnlyWhenDisabled = false,
     contentClassName,
+    contentTextClassName,
 }: ActionTooltipProps) => {
+    const shouldShowTooltip = label && (!showOnlyWhenDisabled || disabled)
+
+    if (!shouldShowTooltip) {
+        return <>{children}</>
+    }
+
     return (
         <TooltipProvider>
             <Tooltip open={open} delayDuration={delayDuration}>
-                {showOnlyWhenDisabled ? (
-                    <>
-                        <TooltipTrigger asChild>
-                            <span tabIndex={0}>{children}</span>
-                        </TooltipTrigger>
-                        {disabled && label && (
-                            <TooltipContent side={side} align={align} className={cn("z-[51]", contentClassName)}>
-                                {label}
-                            </TooltipContent>
-                        )}
-                    </>
-                ) : (
-                    <>
-                        <TooltipTrigger asChild>{children}</TooltipTrigger>
-                        {label && (
-                            <TooltipContent side={side} align={align} className={cn("z-[51]", contentClassName)}>
-                                <p className="text-sm font-semibold capitalize">
-                                    {label.toLocaleLowerCase()}
-                                </p>
-                            </TooltipContent>
-                        )}
-                    </>
-                )}
+                <TooltipTrigger asChild>
+                    <span tabIndex={0}>{children}</span>
+                </TooltipTrigger>
+                <TooltipContent side={side} align={align} className={cn("z-[51]", contentClassName)}>
+                    <p className={cn("text-sm font-semibold", contentTextClassName)}>{label}</p>
+                </TooltipContent>
             </Tooltip>
         </TooltipProvider>
     )

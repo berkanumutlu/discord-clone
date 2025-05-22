@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { forwardRef, useRef, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
@@ -20,29 +20,27 @@ interface CustomComboboxProps {
     onChange: (value: string) => void
 }
 
-export function CustomCombobox({
-    options,
-    value,
-    placeholder,
-    className,
-    onChange,
-}: CustomComboboxProps) {
+export const CustomCombobox = forwardRef<
+    HTMLButtonElement,
+    CustomComboboxProps
+>(({ options, value, placeholder, className, onChange }: CustomComboboxProps, ref) => {
     const [isOpen, setIsOpen] = useState(false)
     const [searchTerm, setSearchTerm] = useState("")
     const commandInputRef = useRef<HTMLInputElement>(null)
     const selectedItemRef = useRef<HTMLDivElement | null>(null)
+    const selectedOption = options.find((option) => option.value === value)
 
     const handleOpenChange = (isOpen: boolean) => {
         setIsOpen(isOpen)
         if (isOpen) {
             // Focus the search input when opened
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 commandInputRef.current?.focus()
                 selectedItemRef.current?.scrollIntoView({
                     block: "nearest",
                     behavior: "auto",
                 })
-            }, 0)
+            })
         } else {
             // Reset search term when closed
             setSearchTerm("")
@@ -53,12 +51,13 @@ export function CustomCombobox({
         <Popover open={isOpen} onOpenChange={handleOpenChange}>
             <PopoverTrigger asChild>
                 <Button
+                    ref={ref}
                     variant="outline"
                     role="combobox"
                     aria-expanded={isOpen}
                     className={cn("group w-full justify-between !bg-app-bg-input-2 border-app-bg-input-2 font-medium text-[16px] leading-4", className)}
                 >
-                    {value ? options.find((option) => option.value === value)?.label || value : placeholder || "Select..."}
+                    {selectedOption ? selectedOption.label : placeholder || "Select..."}
                     <ChevronDown className="ml-2 size-4 shrink-0 transition duration-200 opacity-50 group-data-[state=open]:rotate-180" />
                 </Button>
             </PopoverTrigger>
@@ -79,12 +78,14 @@ export function CustomCombobox({
                                     ref={option.value === value ? selectedItemRef : undefined}
                                     value={option.value}
                                     onSelect={(currentValue) => {
-                                        onChange(currentValue)
+                                        if (currentValue !== value) {
+                                            onChange(currentValue)
+                                        }
                                         setIsOpen(false)
                                     }}
                                     className="p-3 min-h-10 bg-transparent hover:!bg-app-bg-modifier-selected !text-app-interactive-normal-2 hover:!text-app-interactive-active font-medium text-[16px] leading-4 cursor-pointer data-[selected=true]:bg-app-bg-modifier-selected data-[selected=true]:!text-app-interactive-active"
                                 >
-                                    <Check className={cn("mr-2 h-4 w-4", value === option.value ? "opacity-100" : "opacity-0")} />
+                                    <Check className={cn("mr-2 w-4 h-4 transition-opacity", value === option.value ? "opacity-100" : "opacity-0")} />
                                     {option.label}
                                 </CommandItem>
                             ))}
@@ -94,4 +95,6 @@ export function CustomCombobox({
             </PopoverContent>
         </Popover>
     )
-}
+})
+
+CustomCombobox.displayName = "CustomCombobox"

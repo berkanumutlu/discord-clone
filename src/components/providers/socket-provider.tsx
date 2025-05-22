@@ -4,7 +4,7 @@ import type React from "react"
 import { createContext, useContext, useEffect, useState, useRef } from "react"
 import { useAuth } from "@clerk/nextjs"
 import { io as ClientIO, type Socket } from "socket.io-client"
-import { isProtectedRoute } from "@/lib/route/client-route-matchers"
+import { isProtectedRoute } from "@/lib/route/route-matchers-client"
 
 type SocketContextType = {
     socket: Socket | null

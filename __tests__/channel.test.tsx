@@ -89,7 +89,7 @@ jest.mock('next/image', () => ({
     default: jest.fn((props) => <img {...props} />)
 }));
 
-describe('Channel Component', () => {
+describe('Channel Component Tests', () => {
     const queryClient = new QueryClient();
     let mockIo: jest.Mock;
     global.fetch = jest.fn(() =>

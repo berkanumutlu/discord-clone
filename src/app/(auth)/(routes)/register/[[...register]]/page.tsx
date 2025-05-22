@@ -14,7 +14,7 @@ import { CustomFormButton } from "@/components/form/custom-form-button"
 import { CustomFormBirthDateInput } from "@/components/form/custom-form-birth-date-input"
 import { CustomFormCheckbox } from "@/components/form/custom-form-checkbox"
 
-export default function Page() {
+export default function RegisterPage() {
     const form = useForm<RegisterFormValuesType>({
         resolver: zodResolver(registerSchema),
         defaultValues: {

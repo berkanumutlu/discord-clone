@@ -7,7 +7,7 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetOv
 import { Accordion } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { AppLogo } from "@/components/main/app-logo"
-import NavigationBurgerMenuItem from "./navigation-burger-menu-item"
+import NavigationBurgerMenuItem from "@/components/main/navigation-menu/navigation-burger-menu-item"
 
 interface NavigationBurgerMenuProps {
     authButtonText: string

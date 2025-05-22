@@ -12,7 +12,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import ServerBannerBottom from "@/components/servers/servers-banner-bottom"
 import ServerInfoCardItem from "@/components/servers/server-info-card-item"
 
-const Servers = () => {
+const ServersPage = () => {
     const [searchValue, setSearchValue] = useState("")
     const [isSearchInputFocused, setIsSearchInputFocused] = useState(false)
 
@@ -272,4 +272,4 @@ const Servers = () => {
     )
 }
 
-export default Servers
+export default ServersPage

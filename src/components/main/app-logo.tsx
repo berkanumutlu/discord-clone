@@ -51,7 +51,7 @@ export function AppLogo({
     const logoContent = showText && type !== "icon"
         ? (
             <div className={cn(
-                "logoImageDiv md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
+                "appLogoImageDiv md:w-[9.125rem] lg:w-32 lg:h-6 flex items-center gap-x-3",
                 className
             )}>
                 <Image
@@ -60,9 +60,9 @@ export function AppLogo({
                     width={width}
                     height={height}
                     priority
-                    className="logoImage"
+                    className="appLogoImage"
                 />
-                <span className={cn("logoImageText hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
+                <span className={cn("appLogoImageText hidden sm:block lg:hidden xl:block", "text-app-" + color)}>Clone</span>
             </div>
         ) : (
             <Image
@@ -70,13 +70,13 @@ export function AppLogo({
                 alt="Discord Clone logo"
                 width={width}
                 height={height}
-                className={cn("logoImage", className)}
+                className={cn("appLogoImage", className)}
                 priority
             />
         )
 
     if (href) {
-        return <Link href={href} className={cn("logoImageLink", linkClassName)}>{logoContent}</Link>
+        return <Link href={href} className={cn("appLogoImageLink", linkClassName)}>{logoContent}</Link>
     }
 
     return logoContent

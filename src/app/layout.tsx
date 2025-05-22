@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { MediaQueryProvider } from "@/context/media-query-context"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import GSAPProvider from "@/components/providers/gsap-provider"
-import ClientLayout from "./client-layout"
+import RootLayoutClient from "@/app/layout-client"
 
 const DynamicModalProvider = dynamic(() => import('@/components/providers/modal-provider').then(mod => mod.ModalProvider), { ssr: false })
 const DynamicSocketProvider = dynamic(() => import('@/components/providers/socket-provider').then(mod => mod.SocketProvider), { ssr: false })
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Discord Clone By Berkan Ümütlü",
   description: "Built with Next.js 14, React, Socket.io, Prisma, Tailwind, PostgreSQL",
   icons: {
-    apple: '/images/logo/apple-touch-icon.ico'
+    apple: "/images/logo/apple-touch-icon.ico"
   }
 }
 
@@ -36,7 +36,7 @@ export default function RootLayout({
           >
             <div className="page-wrapper">
               <DynamicSocketProvider>
-                <ClientLayout>
+                <RootLayoutClient>
                   <DynamicModalProvider />
                   <DynamicQueryProvider>
                     <GSAPProvider>
@@ -45,7 +45,7 @@ export default function RootLayout({
                       </MediaQueryProvider>
                     </GSAPProvider>
                   </DynamicQueryProvider>
-                </ClientLayout>
+                </RootLayoutClient>
               </DynamicSocketProvider>
             </div>
           </ThemeProvider>

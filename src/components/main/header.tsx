@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
 import { HeaderProps } from "@/types"
 import { afterSignInUrl, signInUrl } from "@/data"
 import { AppLogo } from "@/components/main/app-logo"
-import { NavigationMenuCustom } from "./navigation-menu/navigation-menu-custom"
-import NavigationBurgerMenu from "./navigation-menu/navigation-burger-menu"
+import { NavigationMenuCustom } from "@/components/main/navigation-menu/navigation-menu-custom"
+import NavigationBurgerMenu from "@/components/main/navigation-menu/navigation-burger-menu"
 
 export function Header({
     variant = "transparent",

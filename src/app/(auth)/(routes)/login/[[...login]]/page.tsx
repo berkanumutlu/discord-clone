@@ -15,7 +15,7 @@ import { CustomFormInput } from "@/components/form/custom-form-input"
 import { CustomFormEmailPhoneInput } from "@/components/form/custom-form-email-phone-input"
 import { CustomSpinnerAnimation } from "@/components/animation/custom-spinner"
 
-export default function Page() {
+export default function LoginPage() {
     const form = useForm<LoginFormValuesType>({
         resolver: zodResolver(loginSchema),
         defaultValues: {

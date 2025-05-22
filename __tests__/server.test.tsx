@@ -32,7 +32,7 @@ jest.mock('@/app/(main)/(routes)/servers/[serverId]/page', () => {
     };
 });
 
-describe('ServerIdPage', () => {
+describe('Server Id Page Tests', () => {
     it('should redirect to the first channel when accessing the server URL', async () => {
         (currentProfile as jest.Mock).mockResolvedValue({ id: mockProfile.id });
 

@@ -14,7 +14,7 @@ interface ServerDetailPageProps {
     }
 }
 
-const ServerDetailPage = ({
+const ServersDetailPage = ({
     params
 }: ServerDetailPageProps) => {
     const serverInviteUrl = "/invite/server-invite-code"
@@ -251,4 +251,4 @@ const ServerDetailPage = ({
     )
 }
 
-export default ServerDetailPage
+export default ServersDetailPage

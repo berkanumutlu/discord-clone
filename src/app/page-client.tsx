@@ -10,7 +10,7 @@ import { PageLayout } from "@/components/main/page-layout"
 import CustomVideo from "@/components/main/custom-video"
 import { AppLogo } from "@/components/main/app-logo"
 
-export default function HomeClient() {
+export default function HomePageClient() {
     // Refs for animated elements
     const homeEggImageRef = useRef<HTMLDivElement>(null)
     const homeCyldeImageRef = useRef<HTMLImageElement>(null)
@@ -147,10 +147,10 @@ export default function HomeClient() {
                         <Image src={"/images/home/star_m.svg"} width={8} height={8} loading="lazy" alt={""} className="star-hero-home _20 star-m" />
                         <Image src={"/images/home/star_m.svg"} width={8} height={8} loading="lazy" alt={""} className="star-hero-home _12 star-m" />
                         <Image src={"/images/home/star_m.svg"} width={8} height={8} loading="lazy" alt={""} className="star-hero-home _12 _1 star-m" />
-                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-hom _2 star-sm" />
-                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-hom _17 star-sm" />
-                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-hom _5 star-sm" />
-                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-hom _3 star-sm" />
+                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-home _2 star-sm" />
+                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-home _17 star-sm" />
+                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-home _5 star-sm" />
+                        <Image src={"/images/home/star_sm.svg"} width={6} height={6} loading="lazy" alt={""} className="star-hero-home _3 star-sm" />
                     </div>
                 </div>
             </section>
@@ -165,6 +165,7 @@ export default function HomeClient() {
                                 width={172}
                                 height={109}
                                 loading="lazy"
+                                unoptimized
                                 className="-mt-12 sm:mt-[-3.8rem] md:mt-[-3.75rem] lg:-mt-20 3xl:mt-[-6.2rem] mr-20 sm:mr-32 xl:mr-40 2xl:mr-44 3xl:mr-56 ml-[10.875rem] w-full max-w-[6.56rem] lg:max-w-[9.1875rem] 3xl:max-w-[10.75rem] absolute inset-[0%_0%_auto_auto] block select-none pointer-events-none z-0"
                             />
                             <div className="home--block-group block-1 _2025">

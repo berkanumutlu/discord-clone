@@ -780,7 +780,7 @@
 }
 
 /* Navigation Menu */
-.nav-header:has(.navigation-menu [data-state="open"]) .nav-backdrop {
+.nav-header:has(.navigationMenu[data-state="open"]) .nav-backdrop {
   height: 100%;
   display: block;
   transition: opacity 0.4s;
@@ -803,7 +803,7 @@
   object-fit: contain;
 }
 
-.nav-header:has(.navigation-menu [data-state="open"]) .nav-decor img {
+.nav-header:has(.navigationMenu [data-state="open"]) .nav-decor img {
   opacity: 1;
 }
 

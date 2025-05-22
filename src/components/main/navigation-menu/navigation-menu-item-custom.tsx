@@ -5,9 +5,9 @@ import { ArrowUpRight } from "lucide-react"
 import { NavigationMenuCustomProps, NavigationMenuItemContentProps } from "@/types"
 import { placeholderImageUrl } from "@/data"
 import { NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
-import NavigationMenuListItemTitle from "./navigation-menu-list-item-title"
-import NavigationMenuListItem from "./navigation-menu-list-item"
-import NavigationMenuDivider from "./navigation-menu-divider"
+import NavigationMenuListItemTitle from "@/components/main/navigation-menu/navigation-menu-list-item-title"
+import NavigationMenuListItem from "@/components/main/navigation-menu/navigation-menu-list-item"
+import NavigationMenuDivider from "@/components/main/navigation-menu/navigation-menu-divider"
 
 const NavigationMenuItemCustom = forwardRef<
     React.ElementRef<typeof NavigationMenuItem>,

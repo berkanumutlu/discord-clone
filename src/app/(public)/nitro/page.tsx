@@ -24,17 +24,17 @@ const NitroPage = () => {
     }
 
     useEffect(() => {
-        const logoImage = document.querySelector(".logoImageDiv")
+        const appLogoImage = document.querySelector(".appLogoImageDiv")
         const authButton = document.querySelector(".headerAuthButton")
 
         const changeLogoColor = () => {
-            if (!logoImage || !authButton) return
+            if (!appLogoImage || !authButton) return
 
             if (theme === "light") {
-                logoImage.classList.add("invert")
+                appLogoImage.classList.add("invert")
                 authButton.classList.add("invert")
             } else {
-                logoImage.classList.remove("invert")
+                appLogoImage.classList.remove("invert")
                 authButton.classList.remove("invert")
             }
         }
@@ -49,7 +49,7 @@ const NitroPage = () => {
             if (window.innerWidth >= 1024 && window.scrollY > scrollYPosition) {
                 changeLogoColor()
             } else {
-                logoImage?.classList.remove("invert")
+                appLogoImage?.classList.remove("invert")
                 authButton?.classList.remove("invert")
             }
         }
