@@ -1,7 +1,24 @@
+"use client"
+
+import { useEffect } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@clerk/nextjs"
+import { afterSignInUrl } from "@/data"
 import { AppLogo } from "@/components/main/app-logo"
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+    const { isLoaded, isSignedIn } = useAuth()
+    const router = useRouter()
+
+    useEffect(() => {
+        if (isLoaded && isSignedIn) {
+            return router.replace(afterSignInUrl)
+        }
+    }, [isLoaded, isSignedIn, router])
+
+    if (!isLoaded || (isLoaded && isSignedIn)) return null
+
     return (
         <div className="min-h-0 flex flex-[1_1_auto] flex-row">
             <div className="min-w-0 flex-[1]">

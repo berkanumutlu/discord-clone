@@ -1,10 +1,10 @@
 import React from "react"
 import { useAuth } from "@clerk/nextjs"
 import { act, render, screen, waitFor, within } from "@testing-library/react"
-import { afterSignInUrl, signInUrl } from "@/data"
-import HomePageClient from "@/app/page-client"
-import { useMedia } from "@/context/media-query-context"
 import { createHomeClydeImageAnimation, createHomeCoinImageAnimation, createHomeEggImageAnimation, createHomePanImageAnimation, createHomeRadishImageAnimation, createLineTextAnimation } from "@/lib/animations" // Mock GSAP animations to prevent actual animation execution during tests
+import { afterSignInUrl, signInUrl } from "@/data"
+import { useMedia } from "@/context/media-query-context"
+import HomePageClient from "@/app/page-client"
 
 // Mock all GSAP animation functions since we don't need to test their actual animation logic in a component test
 jest.mock('@/lib/animations', () => ({
@@ -77,7 +77,7 @@ describe('Home Page (Client) Tests', () => {
         expect(appLogoText).toBeInTheDocument()
         expect(appLogoText).toHaveTextContent("Clone")
     })
-    it('should render "Log In" button with signInUrl in the Header section when user is not signed in', async () => {
+    it('should render "Log In" button with signInUrl in the Header section when user is NOT signed in', async () => {
         (useAuth as jest.Mock).mockReturnValue({
             isSignedIn: false,
             isLoaded: true,

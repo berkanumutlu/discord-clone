@@ -16,7 +16,7 @@ type NextImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
     unoptimized?: boolean
 }
 
-jest.mock("next/image", () => ({
+jest.mock('next/image', () => ({
     __esModule: true,
     default: React.forwardRef(function MockedNextImage(props: NextImageProps, ref) {
         const { priority, placeholder, blurDataURL, loader, fill, unoptimized, ...rest } = props
@@ -27,13 +27,8 @@ jest.mock('next/link', () => ({
     __esModule: true,
     default: jest.fn((props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => React.createElement('a', props, props.children)),
 }))
-jest.mock('@clerk/nextjs', () => ({
-    useAuth: jest.fn().mockReturnValue({
-        isSignedIn: false,
-        isLoaded: true
-    }),
-    ClerkProvider: ({ children }: { children: React.ReactNode }) => React.createElement('div', children)
-}))
+jest.mock('next/navigation')
+jest.mock('@clerk/nextjs')
 jest.mock('query-string', () => ({
     parse: jest.fn(),
     stringify: jest.fn(),
@@ -42,8 +37,8 @@ jest.mock('query-string', () => ({
         return `${url}?${queryString}`
     })
 }))
-jest.mock("date-fns", () => ({
-    ...jest.requireActual("date-fns"),
+jest.mock('date-fns', () => ({
+    ...jest.requireActual('date-fns'),
     format: jest.fn((date) => {
         if (!(date instanceof Date) || isNaN(date.getTime())) {
             return 'Invalid Date'
@@ -59,7 +54,7 @@ jest.mock("date-fns", () => ({
         return new Intl.DateTimeFormat("en-GB", options).format(date as Date)
     })
 }))
-jest.mock("lucide-react", () => {
+jest.mock('lucide-react', () => {
     return new Proxy({}, {
         get: (_target, iconName: string) => {
             return (props: LucideProps) =>
@@ -71,6 +66,10 @@ jest.mock("lucide-react", () => {
         }
     })
 })
+jest.mock('@/lib/utils', () => ({
+    ...jest.requireActual('@/lib/utils'),
+    isThirdPartyAuthenticationEnabled: jest.fn(),
+}))
 jest.mock('@/context/media-query-context', () => ({
     useMedia: jest.fn(),
 }))
@@ -122,7 +121,7 @@ jest.mock('@/components/main/app-logo', () => ({
         return content
     }
 }))
-jest.mock("@/components/main/custom-video", () => {
+jest.mock('@/components/main/custom-video', () => {
     return {
         __esModule: true,
         default: (props: CustomVideoProps) => {
