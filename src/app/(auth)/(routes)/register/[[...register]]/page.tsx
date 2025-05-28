@@ -14,7 +14,11 @@ import { CustomFormButton } from "@/components/form/custom-form-button"
 import { CustomFormBirthDateInput } from "@/components/form/custom-form-birth-date-input"
 import { CustomFormCheckbox } from "@/components/form/custom-form-checkbox"
 
-export default function RegisterPage() {
+type RegisterPageType = {
+    onSubmit?: (data: RegisterFormValuesType) => void
+}
+
+export default function RegisterPage({ onSubmit }: RegisterPageType) {
     const form = useForm<RegisterFormValuesType>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
@@ -24,6 +28,7 @@ export default function RegisterPage() {
             password: "",
             newsletter: false,
             terms: false,
+            birthDate: "",
         },
     })
     const isLoading = form.formState.isSubmitting
@@ -38,14 +43,17 @@ export default function RegisterPage() {
         return <SignUp />
     }
 
-    function onSubmit(data: RegisterFormValuesType) {
-        console.log(data)
+    function handleOnSubmit(data: RegisterFormValuesType) {
+        if (onSubmit) {
+            onSubmit(data)
+        }
+        // console.log(data)
         // TODO: Handle register logic here
     }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="authForm">
+            <form onSubmit={form.handleSubmit(handleOnSubmit)} className="authForm registerForm">
                 <AppLogo href="" showText={false} className="mb-4 w-[130px] h-9 sm:hidden flex-shrink-0 justify-self-center select-none" />
                 <div className="w-full text-center">
                     <h1 className="mb-2 text-app-header-primary font-display font-semibold text-[24px] leading-tight">Create an account</h1>

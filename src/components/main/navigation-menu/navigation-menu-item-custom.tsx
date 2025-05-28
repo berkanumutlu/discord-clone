@@ -92,7 +92,7 @@ const NavigationMenuItemCustom = forwardRef<
                                 "nav-decor",
                                 dropdownContent?.decorImageClass,
                             )}>
-                                <Image src={decorImage} alt="Decoration Image" fill sizes="140px" className="animate-fade-in-up-custom" />
+                                <Image src={decorImage} alt={"Decoration Image"} fill sizes="140px" className="animate-fade-in-up-custom" />
                             </div>
                         )}
                     </div>

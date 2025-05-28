@@ -47,6 +47,7 @@ export function AppLogo({
     // Construct the logo path
     const logoPath = `/images/logo/${getLogoDirectory()}/${getLogoType()}_${color}_RGB.${format}`
     const logoUrl = logoPath || placeholderImageUrl
+    const logoAlt = "Discord Clone logo"
 
     const logoContent = showText && type !== "icon"
         ? (
@@ -56,7 +57,7 @@ export function AppLogo({
             )}>
                 <Image
                     src={logoUrl}
-                    alt="Discord Clone logo"
+                    alt={logoAlt}
                     width={width}
                     height={height}
                     priority
@@ -67,7 +68,7 @@ export function AppLogo({
         ) : (
             <Image
                 src={logoUrl}
-                alt="Discord Clone logo"
+                alt={logoAlt}
                 width={width}
                 height={height}
                 className={cn("appLogoImage", className)}

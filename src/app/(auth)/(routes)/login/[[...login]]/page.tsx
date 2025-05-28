@@ -15,7 +15,11 @@ import { CustomFormInput } from "@/components/form/custom-form-input"
 import { CustomFormEmailPhoneInput } from "@/components/form/custom-form-email-phone-input"
 import { CustomSpinnerAnimation } from "@/components/animation/custom-spinner"
 
-export default function LoginPage() {
+type LoginPageType = {
+    onSubmit?: (data: LoginFormValuesType) => void
+}
+
+export default function LoginPage({ onSubmit }: LoginPageType) {
     const form = useForm<LoginFormValuesType>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -30,8 +34,11 @@ export default function LoginPage() {
         return <SignIn />
     }
 
-    function onSubmit(data: LoginFormValuesType) {
-        console.log(data)
+    function handleOnSubmit(data: LoginFormValuesType) {
+        if (onSubmit) {
+            onSubmit(data)
+        }
+        // console.log(data)
         // TODO: Handle login logic here
     }
 
@@ -40,7 +47,7 @@ export default function LoginPage() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="authForm lg:w-[784px]">
+            <form onSubmit={form.handleSubmit(handleOnSubmit)} className="authForm loginForm lg:w-[784px]">
                 <AppLogo href="" showText={false} className="mb-4 w-[130px] h-9 sm:hidden flex-shrink-0 justify-self-center select-none" />
                 <div className="w-full flex flex-row flex-nowrap justify-start items-center gap-x-16 text-center">
                     <div className="flex flex-col flex-grow items-start z-[1]">

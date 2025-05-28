@@ -7,6 +7,13 @@ import { CustomVideoProps, CustomVideoSourceType } from "@/components/main/custo
 global.TextEncoder = NodeTextEncoder as unknown as typeof TextEncoder
 global.TextDecoder = NodeTextDecoder as unknown as typeof TextDecoder
 
+class ResizeObserver {
+    observe() { }
+    unobserve() { }
+    disconnect() { }
+}
+global.ResizeObserver = ResizeObserver
+
 type NextImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
     priority?: boolean
     placeholder?: "blur" | "empty"
@@ -72,7 +79,22 @@ jest.mock('@/lib/utils', () => ({
 }))
 jest.mock('@/context/media-query-context', () => ({
     useMedia: jest.fn(),
+    MediaQueryProvider: ({ children }: { children: React.ReactNode }) => React.createElement(React.Fragment, null, children)
 }))
+Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+    })),
+})
+window.HTMLElement.prototype.scrollIntoView = jest.fn()
 jest.mock('@/components/main/app-logo', () => ({
     __esModule: true,
     AppLogo: ({

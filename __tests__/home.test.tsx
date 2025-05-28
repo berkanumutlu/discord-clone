@@ -103,7 +103,7 @@ describe('Home Page (Client) Tests', () => {
         expect(authButton).toHaveAttribute("href", afterSignInUrl)
         expect(authButton.textContent?.toLowerCase()).toContain("open discord")
     })
-    it('should render the hero section heading, text, image', async () => {
+    it('should render the hero section heading, text and image', async () => {
         await act(async () => { render(<HomePageClient />) })
 
         const heroHeading = screen.getByRole("heading", {

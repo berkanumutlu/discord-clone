@@ -41,7 +41,7 @@ export const ActionTooltip = ({
                 <TooltipTrigger asChild>
                     <span tabIndex={0}>{children}</span>
                 </TooltipTrigger>
-                <TooltipContent side={side} align={align} className={cn("z-[51]", contentClassName)}>
+                <TooltipContent role="tooltip" side={side} align={align} className={cn("z-[51]", contentClassName)}>
                     <p className={cn("text-sm font-semibold", contentTextClassName)}>{label}</p>
                 </TooltipContent>
             </Tooltip>

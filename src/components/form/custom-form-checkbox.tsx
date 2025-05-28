@@ -36,7 +36,8 @@ export const CustomFormCheckbox = ({
                 )}>
                     <FormControl>
                         <Checkbox
-                            id={"id-" + label}
+                            id={"id-" + name}
+                            name={name}
                             checked={field.value}
                             required={required}
                             onCheckedChange={field.onChange}
@@ -49,7 +50,7 @@ export const CustomFormCheckbox = ({
                     </FormControl>
                     <div className="pl-2 min-w-0 block flex-[1_1_auto] text-app-text-normal-3 leading-[1.3333333333333333] cursor-pointer">
                         <label
-                            htmlFor={"id-" + label}
+                            htmlFor={"id-" + name}
                             dangerouslySetInnerHTML={{ __html: label ?? "" }}
                             className={cn(
                                 "block text-app-text-normal-3 font-primary font-normal text-[12px] leading-[1.3333333333333333] cursor-pointer",
