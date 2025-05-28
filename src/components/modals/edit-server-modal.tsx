@@ -52,8 +52,8 @@ export const EditServerModal = () => {
             form.reset();
             router.refresh();
             onClose();
-        } catch (err) {
-            console.log("[CREATE_SERVER]", err);
+        } catch (error) {
+            console.error("[EDIT_SERVER_MODAL_ONSUBMIT]", error);
         }
     };
     const handleClose = () => {

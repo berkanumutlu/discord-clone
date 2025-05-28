@@ -1,13 +1,20 @@
-"use client";
+"use client"
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { ReactNode } from "react"
+import { cn } from "@/lib/utils"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface ActionTooltipProps {
-    label: string;
-    children: React.ReactNode;
-    side?: "top" | "right" | "bottom" | "left";
-    align?: "start" | "center" | "end";
-    open?: boolean;
+    label?: string
+    children: ReactNode
+    side?: "top" | "right" | "bottom" | "left"
+    align?: "start" | "center" | "end"
+    open?: boolean
+    delayDuration?: number
+    disabled?: boolean
+    showOnlyWhenDisabled?: boolean
+    contentClassName?: string
+    contentTextClassName?: string
 }
 
 export const ActionTooltip = ({
@@ -15,16 +22,27 @@ export const ActionTooltip = ({
     children,
     side,
     align,
-    open
+    open,
+    delayDuration = 50,
+    disabled = false,
+    showOnlyWhenDisabled = false,
+    contentClassName,
+    contentTextClassName,
 }: ActionTooltipProps) => {
+    const shouldShowTooltip = label && (!showOnlyWhenDisabled || disabled)
+
+    if (!shouldShowTooltip) {
+        return <>{children}</>
+    }
+
     return (
         <TooltipProvider>
-            <Tooltip open={open} delayDuration={50}>
-                <TooltipTrigger asChild>{children}</TooltipTrigger>
-                <TooltipContent side={side} align={align} className="z-51">
-                    <p className="text-sm font-semibold capitalize">
-                        {label.toLocaleLowerCase()}
-                    </p>
+            <Tooltip open={open} delayDuration={delayDuration}>
+                <TooltipTrigger asChild>
+                    <span tabIndex={0}>{children}</span>
+                </TooltipTrigger>
+                <TooltipContent role="tooltip" side={side} align={align} className={cn("z-[51]", contentClassName)}>
+                    <p className={cn("text-sm font-semibold", contentTextClassName)}>{label}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

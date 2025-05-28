@@ -24,7 +24,7 @@ export default async function handler(
             },
             include: {
                 memberOne: { include: { profile: true } },
-                memberTwo: { include: { profile: true } },
+                memberTwo: { include: { profile: true } }
             }
         });
         if (!conversation) return res.status(404).json({ error: "Conversation not found" });
@@ -62,8 +62,8 @@ export default async function handler(
         res?.socket?.server?.io?.emit(updateKey, directMessage);
 
         return res.status(200).json(directMessage);
-    } catch (err) {
-        console.log("[MESSAGE_ID]", err);
-        return res.status(500).json({ error: "Internal Error" });
+    } catch (error) {
+        console.error("[DIRECT_MESSAGE_ID]", error);
+        return res.status(500).json({ error: "Internal Server Error" });
     }
 }

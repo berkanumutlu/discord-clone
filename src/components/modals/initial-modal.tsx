@@ -44,8 +44,8 @@ export const InitialModal = () => {
             form.reset();
             router.refresh();
             window.location.reload();
-        } catch (err) {
-            console.log("[INITIAL_MODAL]", err);
+        } catch (error) {
+            console.error("[INITIAL_MODAL_ONSUBMIT]", error);
         }
     };
 

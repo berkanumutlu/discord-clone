@@ -19,7 +19,7 @@ const ServerIdPage = async ({
         include: { channels: { where: { name: "General" }, orderBy: { createdAt: "asc" } } }
     });
     const initialChannel = server?.channels[0];
-    if (initialChannel?.name.toLocaleLowerCase() !== "general") return null;
+    if (initialChannel?.name?.toLocaleLowerCase() !== "general") return null;
 
     return redirect(`/servers/${params.serverId}/channels/${initialChannel?.id}`);
 }

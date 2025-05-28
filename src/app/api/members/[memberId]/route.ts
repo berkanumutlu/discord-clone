@@ -27,9 +27,9 @@ export async function PATCH(
             include: { members: { include: { profile: true }, orderBy: { role: "asc" } } }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[MEMBERS_ID_PATCH]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[MEMBERS_ID_PATCH]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
 export async function DELETE(
@@ -53,8 +53,8 @@ export async function DELETE(
             include: { members: { include: { profile: true }, orderBy: { role: "asc" } } }
         });
         return NextResponse.json(server);
-    } catch (err) {
-        console.log("[MEMBERS_ID_DELETE]", err);
-        return new NextResponse("Internal Error", { status: 500 });
+    } catch (error) {
+        console.error("[MEMBERS_ID_DELETE]", error);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
