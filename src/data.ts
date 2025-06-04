@@ -276,10 +276,10 @@ export const nitroBannerList: nitroBannerType[] = [
         buttonText: "Subscribe",
         buttonHref: "/settings/premium",
         featureList: [
-            { image: "/icons/Vector_(14).svg", label: "50MB uploads" },
-            { image: "/icons/Vector_(15).svg", label: "Custom emoji anywhere" },
-            { image: "/icons/super-reaction-white.svg", label: "Unlimited Super Reactions" },
-            { image: "/icons/Vector_(16).svg", label: "Special Nitro badge on your profile" },
+            { image: "/images/icons/Vector_(14).svg", label: "50MB uploads" },
+            { image: "/images/icons/Vector_(15).svg", label: "Custom emoji anywhere" },
+            { image: "/images/icons/super-reaction-white.svg", label: "Unlimited Super Reactions" },
+            { image: "/images/icons/Vector_(16).svg", label: "Special Nitro badge on your profile" },
         ],
     },
     {
@@ -289,12 +289,12 @@ export const nitroBannerList: nitroBannerType[] = [
         buttonHref: "/settings/premium",
         className: "relative bg-[linear-gradient(135deg,#8547c6_25%,#b845c1_62%,#ab5d8a_95%)]",
         featureList: [
-            { image: "/icons/Vector_(14).svg", label: "500MB uploads" },
-            { image: "/icons/Vector_(15).svg", label: "Custom emoji anywhere" },
-            { image: "/icons/super-reaction-white.svg", label: "Unlimited Super Reactions" },
-            { image: "/icons/Stream_Quality_white.svg", label: "HD video streaming" },
-            { image: "/icons/Large.svg", label: "2 Server Boosts" },
-            { image: "/icons/Filled_Icons.svg", label: "Custom profiles and more!" },
+            { image: "/images/icons/Vector_(14).svg", label: "500MB uploads" },
+            { image: "/images/icons/Vector_(15).svg", label: "Custom emoji anywhere" },
+            { image: "/images/icons/super-reaction-white.svg", label: "Unlimited Super Reactions" },
+            { image: "/images/icons/Stream_Quality_white.svg", label: "HD video streaming" },
+            { image: "/images/icons/Large.svg", label: "2 Server Boosts" },
+            { image: "/images/icons/Filled_Icons.svg", label: "Custom profiles and more!" },
         ],
     },
 ]
