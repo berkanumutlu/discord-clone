@@ -84,7 +84,7 @@ const NitroPage = () => {
                     <div className="w-full sm:w-[unset] max-w-[350px] sm:max-w-[420px] relative flex flex-col justify-start lg:justify-center items-center lg:items-start self-center text-center z-[9]">
                         <h1 className="mb-6 font-abcgintonordextrabold font-bold text-app-white text-[32px] sm:text-[36px] md:text-[50px] leading-[.9] sm:leading-[.96] text-center lg:text-left normal-case">Unlock a World of Perks with Nitro</h1>
                         <div className="mb-4 pr-0 md:pr-6 text-app-white font-ggsans text-[16px] sm:text-[20px] leading-6 sm:leading-7 no-underline text-center lg:text-left">
-                            Subscribe to Nitro to upgrade your emoji, personalize your profile, &nbsp;share bigger files, and so much more.
+                            Subscribe to Nitro to upgrade your emoji, personalise your profile, share bigger files and so much more.
                         </div>
                         <Image
                             src={"/images/nitro/nitro_wumpus.webp"}
