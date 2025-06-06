@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { LogoProps } from "@/types"
-import { placeholderImageUrl } from "@/data"
+import { placeholderImageUrl } from "@/data/globalData"
 
 export function AppLogo({
     type = "small",

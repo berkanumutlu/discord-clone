@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { LanguageDropdownProps } from "@/types"
-import { languages } from "@/data"
+import { languages } from "@/data/globalData"
 import { CustomDropdown } from "@/components/custom-dropdown"
 
 export function LanguageDropdown({ initialLanguage = "English", onChange, className = "" }: LanguageDropdownProps) {

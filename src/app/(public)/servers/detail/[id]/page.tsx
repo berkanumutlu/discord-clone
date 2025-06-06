@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { CalendarDays, FacebookIcon, InstagramIcon, LaptopMinimal, Laugh, MessageSquareMore, Newspaper, PartyPopper, TwitchIcon, TwitterIcon, YoutubeIcon } from "lucide-react"
-import { placeholderImageUrl } from "@/data"
+import { placeholderImageUrl } from "@/data/globalData"
 import { PageLayout } from "@/components/main/page-layout"
 import ServerBannerBottom from "@/components/servers/servers-banner-bottom"
 import { Button } from "@/components/ui/button"
