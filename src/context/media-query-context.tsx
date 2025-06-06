@@ -1,10 +1,10 @@
 "use client"
 
 import { createContext, useContext, type ReactNode } from "react"
-import { useMediaQuery, type MediaQueries } from "@/hooks/use-media-query"
+import { useMediaQuery, type MediaQueriesProps } from "@/hooks/use-media-query"
 
 // Create Context
-const MediaQueryContext = createContext<MediaQueries | undefined>(undefined)
+const MediaQueryContext = createContext<MediaQueriesProps | undefined>(undefined)
 
 // Provider component
 export function MediaQueryProvider({ children }: { children: ReactNode }) {
@@ -14,7 +14,7 @@ export function MediaQueryProvider({ children }: { children: ReactNode }) {
 }
 
 // Hook to use the context
-export function useMedia(): MediaQueries {
+export function useMedia(): MediaQueriesProps {
     const context = useContext(MediaQueryContext)
 
     if (context === undefined) {

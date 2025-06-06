@@ -2,7 +2,7 @@ import React from "react"
 import { TextEncoder as NodeTextEncoder, TextDecoder as NodeTextDecoder } from "util"
 import "@testing-library/jest-dom"
 import { LucideProps } from "lucide-react"
-import { CustomVideoProps, CustomVideoSourceType } from "@/components/main/custom-video"
+import { CustomVideoType, CustomVideoSourceType } from "@/components/main/custom-video"
 
 global.TextEncoder = NodeTextEncoder as unknown as typeof TextEncoder
 global.TextDecoder = NodeTextDecoder as unknown as typeof TextDecoder
@@ -146,7 +146,7 @@ jest.mock('@/components/main/app-logo', () => ({
 jest.mock('@/components/main/custom-video', () => {
     return {
         __esModule: true,
-        default: (props: CustomVideoProps) => {
+        default: (props: CustomVideoType) => {
             const {
                 id,
                 divClassName,

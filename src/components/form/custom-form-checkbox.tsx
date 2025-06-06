@@ -1,6 +1,7 @@
 "use client"
 
 import { useFormContext } from "react-hook-form"
+import sanitizeHtml from "sanitize-html"
 import { cn } from "@/lib/utils"
 import { FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -15,7 +16,7 @@ type Props = {
 }
 
 export const CustomFormCheckbox = ({
-    label,
+    label = "",
     name,
     className,
     labelClassName,
@@ -51,7 +52,22 @@ export const CustomFormCheckbox = ({
                     <div className="pl-2 min-w-0 block flex-[1_1_auto] text-app-text-normal-3 leading-[1.3333333333333333] cursor-pointer">
                         <label
                             htmlFor={"id-" + name}
-                            dangerouslySetInnerHTML={{ __html: label ?? "" }}
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizeHtml(label, {
+                                    allowedTags: ['a'],
+                                    allowedAttributes: {
+                                        a: ['href', 'class', 'rel', 'target'],
+                                    },
+                                    allowedClasses: {
+                                        a: ['anchor_edefb8', 'anchorUnderlineOnHover_edefb8'],
+                                    },
+                                    allowedSchemes: ['http', 'https'],
+                                    allowedSchemesByTag: {
+                                        a: ['http', 'https'],
+                                    },
+                                    allowProtocolRelative: true
+                                })
+                            }}
                             className={cn(
                                 "block text-app-text-normal-3 font-primary font-normal text-[12px] leading-[1.3333333333333333] cursor-pointer",
                                 labelClassName

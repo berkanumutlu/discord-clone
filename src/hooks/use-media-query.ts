@@ -14,7 +14,7 @@ export const breakpoints = {
 }
 
 // Interface for media queries
-export interface MediaQueries {
+export interface MediaQueriesProps {
     isMobile: boolean // < 576px
     isTablet: boolean // >= 576px && < 992px
     isDesktop: boolean // >= 992px
@@ -59,9 +59,9 @@ function debounce<T extends (...args: unknown[]) => unknown>(func: T, wait: numb
     }
 }
 
-export function useMediaQuery(): MediaQueries {
+export function useMediaQuery(): MediaQueriesProps {
     // Initial values ​​(for SSR)
-    const [state, setState] = useState<MediaQueries>({
+    const [state, setState] = useState<MediaQueriesProps>({
         isMobile: false,
         isTablet: false,
         isDesktop: false,

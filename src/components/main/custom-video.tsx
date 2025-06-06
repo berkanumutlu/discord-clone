@@ -5,7 +5,7 @@ export type CustomVideoSourceType = {
     type?: string
 }
 
-export type CustomVideoProps = {
+export type CustomVideoType = {
     id?: string
     divClassName?: string
     src?: string
@@ -28,7 +28,7 @@ export default function CustomVideo({
     playsInline = true,
     backgroundImage,
     ...videoProps
-}: CustomVideoProps) {
+}: CustomVideoType) {
     return (
         <div data-autoplay={autoPlay} data-loop={loop} className={divClassName}>
             <video

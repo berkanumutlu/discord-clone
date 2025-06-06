@@ -124,6 +124,7 @@ const config: Config = {
 					"refresh-blue": "rgba(var(--app-refresh-blue))",
 					"navy-blue": "rgba(var(--app-navy-blue))",
 					"always-white": "rgba(var(--app-always-white))",
+					"always-black": "rgba(var(--app-always-black))",
 					"brand-360": "var(--brand-360)",
 					"brand-400": "var(--brand-400)",
 					"brand-500": "var(--brand-500)",

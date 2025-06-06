@@ -1,5 +1,5 @@
 import React from "react"
-import { signInUrl, signUpUrl } from "@/data"
+import { signInUrl, signUpUrl } from "@/data/authData"
 import { mockSignInData } from "../data"
 
 export type EmailCodeFactorType = {

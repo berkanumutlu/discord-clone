@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { NavigationMenuCustomProps } from "@/types"
-import { navigationMenuItems } from "@/data"
+import { navigationMenuItems } from "@/data/globalData"
 import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu"
 import NavigationMenuItemCustom from "@/components/main/navigation-menu/navigation-menu-item-custom"
 

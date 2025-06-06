@@ -48,7 +48,7 @@ const DownloadPage = () => {
                             <h1 className="heading--h1--download is-capitalize new">Download Discord wherever you hang out</h1>
                         </div>
                         <div className="mx-auto mb-10 xl:mb-12 relative max-w-[580px] xl:max-w-[940px]">
-                            <p className="body-text--xll new">Talk, play, and hang out with friends around the world over voice, video, or text. Available on Windows, macOS, Linux, iOS, Android, and consoles. </p>
+                            <p className="body-text--xll new">Talk, play and hang out with friends around the world over voice, video or text. Available on Windows, macOS, Linux, iOS, Android and consoles. </p>
                         </div>
                         <div className="p-0.5 relative flex justify-center items-center bg-[#5865f200] text-app-white font-abcgintonormal font-medium text-[.875rem] md:text-[1rem] leading-[1.3] rounded-xl transition-colors duration-400 text-center whitespace-nowrap sm:whitespace-[unset] overflow-hidden">
                             <Link
@@ -109,7 +109,7 @@ const DownloadPage = () => {
                         <div className="mb-[120px] md:mb-[168px] xl:mb-[360px] flex md:grid lg:flex flex-col lg:flex-row flex-nowrap grid-cols-[1fr_1fr] grid-rows-[auto_auto] auto-cols-[1fr] justify-between justify-items-center md:justify-items-start items-center gap-12 md:gap-11 lg:gap-20 3xl:gap-[244px] order-1 lg:order-[unset]">
                             <div className="mx-0 w-full lg:w-1/2 xl:w-full max-w-none lg:max-w-[520px] xl:max-w-[620px] 2xl:max-w-[670px] 3xl:max-w-[700px] flex lg:block flex-col flex-nowrap justify-start items-center text-center md:text-left">
                                 <h2 className="mx-auto md:mx-0 mb-4 md:mb-6 xl:mb-8 max-w-none md:max-w-[450px] xl:max-w-[500px] text-app-white font-abcgintodiscordnord font-bold text-[36px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-[.916667] sm:leading-[.96] tracking-[-.01em] uppercase">Download for desktop</h2>
-                                <p className="body-text--xll new mb-8 sm:mb-10 lg:mb-12">Use Discord to easily talk while playing your favorite PC games, show what you’re playing as your status, and stream your games to your friends.</p>
+                                <p className="body-text--xll new mb-8 sm:mb-10 lg:mb-12">Use Discord to easily talk while playing your favourite PC games, show what you’re playing as your status, and stream your games to your friends.</p>
                                 <div className="flex flex-row flex-wrap justify-center md:justify-start items-start gap-2">
                                     <Link
                                         href={"/api/download?platform=osx"}
@@ -146,7 +146,7 @@ const DownloadPage = () => {
                                                     <ChevronDown width={20} height={20} className="transition duration-200 group-data-[state=open]:rotate-180" />
                                                 </div>
                                             </PopoverTrigger>
-                                            <PopoverContent className="mt-1.5 p-2 min-w-full max-w-[var(--radix-popover-trigger-width)] bg-app-white border-none rounded-lg">
+                                            <PopoverContent side="bottom" avoidCollisions={false} className="mt-1.5 p-2 min-w-full max-w-[var(--radix-popover-trigger-width)] bg-app-white border-none rounded-lg">
                                                 {[
                                                     { label: "deb", href: "/api/download?platform=linux&format=deb" },
                                                     { label: "tar.gz", href: "/api/download?platform=linux&format=tar.gz" },
@@ -184,7 +184,7 @@ const DownloadPage = () => {
                             </div>
                             <div className="mx-0 w-full lg:w-1/2 xl:w-full max-w-none md:max-w-[520px] xl:max-w-[620px] 2xl:max-w-[670px] 3xl:max-w-[700px] flex md:block flex-col flex-nowrap justify-start items-center text-center md:text-left">
                                 <h2 className="mx-auto md:mx-0 mb-4 md:mb-6 xl:mb-8 max-w-none md:max-w-[450px] xl:max-w-[500px] text-app-white font-abcgintodiscordnord font-bold text-[36px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-[.916667] sm:leading-[.96] tracking-[-.01em] uppercase">Download for mobile</h2>
-                                <p className="body-text--xll new mb-8 sm:mb-10 lg:mb-12">Out and about? Sunk in a massive beanbag? Bring Discord with you and chat whenever, have fun with friends, or just see what’s up.</p>
+                                <p className="body-text--xll new mb-8 sm:mb-10 lg:mb-12">Out and about? Sunk in a massive beanbag? Bring Discord with you and chat whenever, have fun with friends or just see what’s up.</p>
                                 <div className="flex flex-row flex-wrap justify-center md:justify-start items-start gap-2">
                                     <Link
                                         href={"https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746"}
@@ -215,7 +215,7 @@ const DownloadPage = () => {
                     <div className="mb-[120px] md:mb-[168px] xl:mb-[240px] 2xl:mb-[320px] grid lg:flex grid-cols-[1fr] md:grid-cols-[1fr_1fr] grid-rows-[auto] auto-cols-[1fr] justify-between justify-items-center items-start md:items-center gap-12 md:gap-20 2xl:gap-[140px] 3xl:gap-[240px]">
                         <div className="mx-0 w-full lg:w-1/2 xl:w-full max-w-none md:max-w-[520px] xl:max-w-[620px] 2xl:max-w-[680px] 3xl:max-w-[700px] flex md:block flex-col flex-nowrap justify-start items-center text-center md:text-left">
                             <h2 className="mb-4 md:mb-6 xl:mb-8 text-app-white font-abcgintodiscordnord font-bold text-[36px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-[.916667] sm:leading-[.96] tracking-[-.01em] uppercase">Link your console</h2>
-                            <p className="body-text--xll new mb-8 sm:mb-10 lg:mb-12">Coordinate from the couch and talk with your Discord friends across PC, mobile, and your fellow console users — supported platforms even let you stream your game directly from your console.</p>
+                            <p className="body-text--xll new mb-8 sm:mb-10 lg:mb-12">Coordinate from the couch and talk with your Discord friends across PC, mobile and to your fellow console users – supported platforms even let you stream your game directly from your console.</p>
                             <div className="flex flex-row flex-wrap justify-center md:justify-start items-start gap-2">
                                 <Link
                                     href={"/blog/playstation-5-voice-integration-announcement"}
@@ -226,7 +226,7 @@ const DownloadPage = () => {
                                             <path fillRule="evenodd" clipRule="evenodd" d="M14.6814 7.63604V12.9786C16.9395 14.0641 18.7164 12.9772 18.7164 10.1098C18.7164 7.16804 17.6761 5.86227 14.6087 4.81347C13.4028 4.40838 10.8827 3.73515 9.29913 3.4502V19.402L13.2409 20.5474V7.16849C13.2409 6.54142 13.5219 6.12277 13.9748 6.26736C14.5659 6.43137 14.6814 7.00852 14.6814 7.63604ZM19.7146 14.4624C18.5436 13.9992 17.0516 13.8401 15.8335 13.9805C14.6148 14.1212 13.7487 14.4408 13.7487 14.4408L13.5759 14.5016V16.2555L16.5739 15.1539C17.0853 14.9626 17.8355 14.9216 18.25 15.0634C18.6644 15.2052 18.5865 15.4749 18.0758 15.6658L13.5759 17.3387V19.0285L19.6907 16.737C19.6907 16.737 20.5126 16.4222 20.8483 15.9806C21.1835 15.5387 21.0345 14.8977 19.7146 14.4624ZM3.33921 15.4713C2.69265 15.9491 2.94775 16.7166 4.34774 17.1764C5.86965 17.6763 7.32914 17.9804 8.71894 17.7357C8.80911 17.7197 8.9078 17.7026 8.99585 17.6859V16.1144L7.70419 16.4963C7.16946 16.6879 6.38308 16.7279 5.94907 16.5864C5.51511 16.4446 5.5968 16.1749 6.13157 15.984L8.99585 15.0096V13.2532L4.95387 14.6976C4.95387 14.6976 3.93724 15.0297 3.33921 15.4713Z" fill="black"></path>
                                         </svg>
                                     </div>
-                                    <div>Playstation</div>
+                                    <div>PlayStation</div>
                                 </Link>
                                 <Link
                                     href={"/blog/xbox-voice-integration-announcement"}
@@ -270,7 +270,7 @@ const DownloadPage = () => {
                                         <ChevronDown width={20} height={20} className="transition duration-200 group-data-[state=open]:rotate-180 z-[3]" />
                                     </div>
                                 </PopoverTrigger>
-                                <PopoverContent className="mt-1 p-2 min-w-full max-w-[var(--radix-popover-trigger-width)] block bg-app-white/10 border-none shadow-[0_6px_10px_#00000014] rounded-lg z-[98]">
+                                <PopoverContent side="bottom" avoidCollisions={false} className="mt-1 p-2 min-w-full max-w-[var(--radix-popover-trigger-width)] block bg-app-white/10 border-none shadow-[0_6px_10px_#00000014] rounded-lg z-[98]">
                                     {[
                                         { label: "Mac", href: "/api/download/ptb?platform=osx" },
                                         { label: "Windows 64-bit", href: "/api/downloads/distributions/app/installers/latest?channel=ptb&platform=win&arch=x64" },

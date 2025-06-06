@@ -7,13 +7,13 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 
-export type CustomComboboxOption = {
+type CustomComboboxOptionType = {
     label: string
     value: string
 }
 
 interface CustomComboboxProps {
-    options: CustomComboboxOption[]
+    options: CustomComboboxOptionType[]
     value: string
     placeholder?: string
     className?: string
