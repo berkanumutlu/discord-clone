@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { Check, Plus, X } from "lucide-react"
+import sanitizeHtml from "sanitize-html"
 import { cn } from "@/lib/utils"
 import { nitroBannerList, nitroFAQCategoryList, nitroFAQList, nitroMainPerkList, nitroPlanFeatureList, nitroPlanList, nitroSubPerkList, placeholderImageUrl } from "@/data"
 import { PageLayout } from "@/components/main/page-layout"
@@ -380,8 +381,26 @@ const NitroPage = () => {
                                                             className="group mx-auto p-[24px_60px_24px_24px] data-[state=open]:pb-3 w-full relative flex justify-between items-center text-[#1b1c23] data-[state=open]:text-app-white font-ggsans font-semibold text-[20px] leading-8 !no-underline text-left align-top whitespace-pre-wrap select-none"
                                                         >{subItem.question}<Plus width={24} height={24} className="absolute inset-[auto_24px_auto_auto] inline-block transform-3d transition-all duration-300 group-data-[state=open]:rotate-45" /></AccordionTrigger>
                                                         <AccordionContent className="py-0 px-6 min-w-full static block bg-[#ddd0]">
-                                                            {/* // TODO: XSS */}
-                                                            <div className="mb-6 pr-10 text-app-white font-ggsans text-[16px] leading-6 no-underline text-left" dangerouslySetInnerHTML={{ __html: subItem.answer }}></div>
+                                                            <div
+                                                                className="mb-6 pr-10 text-app-white font-ggsans text-[16px] leading-6 no-underline text-left"
+                                                                dangerouslySetInnerHTML={{
+                                                                    __html: sanitizeHtml(subItem.answer, {
+                                                                        allowedTags: ['a', 'span'],
+                                                                        allowedAttributes: {
+                                                                            a: ['href', 'tabindex', 'class'],
+                                                                            span: ['class'],
+                                                                        },
+                                                                        allowedClasses: {
+                                                                            a: ['link-16px', 'link-407'],
+                                                                            span: ['text-span'],
+                                                                        },
+                                                                        allowedSchemes: ['http', 'https'],
+                                                                        allowedSchemesByTag: {
+                                                                            a: ['http', 'https'],
+                                                                        },
+                                                                    })
+                                                                }}
+                                                            ></div>
                                                         </AccordionContent>
                                                     </AccordionItem>
                                                 )

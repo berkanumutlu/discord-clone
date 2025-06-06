@@ -111,6 +111,7 @@ export default function RegisterPage({ onSubmit }: RegisterPageType) {
                             label={`I have read and agree to Discord's <a class="anchor_edefb8 anchorUnderlineOnHover_edefb8" href="//discord.com/terms" rel="noreferrer noopener" target="_blank">Terms of Service</a> and <a class="anchor_edefb8 anchorUnderlineOnHover_edefb8" href="//discord.com/privacy" rel="noreferrer noopener" target="_blank">Privacy Policy</a>.`}
                             name="terms"
                             required={true}
+                            labelClassName="text-[14px] leading-[18px]"
                         />
                         <CustomFormLink
                             href={signInUrl}

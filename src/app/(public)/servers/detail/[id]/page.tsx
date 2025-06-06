@@ -76,7 +76,7 @@ const ServersDetailPage = ({
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h1 className="mb-1 lg:mb-2 font-display font-bold text-[20px] lg:text-[34px] leading-6 lg:leading-10">Server Name</h1>
+                                                <h1 className="mb-1 lg:mb-2 font-display font-bold text-[20px] lg:text-[34px] leading-6 lg:leading-10">Server Name {params.id}</h1>
                                             </div>
                                             <p className="mb-3 lg:mb-6 text-app-header-secondary font-display text-[12px] lg:text-[20px] leading-[18px] lg:leading-7">The largest community-run Server Name server. Join for news, chat, LFG, events &amp; more! For both Users and Creators.</p>
                                             <div className="mb-6 flex flex-row">
