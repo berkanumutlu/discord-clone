@@ -132,6 +132,93 @@
         --custom-button-link-underline-stop: calc(var(--custom-button-link-underline-width) + var(--custom-button-link-underline-offset));
     }
 
+    @keyframes rotate180Once {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(180deg);
+        }
+    }
+
+    @keyframes headShake {
+        0% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-2px) rotate(-1deg);
+        }
+
+        50% {
+            transform: translateX(2px) rotate(1deg);
+        }
+
+        75% {
+            transform: translateX(-1px) rotate(-0.5deg);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes swingTop {
+        0% {
+            transform: rotate(0deg);
+            transform-origin: bottom center;
+        }
+
+        25% {
+            transform: rotate(4deg);
+            transform-origin: bottom center;
+        }
+
+        50% {
+            transform: rotate(-4deg);
+            transform-origin: bottom center;
+        }
+
+        75% {
+            transform: rotate(2deg);
+            transform-origin: bottom center;
+        }
+
+        100% {
+            transform: rotate(0deg);
+            transform-origin: bottom center;
+        }
+    }
+
+    @keyframes swingBottom {
+        0% {
+            transform: rotate(0deg);
+            transform-origin: top center;
+        }
+
+        25% {
+            transform: rotate(4deg);
+            transform-origin: top center;
+        }
+
+        50% {
+            transform: rotate(-4deg);
+            transform-origin: top center;
+        }
+
+        75% {
+            transform: rotate(2deg);
+            transform-origin: top center;
+        }
+
+        100% {
+            transform: rotate(0deg);
+            transform-origin: top center;
+        }
+    }
+}
+
 /* #region Global */
 body {
     width: 100%;
@@ -638,5 +725,306 @@ div[data-radix-popper-content-wrapper] {
 
 /* #endregion */
 
+/* #region panels */
+.baseLayout .content .panels {
+    --custom-panels-spacing: var(--space-xs);
+    background: var(--bg-overlay-floating, var(--app-background-base-low));
+    border: 1px solid var(--border-faint);
+    border-radius: var(--radius-sm);
+    bottom: var(--custom-panels-spacing);
+    box-sizing: border-box;
+    justify-content: space-between;
+    left: var(--custom-panels-spacing);
+    position: absolute;
+    width: calc(100% - var(--custom-panels-spacing) * 2);
+    z-index: 10;
+    flex: 0 0 auto;
+}
+
+.baseLayout .content .panels .panelsWrapper {
+    overflow: visible;
+    position: relative;
+}
+
+.baseLayout .content .panels .panelsContainer {
+    background: unset;
+    box-sizing: border-box;
+    gap: var(--space-xs);
+    height: auto;
+    justify-content: space-between;
+    margin-left: -1px;
+    min-height: var(--custom-rtc-account-height);
+    padding: var(--space-xs);
+    align-items: center;
+    border-radius: inherit;
+    container-type: inline-size;
+    display: flex;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+.baseLayout .content .panels .panelsContainer .panelTitleContainer .panelTitle {
+    color: var(--text-primary);
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.baseLayout .content .panels .panelsContainer .panelSubtextContainer .subText {
+    color: var(--text-secondary);
+    line-height: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.baseLayout .content .panels .avatarWrapper {
+    border-radius: var(--radius-sm);
+    border-bottom-left-radius: 24px;
+    border-top-left-radius: 24px;
+    cursor: pointer;
+    flex: 1;
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+    transition: background-color .2s ease;
+    align-items: center;
+    display: flex;
+    min-width: 112px;
+}
+
+.baseLayout .content .panels .avatarWrapper:hover {
+    background-color: var(--background-mod-normal);
+    color: var(--interactive-hover);
+}
+
+.baseLayout .content .panels .avatarWrapper .avatarContainer {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    flex-shrink: 0;
+    border-radius: 50%;
+    position: relative;
+}
+
+.baseLayout .content .panels .avatarWrapper .avatarContainer .avatarSVG {
+    position: absolute;
+    contain: paint;
+    display: block;
+    pointer-events: none;
+    width: auto;
+}
+
+.baseLayout .content .panels .avatarWrapper .avatarContainer .avatarStack {
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.baseLayout .content .panels .avatarWrapper .avatarContainer .avatarStack .avatarImage {
+    display: block;
+    object-fit: cover;
+    pointer-events: none;
+    grid-area: 1 / 1;
+    height: 100%;
+    width: 100%;
+    text-indent: -9999px;
+}
+
+.baseLayout .content .panels .avatarWrapper .avatarContainer .avatarStack .avatarImage:before {
+    background-color: var(--background-modifier-accent);
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.baseLayout .content .panels .avatarWrapper .nameTag {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    flex-grow: 1;
+    min-width: 0;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+
+.baseLayout .content .panels .hoverRoll {
+    box-sizing: border-box;
+    contain: paint;
+    cursor: revert;
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+}
+
+.baseLayout .content .panels .hoverRoll .hovered {
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate3d(0, 107%, 0);
+}
+
+.baseLayout .content .panels .hoverRoll .hoveredDefault,
+.baseLayout .content .panels .hoverRoll .hovered {
+    transition: all .22s ease;
+}
+
+.baseLayout .content .panels .hoverRoll .hoveredDefault,
+.baseLayout .content .panels .hoverRoll .hovered {
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+    text-overflow: ellipsis;
+    transform-style: preserve-3d;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.baseLayout .content .panels .hoverRoll .hoveredDefault .hoveredDefaultContainer {
+    box-sizing: border-box;
+    contain: paint;
+    cursor: revert;
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+}
+
+.baseLayout .content .panels .animatedText {
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+    text-overflow: ellipsis;
+    transform-style: preserve-3d;
+    white-space: nowrap;
+    width: 100%;
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.baseLayout .content .panels:hover .hoverRoll:not(.disabledRoll) .hovered {
+    opacity: 1;
+    transform: translateZ(0);
+}
+
+.baseLayout .content .panels:hover .hoverRoll:not(.disabledRoll) .hoveredDefault {
+    opacity: 0;
+    transform: translate3d(0, -107%, 0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.baseLayout .content .panels .panelsButtons {
+    gap: var(--space-4);
+    display: flex;
+}
+
+.baseLayout .content .panels .panelsButtons .panelsButtonsButton {
+    border-radius: var(--radius-sm);
+    color: var(--icon-secondary);
+    height: 32px;
+    margin: var(--space-4) 0;
+    transition: background-color .2s ease;
+    width: 32px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    line-height: 0;
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    user-select: none;
+    outline: 0;
+    font-family: var(--font-primary);
+    text-rendering: optimizeLegibility;
+}
+
+.baseLayout .content .panels .panelsButtons .panelsButtonsButton:hover {
+    background-color: var(--button-secondary-background-hover);
+    color: var(--interactive-hover);
+}
+
+.baseLayout .content .panels .panelsButtons .contents {
+    --button--underline-color: transparent;
+    background-image: linear-gradient(to top, transparent, transparent var(--custom-button-link-underline-offset), var(--button--underline-color) var(--custom-button-link-underline-offset), var(--button--underline-color) var(--custom-button-link-underline-stop), transparent var(--custom-button-link-underline-stop));
+}
+
+.baseLayout .content .panels .panelsButtons .contents .lottieIcon {
+    --__lottieIconColor: currentColor;
+    display: flex;
+    width: 20px;
+    height: 20px;
+}
+
+.baseLayout .content .panels .panelsButtons .contents .lottieIcon svg {
+    width: 100%;
+    height: 100%;
+    content-visibility: visible;
+    animation: none;
+}
+
+.baseLayout .content .panels .panelsButtons .panelsButtonsButton.panelsMuteButton:hover .contents .lottieIcon svg {
+    animation: swingTop 0.5s ease-in-out;
+    animation-delay: .1s;
+}
+
+.baseLayout .content .panels .panelsButtons .panelsButtonsButton.panelsDeafenButton:hover .contents .lottieIcon svg {
+    animation: swingBottom 0.5s ease-in-out;
+    animation-delay: .1s;
+}
+
+.baseLayout .content .panels .panelsButtons .panelsButtonsButton.panelsSettingsButton:hover .contents .lottieIcon svg {
+    animation: rotate180Once 1s ease forwards;
+    animation-delay: .1s;
+}
+
+/* #endregion */
+
+/* #endregion */
+
+/* #region page */
+.baseLayout .content .page {
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    min-width: 0;
+    position: relative;
+    width: 100%;
+}
+
+@supports (grid-template-columns:subgrid) and (white-space-collapse:collapse) {
+    .baseLayout .content .page {
+        grid-area: page;
+        overflow: auto;
+    }
+}
+
+/* #endregion */
+
+/* #endregion */
 
 /* #endregion */
