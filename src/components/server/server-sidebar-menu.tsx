@@ -1,37 +1,37 @@
-import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
-import { ChannelType, MemberRole } from "@prisma/client";
-import { Hash, ShieldAlert, ShieldCheck, Volume2 } from "lucide-react";
-import { db } from "@/lib/db";
-import { currentProfile } from "@/lib/current-profile";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { ServerHeader } from "./server-header";
-import { ServerSearch } from "./server-search";
-import { ServerSection } from "./server-section";
-import { ServerChannel } from "./server-channel";
-import { ServerMember } from "./server-member";
+import { redirect } from "next/navigation"
+import { auth } from "@clerk/nextjs/server"
+import { ChannelType, MemberRole } from "@prisma/client"
+import { Hash, ShieldAlert, ShieldCheck, Volume2 } from "lucide-react"
+import { db } from "@/lib/db"
+import { currentProfile } from "@/lib/current-profile"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+import { ServerHeader } from "@/components/server/server-header"
+import { ServerSearch } from "@/components/server/server-search"
+import { ServerSection } from "@/components/server/server-section"
+import { ServerChannel } from "@/components/server/server-channel"
+import { ServerMember } from "@/components/server/server-member"
 
 interface ServerSidebarProps {
-    serverId: string;
+    serverId: string
 }
 
 const iconMap = {
-    [ChannelType.TEXT]: <Hash className="mr-2 w-4 h-4" />,
-    [ChannelType.AUDIO]: <Volume2 className="mr-2 w-4 h-4" />
-};
+    [ChannelType.TEXT]: <Hash className="mr-2 size-4" />,
+    [ChannelType.AUDIO]: <Volume2 className="mr-2 size-4" />
+}
 
 const roleIconMap = {
     [MemberRole.GUEST]: null,
-    [MemberRole.MODERATOR]: <ShieldCheck className="mr-2 w-4 h-4 text-indigo-500" />,
-    [MemberRole.ADMIN]: <ShieldAlert className="mr-2 w-4 h-4 text-rose-500" />
-};
+    [MemberRole.MODERATOR]: <ShieldCheck className="mr-2 size-4 text-indigo-500" />,
+    [MemberRole.ADMIN]: <ShieldAlert className="mr-2 size-4 text-rose-500" />
+}
 
-export const ServerSidebar = async ({
+export const ServerSidebarMenu = async ({
     serverId
 }: ServerSidebarProps) => {
-    const profile = await currentProfile();
-    if (!profile) return auth().redirectToSignIn();
+    const profile = await currentProfile()
+    if (!profile) return auth().redirectToSignIn()
 
     const server = await db.server.findUnique({
         where: { id: serverId },
@@ -39,15 +39,15 @@ export const ServerSidebar = async ({
             channels: { orderBy: { createdAt: "asc" } },
             members: { include: { profile: true }, orderBy: { role: "asc" } }
         }
-    });
-    if (!server) return redirect("/");
-    const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT);
-    const audioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO);
-    const members = server?.members.filter((member) => member.profileId !== profile.id);
-    const role = server?.members.find((member) => member.profileId === profile.id)?.role;
+    })
+    if (!server) return redirect("/")
+    const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT)
+    const audioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO)
+    const members = server?.members.filter((member) => member.profileId !== profile.id)
+    const role = server?.members.find((member) => member.profileId === profile.id)?.role
 
     return (
-        <div className="w-full h-full flex flex-col text-primary bg-[#F2F3F5] dark:bg-[#2B2D31]">
+        <nav className="serverSidebarListContainer" aria-label={`${server.name} (server)`}>
             <ServerHeader server={server} role={role} />
             <ScrollArea className="px-3 flex-1 [&>div>div]:!block">
                 <div className="mt-2">
@@ -115,6 +115,6 @@ export const ServerSidebar = async ({
                     </div>
                 )}
             </ScrollArea>
-        </div>
+        </nav>
     )
 }

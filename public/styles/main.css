@@ -1,0 +1,642 @@
+@tailwind base;
+
+@layer base {
+    :root {
+        --spacing-4: 4px;
+        --spacing-8: 8px;
+        --spacing-12: 12px;
+        --spacing-16: 16px;
+        --spacing-24: 24px;
+        --spacing-32: 32px;
+        --spacing-40: 40px;
+        --spacing-48: 48px;
+        --spacing-56: 56px;
+        --spacing-64: 64px;
+        --spacing-72: 72px;
+        --spacing-80: 80px;
+        --spacing-96: 96px;
+        --size-0: 0px;
+        --size-4: 4px;
+        --size-8: 8px;
+        --size-12: 12px;
+        --size-16: 16px;
+        --size-20: 20px;
+        --size-24: 24px;
+        --size-32: 32px;
+        --size-48: 48px;
+        --size-64: 64px;
+        --size-80: 80px;
+        --size-96: 96px;
+        --size-128: 128px;
+        --size-160: 160px;
+        --size-192: 192px;
+        --size-xxs: var(--size-4);
+        --size-xs: var(--size-8);
+        --size-sm: var(--size-12);
+        --size-md: var(--size-16);
+        --size-lg: var(--size-20);
+        --size-xl: var(--size-24);
+        --size-xxl: var(--size-32);
+        --breakpoint-480: 480px;
+        --breakpoint-640: 640px;
+        --breakpoint-768: 768px;
+        --breakpoint-1024: 1024px;
+        --breakpoint-1280: 1280px;
+        --breakpoint-1536: 1536px;
+        --breakpoint-1800: 1800px;
+        --breakpoint-2500: 2500px;
+        --breakpoint-xxs: 480px;
+        --breakpoint-xs: 640px;
+        --breakpoint-sm: 768px;
+        --breakpoint-md: 1024px;
+        --breakpoint-lg: 1280px;
+        --breakpoint-xl: 1536px;
+        --breakpoint-xxl: 1800px;
+        --breakpoint-max: 2500px;
+        --space-0: 0px;
+        --space-4: 4px;
+        --space-6: 6px;
+        --space-8: 8px;
+        --space-10: 10px;
+        --space-12: 12px;
+        --space-16: 16px;
+        --space-20: 20px;
+        --space-24: 24px;
+        --space-26: 26px;
+        --space-30: 30px;
+        --space-32: 32px;
+        --space-40: 40px;
+        --space-48: 48px;
+        --space-64: 64px;
+        --space-80: 80px;
+        --space-96: 96px;
+        --space-128: 128px;
+        --space-160: 160px;
+        --space-192: 192px;
+        --space-xxs: var(--space-4);
+        --space-xs: var(--space-8);
+        --space-sm: var(--space-12);
+        --space-md: var(--space-16);
+        --space-lg: var(--space-20);
+        --space-xl: var(--space-24);
+        --space-xxl: var(--space-32);
+        --radius-none: 0px;
+        --radius-xs: 4px;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+        --radius-xxl: 32px;
+        --radius-round: 2147483647px;
+
+        --background-primary: color-mix(in oklab, var(--neutral-2) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --background-secondary: color-mix(in oklab, var(--neutral-2) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --background-tertiary: color-mix(in oklab, var(--neutral-4) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --bg-base-primary: color-mix(in oklab, var(--neutral-2) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --bg-base-secondary: color-mix(in oklab, var(--neutral-2) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --bg-base-tertiary: color-mix(in oklab, var(--neutral-4) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --background-mod-faint: hsl(var(--opacity-8-hsl) / 0.0784313725490196);
+        --background-mod-normal: hsl(var(--opacity-16-hsl) / 0.1607843137254902);
+        --background-mod-strong: hsl(var(--opacity-24-hsl) / 0.23921568627450981);
+        --background-mod-subtle: hsl(var(--opacity-12-hsl) / 0.12156862745098039);
+        --background-modifier-accent: hsl(var(--opacity-28-hsl) / 0.2784313725490196);
+        --background-modifier-hover: hsl(var(--opacity-12-hsl) / 0.12156862745098039);
+        --background-surface-higher: color-mix(in oklab, var(--neutral-1) 100%, var(--theme-base-color, #000) var(--theme-base-color-amount, 0%));
+        --background-feedback-critical: color-mix(in oklab, hsl(var(--opacity-red-8-hsl) / 0.0784313725490196) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.0784313725490196) var(--theme-base-color-amount, 0%));
+
+        --text-primary: color-mix(in oklab, var(--neutral-71) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+        --text-secondary: color-mix(in oklab, var(--neutral-44) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+        --text-feedback-critical: color-mix(in oklab, var(--red-new-54) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+
+        --button-secondary-background-hover: hsl(var(--opacity-28-hsl) / 0.2784313725490196);
+
+        --border-faint: color-mix(in oklab, hsl(var(--opacity-20-hsl) / 0.2) 100%, hsl(var(--theme-base-color-hsl, 0 0% 0%) / 0.2) var(--theme-border-color-amount, var(--theme-base-color-amount, 0%)));
+
+        --interactive-hover: color-mix(in oklab, var(--neutral-71) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+
+        --icon-muted: color-mix(in oklab, var(--neutral-38) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+        --icon-primary: color-mix(in oklab, var(--neutral-71) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+        --icon-secondary: color-mix(in oklab, var(--neutral-44) 100%, var(--theme-text-color, #000) var(--theme-text-color-amount, 0%));
+
+        --guildbar-avatar-size: 40px;
+
+        --custom-guild-list-padding: var(--space-md);
+        --custom-guild-list-width: calc(var(--guildbar-avatar-size) + var(--custom-guild-list-padding) * 2);
+        --custom-guild-sidebar-width: 375px;
+        --custom-app-panels-height: 58px;
+        --custom-rtc-account-height: 44px;
+        --custom-app-top-bar-height: calc(24px + var(--space-8));
+        --custom-channel-header-height: calc(var(--guildbar-avatar-size) + var(--space-xs));
+        --custom-button-link-underline-width: 1px;
+        --custom-button-link-underline-offset: 1px;
+        --custom-button-link-underline-stop: calc(var(--custom-button-link-underline-width) + var(--custom-button-link-underline-offset));
+    }
+
+/* #region Global */
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-family: var(--font-primary);
+    background: var(--app-background-base-lowest);
+    line-height: 1;
+    text-rendering: optimizeLegibility;
+    user-select: none;
+    overflow: hidden;
+}
+
+.page-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: var(--app-background-base-lowest);
+    outline: 0;
+    overflow: hidden;
+}
+
+/* #endregion */
+
+/* #region Tooltip */
+.tooltipPointer {
+    display: block;
+    margin-top: -5px;
+    position: absolute;
+    border: 5px solid transparent;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-top-color: var(--app-background-floating-2);
+    --tooltip-pointer-bg: var(--app-background-floating-2);
+}
+
+.tooltipPointer.fromRight {
+    border-left-width: 5px;
+    right: 100%;
+    top: calc(50% + 0px);
+    transform: rotate(90deg);
+}
+
+.tooltipPointer.fromBottom {
+    --border-width: 5px;
+    border-top-width: 5px;
+    bottom: 100%;
+    left: calc(50% + 0px);
+    transform: rotate(180deg);
+}
+
+.tooltipPointerBg {
+    display: block;
+    --border-width: 5px;
+}
+
+.tooltipPointerBg:before {
+    border-top: var(--border-width) solid var(--tooltip-pointer-bg);
+    margin-top: -5px;
+}
+
+.tooltipPointerBg:after,
+.tooltipPointerBg:before {
+    border-left: var(--border-width) solid transparent;
+    border-right: var(--border-width) solid transparent;
+    content: "";
+    left: 50%;
+    margin-left: calc(var(--border-width) * -1);
+    position: absolute;
+    top: 100%;
+}
+
+.tooltipPointerBg:after {
+    border-top: var(--border-width) solid var(--app-border-subtle-2);
+    margin-top: -5px;
+    z-index: 1;
+}
+
+.tooltipPointer:not(.tooltipPointerBg) {
+    z-index: 1;
+}
+
+.tooltipPointer.fromLeft:not(.tooltipPointerBg) {
+    margin-left: -1.5px;
+}
+
+.tooltipPointer.fromRight:not(.tooltipPointerBg) {
+    margin-right: -1.5px;
+}
+
+.tooltipPointer.fromTop:not(.tooltipPointerBg) {
+    margin-top: -1.5px;
+}
+
+.tooltipPointer.fromBottom:not(.tooltipPointerBg) {
+    margin-bottom: -1.5px;
+}
+
+div[data-radix-popper-content-wrapper] {
+    pointer-events: none;
+}
+
+/* #endregion */
+
+/* #region baseLayout */
+.baseLayout {
+    display: grid;
+    grid-template-areas:
+        "titleBar titleBar titleBar"
+        "guildsList notice notice"
+        "guildsList channelsList page";
+    grid-template-columns: [start] min-content [guildsEnd] min-content [channelsEnd] 1fr [end];
+    grid-template-rows: [top] var(--custom-app-top-bar-height) [titleBarEnd] min-content [noticeEnd] 1fr [end];
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+    position: relative;
+}
+
+/* #region bar */
+.baseLayout .bar {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    gap: var(--space-8);
+    justify-content: space-between;
+    min-height: var(--custom-app-top-bar-height);
+    padding-left: calc(var(--custom-guild-list-width) + var(--space-8));
+    padding-right: var(--space-12);
+    position: relative;
+    -webkit-app-region: drag;
+    color: var(--app-text-normal-4);
+}
+
+@supports (grid-template-columns:subgrid) and (white-space-collapse:collapse) {
+    .baseLayout .bar {
+        grid-area: titleBar;
+    }
+}
+
+.baseLayout .bar svg {
+    color: inherit;
+}
+
+.baseLayout .bar .titleSection {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.baseLayout .bar .titleSection .titleContent {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--space-8);
+    justify-content: center;
+    max-width: 50vw;
+}
+
+.baseLayout .bar .titleSection .titleContent .titleText {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2857142857142858;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--app-text-normal-4);
+}
+
+.baseLayout .bar .leadingSection {
+    align-items: center;
+    display: flex;
+    gap: var(--space-12);
+    position: relative;
+    z-index: 1;
+    -webkit-app-region: no-drag;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+.baseLayout .bar .trailingSection {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    gap: var(--space-12);
+    position: relative;
+    z-index: 1;
+    -webkit-app-region: no-drag;
+}
+
+.baseLayout .bar .trailingSection .recentsIcon {
+    position: relative;
+}
+
+.baseLayout .bar .trailingSection .buttonDiv {
+    align-items: center;
+    color: var(--app-interactive-normal-3);
+    cursor: pointer;
+    display: flex;
+    height: var(--space-32);
+    justify-content: center;
+    margin: 0;
+    width: var(--space-32);
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.baseLayout .bar .trailingSection .buttonDiv:hover {
+    color: var(--app-interactive-normal-3-hover);
+}
+
+.baseLayout .bar .trailingSection .anchorLink {
+    color: var(--text-link);
+    text-decoration: var(--link-decoration);
+}
+
+/* #endregion */
+
+/* #region content */
+.baseLayout .content {
+    align-items: stretch;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    min-height: 0;
+    min-width: 0;
+}
+
+@supports (grid-template-columns:subgrid) and (white-space-collapse:collapse) {
+    .baseLayout .content {
+        display: grid;
+        grid-column: start / end;
+        grid-row: titleBarEnd / end;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+    }
+}
+
+/* #region sidebar */
+.baseLayout .content .sidebar {
+    min-width: 0;
+    position: relative;
+    width: var(--custom-guild-sidebar-width);
+    background: var(--background-secondary);
+    background-color: unset;
+    flex: 0 0 auto;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+@supports (grid-template-columns:subgrid) and (white-space-collapse:collapse) {
+    .baseLayout .content .sidebar {
+        display: grid;
+        grid-column: start / channelsEnd;
+        grid-row: titleBarEnd / end;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+    }
+}
+
+.baseLayout .content .sidebar:after {
+    background: var(--app-background-base-lowest);
+    bottom: 0;
+    content: "";
+    height: var(--space-8);
+    left: 0;
+    position: absolute;
+    right: 1px;
+    z-index: 1;
+}
+
+/* #region sidebarNavigation */
+.baseLayout .content .sidebar .sidebarNavigation {
+    min-width: 0;
+    width: var(--custom-guild-list-width);
+    background-color: var(--bg-base-tertiary);
+    margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--space-xs));
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+@supports (grid-template-columns:subgrid) and (white-space-collapse:collapse) {
+    .baseLayout .content .sidebar .sidebarNavigation {
+        grid-area: guildsList;
+    }
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    list-style: none;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .tree .itemsContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea>div[data-radix-scroll-area-viewport]>div[data-radix-scroll-area-content] {
+    overflow: hidden scroll;
+    gap: var(--space-xs);
+    padding: 0;
+    padding-bottom: var(--space-xs);
+    justify-content: flex-start;
+    align-items: stretch;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 0;
+    position: relative;
+    user-select: none;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea.scrollNone>div[data-radix-scroll-area-viewport]>div[data-radix-scroll-area-content] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea.scrollNone::-webkit-scrollbar,
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea.scrollNone>div[data-state="visible"] {
+    display: none;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .tutorialContainer {
+    position: relative;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+    width: var(--custom-guild-list-width);
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemPill {
+    left: 0;
+    position: absolute;
+    top: 0;
+    align-items: center;
+    contain: layout size;
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 8px;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemPill .listItemPillItem {
+    background-color: var(--app-header-primary-2);
+    border-radius: 0 4px 4px 0;
+    display: block;
+    margin-left: -4px;
+    position: absolute;
+    width: 8px;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .25s ease-in-out;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem:hover .listItemWrapper[aria-selected="false"]:hover~.listItemPill .listItemPillItem {
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 20px !important;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemWrapper[aria-selected="true"]~.listItemPill .listItemPillItem {
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 100% !important;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemWrapper {
+    box-sizing: border-box;
+    position: relative;
+    font-size: 16px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    height: var(--guildbar-avatar-size);
+    justify-content: center;
+    transition: background-color .1s ease-out, color .1s ease-out;
+    width: var(--guildbar-avatar-size);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemWrapper:hover {
+    background-color: var(--bg-brand);
+    color: rgba(var(--app-white));
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemWrapper:hover img:not(.hasImageUrl) {
+    filter: invert(100%);
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemWrapper:hover svg,
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .listItemWrapper:hover .childWrapper {
+    color: rgba(var(--app-white));
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .scrollArea .listItem .childWrapper {
+    background-color: var(--background-mod-subtle);
+    align-items: center;
+    color: var(--app-text-normal-4);
+    display: flex;
+    height: var(--guildbar-avatar-size);
+    justify-content: center;
+    transition: scale .15s ease-out, background-color .15s ease-out, color .15s ease-out;
+    width: var(--guildbar-avatar-size);
+    font-weight: 500;
+    line-height: 1.2em;
+    white-space: nowrap;
+    position: relative;
+}
+
+.guildSeparator {
+    background-color: var(--app-border-frame);
+    height: 1px;
+    border-radius: 1px;
+    width: 32px;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsIndicatorTop,
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsIndicatorBottom {
+    box-sizing: border-box;
+    height: auto;
+    left: 0;
+    overflow: hidden;
+    padding: 8px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    width: var(--custom-guild-list-width);
+    z-index: 10;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsIndicatorTop {
+    top: 0;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsIndicatorBottom {
+    bottom: 0;
+    padding-bottom: var(--space-xs);
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsBar {
+    background-color: var(--app-bg-accent);
+    opacity: .9;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px var(--app-opacity-black-24);
+    color: var(--white-500);
+    cursor: pointer;
+    display: flex;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    height: 24px;
+    justify-content: center;
+    line-height: 16px;
+    pointer-events: none;
+    position: relative;
+    text-transform: uppercase;
+    -webkit-app-region: no-drag;
+    transition-delay: .2s;
+    transition-property: visibility;
+    visibility: hidden;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsBar:before {
+    bottom: 0;
+    content: "";
+    left: -8px;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+}
+
+.baseLayout .content .sidebar .sidebarNavigation .unreadMentionsBar .unreadMentionsBarText {
+    display: block;
+}
+
+/* #endregion */
+
+
+/* #endregion */
