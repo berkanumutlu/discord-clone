@@ -18,7 +18,7 @@ export const InviteModal = () => {
     const [copied, setCopied] = useState(false);
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
-    const isModalOpen = isOpen && type === 'invite';
+    const isModalOpen = isOpen && type === "invitePeople";
     const { server } = data;
     const inviteUrl = `${origin}/invite/${server?.inviteCode}`;
 
@@ -38,7 +38,7 @@ export const InviteModal = () => {
         try {
             setIsLoading(true);
             const response = await axios.patch(`/api/servers/${server?.id}/invite-code`);
-            onOpen("invite", { server: response.data });
+            onOpen("invitePeople", { server: response.data });
         } catch (error) {
             console.error("[INVITE_MODAL_ONNEW]", error);
         } finally {

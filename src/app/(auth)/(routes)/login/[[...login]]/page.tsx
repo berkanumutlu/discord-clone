@@ -4,9 +4,10 @@ import Image from "next/image"
 import { SignIn } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import sanitizeHtml from "sanitize-html"
 import { isThirdPartyAuthenticationEnabled } from "@/lib/utils"
 import { LoginFormValuesType, loginSchema } from "@/lib/validation/auth"
-import { signUpUrl } from "@/data"
+import { signUpUrl } from "@/data/authData"
 import { AppLogo } from "@/components/main/app-logo"
 import { Form } from "@/components/ui/form"
 import { CustomFormLink } from "@/components/form/custom-form-link"
@@ -43,7 +44,7 @@ export default function LoginPage({ onSubmit }: LoginPageType) {
     }
 
     // TODO: Handle qr code generate here
-    const qrCodeLoginData = undefined
+    const qrCodeLoginData = ``
 
     return (
         <Form {...form}>
@@ -98,9 +99,30 @@ export default function LoginPage({ onSubmit }: LoginPageType) {
                     <div className="w-60 h-[344px] relative hidden lg:flex items-center overflow-hidden">
                         <div className="h-full flex flex-col justify-center items-center">
                             <div className="qrCodeContainer mb-8 size-[176px] relative flex">
-                                {/* TODO: XSS ? */}
                                 {qrCodeLoginData && (
-                                    <div className="qrCode p-2 size-full absolute bg-app-always-white rounded" dangerouslySetInnerHTML={{ __html: qrCodeLoginData }}></div>
+                                    <div
+                                        className="qrCode p-2 size-full absolute bg-app-always-white rounded"
+                                        dangerouslySetInnerHTML={{
+                                            __html: sanitizeHtml(qrCodeLoginData, {
+                                                allowedTags: [
+                                                    'svg', 'path', 'circle', 'rect', 'line', 'polygon', 'polyline', 'ellipse',
+                                                    'g', 'defs', 'use', 'symbol', 'linearGradient', 'stop', 'text', 'tspan',
+                                                    'title', 'desc', 'style',
+                                                ],
+                                                allowedAttributes: {
+                                                    '*': [
+                                                        'id', 'class', 'fill', 'stroke', 'stroke-width', 'd', 'x', 'y',
+                                                        'width', 'height', 'viewBox', 'xmlns', 'cx', 'cy', 'r', 'points',
+                                                        'x1', 'x2', 'y1', 'y2', 'rx', 'ry', 'transform',
+                                                    ],
+                                                },
+                                                parser: {
+                                                    lowerCaseTags: false,
+                                                    lowerCaseAttributeNames: false
+                                                }
+                                            })
+                                        }}
+                                    ></div>
                                 )}
                                 <div
                                     className="qrCodeOverlay size-full absolute flex justify-center items-center"

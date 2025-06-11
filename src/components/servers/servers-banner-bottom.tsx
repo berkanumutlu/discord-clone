@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { signUpUrl } from "@/data"
+import { signUpUrl } from "@/data/authData"
 
 const ServerBannerBottom = () => {
     return (

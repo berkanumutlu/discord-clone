@@ -15,3 +15,7 @@ export const updateThemeBasedOnTime = (setTheme: (theme: string) => void) => {
 export function isThirdPartyAuthenticationEnabled(): boolean {
   return Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
 }
+
+export function capitalizeText(text?: string): string {
+  return text ? text.charAt(0).toUpperCase() + text.slice(1).toLowerCase() : "";
+}

@@ -5,7 +5,7 @@ import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { isThirdPartyAuthenticationEnabled } from "@/lib/utils"
 import { RegisterFormValuesType, registerSchema } from "@/lib/validation/auth"
-import { signInUrl } from "@/data"
+import { signInUrl } from "@/data/authData"
 import { AppLogo } from "@/components/main/app-logo"
 import { Form } from "@/components/ui/form"
 import { CustomFormInput } from "@/components/form/custom-form-input"
@@ -111,6 +111,7 @@ export default function RegisterPage({ onSubmit }: RegisterPageType) {
                             label={`I have read and agree to Discord's <a class="anchor_edefb8 anchorUnderlineOnHover_edefb8" href="//discord.com/terms" rel="noreferrer noopener" target="_blank">Terms of Service</a> and <a class="anchor_edefb8 anchorUnderlineOnHover_edefb8" href="//discord.com/privacy" rel="noreferrer noopener" target="_blank">Privacy Policy</a>.`}
                             name="terms"
                             required={true}
+                            labelClassName="text-[14px] leading-[18px]"
                         />
                         <CustomFormLink
                             href={signInUrl}

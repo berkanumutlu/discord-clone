@@ -1,5 +1,6 @@
 "use client"
 
+import "../../public/styles/home.css"
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
