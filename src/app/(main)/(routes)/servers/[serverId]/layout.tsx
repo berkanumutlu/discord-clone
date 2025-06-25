@@ -6,7 +6,7 @@ import { db } from "@/lib/db"
 import { currentProfile } from "@/lib/current-profile"
 import MainLayoutComponent from "@/components/main/main-layout"
 
-const ServerSidebarMenu = dynamic(() => import("@/components/server/server-sidebar-menu").then(mod => mod.ServerSidebarMenu), { ssr: false })
+const ServerSidebarMenu = dynamic(() => import("@/components/server/sidebar/server-sidebar-menu").then(mod => mod.ServerSidebarMenu), { ssr: false })
 
 const ServerLayout = async ({
     children,

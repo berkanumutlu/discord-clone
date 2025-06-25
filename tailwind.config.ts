@@ -169,7 +169,9 @@ const config: Config = {
 					"text-link": "rgba(var(--app-text-link))",
 					"text-link-2": "var(--app-text-link-2)",
 					"text-danger": "var(--app-text-danger)",
+					"text-danger-2": "var(--app-text-danger-2)",
 					"header-primary": "var(--app-header-primary)",
+					"header-primary-2": "var(--app-header-primary-2)",
 					"header-secondary": "var(--app-header-secondary)",
 					"header-secondary-2": "var(--app-header-secondary-2)",
 
@@ -197,6 +199,7 @@ const config: Config = {
 			},
 			boxShadow: {
 				'app-high': '0px 12px 24px 0px var(--app-shadow-high)',
+				'app-high-2': '0px 12px 36px 0px var(--app-shadow-high-2)',
 			},
 			keyframes: {
 				"accordion-down": {

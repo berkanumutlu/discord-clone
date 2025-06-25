@@ -14,6 +14,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ChannelType {
+  TEXT
+  AUDIO
+}
+
+enum MemberRole {
+  ADMIN
+  MODERATOR
+  GUEST
+}
+
 model Profile {
   id        String    @id @default(uuid())
   userId    String    @unique
@@ -42,12 +53,6 @@ model Server {
   @@index([profileId])
 }
 
-enum MemberRole {
-  ADMIN
-  MODERATOR
-  GUEST
-}
-
 model Member {
   id                    String          @id @default(uuid())
   role                  MemberRole      @default(GUEST)
@@ -66,15 +71,11 @@ model Member {
   @@index([serverId])
 }
 
-enum ChannelType {
-  TEXT
-  AUDIO
-}
-
 model Channel {
   id        String      @id @default(uuid())
   name      String
   type      ChannelType @default(TEXT)
+  sort      Int         @default(0)
   profileId String
   profile   Profile     @relation(fields: [profileId], references: [id], onDelete: Cascade)
   serverId  String

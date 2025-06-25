@@ -14,7 +14,7 @@ import { CustomFormLink } from "@/components/form/custom-form-link"
 import { CustomFormButton } from "@/components/form/custom-form-button"
 import { CustomFormInput } from "@/components/form/custom-form-input"
 import { CustomFormEmailPhoneInput } from "@/components/form/custom-form-email-phone-input"
-import { CustomSpinnerAnimation } from "@/components/animation/custom-spinner"
+import CustomSpinnerAnimation from "@/components/animation/custom-spinner"
 
 type LoginPageType = {
     onSubmit?: (data: LoginFormValuesType) => void

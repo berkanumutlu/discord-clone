@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 interface ActionTooltipProps {
     label?: string
+    labelStyle?: "normal" | "small"
     children: ReactNode
     side?: "top" | "right" | "bottom" | "left"
     sideOffset?: number
@@ -18,8 +19,14 @@ interface ActionTooltipProps {
     contentTextClassName?: string
 }
 
+const labelStyleClassName = {
+    "normal": "font-semibold text-[16px] leading-5",
+    "small": "font-medium text-[14px] leading-4"
+}
+
 export const ActionTooltip = ({
     label,
+    labelStyle = "normal",
     children,
     side,
     sideOffset,
@@ -33,6 +40,7 @@ export const ActionTooltip = ({
 }: ActionTooltipProps) => {
     const shouldShowTooltip = label && (!showOnlyWhenDisabled || disabled)
     const tooltipFromSideClassName = "from" + capitalizeText(side)
+    const labelClassName = labelStyleClassName[labelStyle]
 
     if (!shouldShowTooltip) {
         return <>{children}</>
@@ -50,7 +58,8 @@ export const ActionTooltip = ({
                     align={align}
                     sideOffset={sideOffset}
                     className={cn(
-                        "p-0 max-w-48 relative bg-app-bg-floating-2 text-app-text-normal-4 font-semibold text-[16px] leading-5 border border-solid border-app-border-subtle-2 rounded-lg origin-[0_50%] !shadow-app-high-2 break-words pointer-events-none will-change-[opacity,transform] z-[1002] overflow-visible",
+                        "p-0 max-w-48 relative bg-app-bg-floating-2 text-app-text-normal-4 border border-solid border-app-border-subtle-2 rounded-lg origin-[0_50%] !shadow-app-high-2 break-words pointer-events-none will-change-[opacity,transform] z-[1002] overflow-visible",
+                        labelClassName,
                         contentClassName
                     )}
                 >

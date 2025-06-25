@@ -1,4 +1,4 @@
-export const CustomSpinnerAnimation = () => {
+export default function CustomSpinnerAnimation() {
     return (
         <span className="absolute flex justify-center items-center" aria-label="Loading">
             <span className="size-8 inline-flex justify-center items-center contain-paint">

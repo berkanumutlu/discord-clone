@@ -2,7 +2,7 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { NavigationSidebarMenu } from "@/components/navigation/navigation-sidebar-menu";
-import { ServerSidebarMenu } from "@/components/server/server-sidebar-menu";
+import { ServerSidebarMenu } from "@/components/server/sidebar/server-sidebar-menu";
 
 export const MobileToggle = ({
     serverId

@@ -27,7 +27,7 @@ export default async function MainLayoutComponent({
                             <div className="absolute inset-0 flex flex-col bg-transparent overflow-hidden">
                                 <div className="size-full relative flex overflow-hidden">
                                     <div className="baseLayout">
-                                        <div className="bar">
+                                        <div className="topBar">
                                             <div className="titleSection">
                                                 <div className="titleContent">
                                                     <Users width={16} height={16} fill="none" role="img" />
@@ -37,13 +37,13 @@ export default async function MainLayoutComponent({
                                             <div className="leadingSection"></div>
                                             <div className="trailingSection">
                                                 <div className="recentsIcon">
-                                                    <ActionTooltip side="bottom" sideOffset={8} label="Inbox" contentClassName="font-medium text-[14px] leading-4">
+                                                    <ActionTooltip side="bottom" sideOffset={8} label="Inbox" labelStyle="small">
                                                         <div className="buttonDiv" aria-label="Inbox" role="button">
                                                             <Inbox width={20} height={20} fill="none" role="img" />
                                                         </div>
                                                     </ActionTooltip>
                                                 </div>
-                                                <ActionTooltip side="bottom" sideOffset={8} label="Help" contentClassName="font-medium text-[14px] leading-4">
+                                                <ActionTooltip side="bottom" sideOffset={8} label="Help" labelStyle="small">
                                                     <Link
                                                         href={"https://support.discord.com"}
                                                         className="anchorLink"

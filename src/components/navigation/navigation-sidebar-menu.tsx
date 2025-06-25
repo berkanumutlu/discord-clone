@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { NavigationActions } from "@/components/navigation/navigation-actions"
 import { NavigationActionItem } from "@/components/navigation/navigation-action-item"
 import { NavigationServerItem } from "@/components/navigation/navigation-server-item"
-import NavigationSeperatorItem from "@/components/navigation/navigation-seperator-item"
+import NavigationDividerItem from "@/components/navigation/navigation-seperator-item"
 import { AppLogo } from "@/components/main/app-logo"
 import { UserButton } from "@clerk/nextjs"
 
@@ -41,7 +41,7 @@ export const NavigationSidebarMenu = async () => {
                         >
                             <AppLogo href="" type="icon" color="black" width={22} height={17} />
                         </NavigationActionItem>
-                        <NavigationSeperatorItem />
+                        <NavigationDividerItem />
                         {servers?.map((server) => (
                             <NavigationServerItem key={server.id} id={server.id} name={server.name} imageUrl={server?.imageUrl} />
                         ))}
@@ -49,7 +49,7 @@ export const NavigationSidebarMenu = async () => {
                         <UserButton
                             appearance={{
                                 elements: {
-                                    avatarBox: "w-[48px] h-[48px] hover:rounded-[16px] transition-all overflow-hidden"
+                                    avatarBox: "size-12"
                                 }
                             }}
                         />

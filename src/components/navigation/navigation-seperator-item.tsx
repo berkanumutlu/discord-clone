@@ -2,7 +2,7 @@
 
 import { Separator } from "@/components/ui/separator"
 
-const NavigationSeperatorItem = () => {
+const NavigationDividerItem = () => {
     return (
         <div className="listItem">
             <Separator className="guildSeparator" />
@@ -10,4 +10,4 @@ const NavigationSeperatorItem = () => {
     )
 }
 
-export default NavigationSeperatorItem
+export default NavigationDividerItem
