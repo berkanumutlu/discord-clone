@@ -18,7 +18,7 @@ export const InviteModal = () => {
     const [copied, setCopied] = useState(false);
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
-    const isModalOpen = isOpen && type === 'invite';
+    const isModalOpen = isOpen && type === "invitePeople";
     const { server } = data;
     const inviteUrl = `${origin}/invite/${server?.inviteCode}`;
 
@@ -38,7 +38,7 @@ export const InviteModal = () => {
         try {
             setIsLoading(true);
             const response = await axios.patch(`/api/servers/${server?.id}/invite-code`);
-            onOpen("invite", { server: response.data });
+            onOpen("invitePeople", { server: response.data });
         } catch (error) {
             console.error("[INVITE_MODAL_ONNEW]", error);
         } finally {
@@ -57,7 +57,7 @@ export const InviteModal = () => {
                         Server invite link
                     </Label>
                     <div className="mt-2 flex items-center gap-x-2">
-                        <Input value={inviteUrl} disabled={isLoading} className="text-black bg-zinc-300/50 border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                        <Input value={inviteUrl} readOnly disabled={isLoading} className="text-black bg-zinc-300/50 border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
                         <ActionTooltip side="top" align="center" label={copied ? "Copied!" : "Copy to clipboard"} open={isTooltipOpen || undefined}>
                             <Button size="icon" onClick={onCopy} disabled={isLoading}>
                                 {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

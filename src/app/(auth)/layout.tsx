@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@clerk/nextjs"
-import { afterSignInUrl } from "@/data"
+import { afterSignInUrl } from "@/data/authData"
 import { AppLogo } from "@/components/main/app-logo"
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {

@@ -22,22 +22,27 @@ const MemberIdPage = async ({
     params,
     searchParams
 }: MemberIdProps) => {
-    const profile = await currentProfile();
-    if (!profile) return auth().redirectToSignIn();
+    const currentUserProfile = await currentProfile();
+    if (!currentUserProfile) return auth().redirectToSignIn();
     const currentMember = await db.member.findFirst({
-        where: { serverId: params.serverId, profileId: profile.id },
+        where: { serverId: params.serverId, profileId: currentUserProfile.id },
         include: { profile: true }
     });
     if (!currentMember) return redirect("/");
     const conversation = await getOrCreateConversation(currentMember.id, params.memberId);
     if (!conversation) return redirect(`/servers/${params.serverId}`);
     const { memberOne, memberTwo } = conversation;
-    const otherMember = memberOne.profileId === profile.id ? memberTwo : memberOne;
+    const otherMember = memberOne.profileId === currentUserProfile.id ? memberTwo : memberOne;
 
     return (
         <div className="h-full flex flex-col bg-white dark:bg-[#313338]">
             <div className="sticky top-0 z-10 bg-inherit">
-                <ChatHeader serverId={params.serverId} name={otherMember.profile.name} imageUrl={otherMember.profile.imageUrl} type="conversation" />
+                <ChatHeader
+                    serverId={params.serverId}
+                    title={otherMember.profile.name}
+                    type="conversation"
+                    userAvatarImageUrl={otherMember.profile.imageUrl ?? undefined}
+                />
             </div>
             {searchParams.video && (
                 <MediaRoom
@@ -52,6 +57,7 @@ const MemberIdPage = async ({
                         <ChatMessages
                             name={otherMember.profile.name}
                             member={currentMember}
+                            otherMember={otherMember.profile}
                             chatId={conversation.id}
                             type="conversation"
                             apiUrl="/api/direct-messages"

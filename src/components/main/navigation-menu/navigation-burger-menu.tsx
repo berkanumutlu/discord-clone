@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { AlignLeft, X } from "lucide-react"
-import { navigationMenuItems } from "@/data"
+import { navigationMenuItems } from "@/data/globalData"
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetOverlay, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Accordion } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"

@@ -2,7 +2,7 @@ import React from "react"
 import { useAuth } from "@clerk/nextjs"
 import { act, render, screen, waitFor, within } from "@testing-library/react"
 import { createHomeClydeImageAnimation, createHomeCoinImageAnimation, createHomeEggImageAnimation, createHomePanImageAnimation, createHomeRadishImageAnimation, createLineTextAnimation } from "@/lib/animations" // Mock GSAP animations to prevent actual animation execution during tests
-import { afterSignInUrl, signInUrl } from "@/data"
+import { afterSignInUrl, signInUrl } from "@/data/authData"
 import { useMedia } from "@/context/media-query-context"
 import HomePageClient from "@/app/page-client"
 

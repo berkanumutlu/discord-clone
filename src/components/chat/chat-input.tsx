@@ -1,71 +1,162 @@
-"use client";
+"use client"
 
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import qs from "query-string";
-import * as z from "zod";
-import { Plus } from "lucide-react";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { EmojiPicker } from "@/components/emoji-picker";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useModal } from "@/hooks/use-modal-store";
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
+import axios from "axios"
+import qs from "query-string"
+import * as z from "zod"
+import { Gamepad2Icon, GiftIcon, ImagePlayIcon, PlusIcon, StickerIcon } from "lucide-react"
+import { Descendant, Editor } from "slate"
+import { insertEmojiAtSelection, resetEditorValue } from "@/lib/slateEditor/slateEditorUtils"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useModal } from "@/hooks/use-modal-store"
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
+import { EmojiPicker } from "@/components/emoji-picker"
+import { SlateEditor } from "@/components/slate-editor"
 
 interface ChatInputProps {
-    apiUrl: string;
-    query: Record<string, string | number>;
-    name: string;
-    type: "conversation" | "channel";
+    name: string
+    type: "conversation" | "channel"
+    apiUrl: string
+    query: Record<string, string | number>
 }
 
 const formSchema = z.object({
     content: z.string().min(1)
-});
+})
 
 export const ChatInput = ({
+    name,
+    type,
     apiUrl,
     query,
-    name,
-    type
 }: ChatInputProps) => {
-    const router = useRouter();
-    const { onOpen } = useModal();
+    const router = useRouter()
+    const { onOpen } = useModal()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             content: ""
         }
-    });
-    const isLoading = form.formState.isSubmitting;
+    })
+    const isLoading = form.formState.isSubmitting
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const [editorInstance, setEditorInstance] = useState<Editor | null>(null)
+    const [editorKey, setEditorKey] = useState<string>(Date.now().toString())
+    const [editorValue, setEditorValue] = useState<Descendant[]>([{ children: [{ text: "" }] }])
+
+    const sendMessage = async (message: string) => {
         try {
-            const url = qs.stringifyUrl({ url: apiUrl, query });
-            await axios.post(url, values);
-            form.reset();
-            router.refresh();
+            const url = qs.stringifyUrl({ url: apiUrl, query })
+            await axios.post(url, { content: message })
+
+            setEditorValue(resetEditorValue())
+            setEditorKey(Date.now().toString())
+            form.reset()
+            router.refresh()
         } catch (error) {
-            console.error("[CHAT_INPUT_ONSUBMIT]", error);
+            console.error("[CHAT_INPUT_ONSUBMIT]", error)
         }
-    };
+    }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(() => sendMessage(form.getValues("content")))} className="formWithLoadedChatInput">
                 <FormField control={form.control} name="content"
-                    render={({ field }) => (
-                        <FormItem>
+                    render={() => (
+                        <FormItem className="space-y-0 channelBottomBarArea">
                             <FormControl>
-                                <div className="p-4 pb-6 relative">
-                                    <button onClick={() => onOpen("messageFile", { apiUrl, query })} type="button" className="p-1 w-[24px] h-[24px] absolute top-7 left-8 flex items-center justify-center bg-zinc-500 hover:bg-zinc-600 dark:bg-zinc-400 dark:hover:bg-zinc-300 rounded-full transition"
-                                        aria-label="Open attachment modal">
-                                        <Plus className="text-white dark:text-[#313338]" />
-                                    </button>
-                                    <Input disabled={isLoading} autoComplete="off" placeholder={`Message ${type === "conversation" ? "to " : "#"}${name}`} {...field} className="px-14 py-6 text-zinc-600 dark:text-zinc-200 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
-                                    <div className="absolute top-7 right-8">
-                                        <EmojiPicker onChange={(emoji: string) => field.onChange(`${field.value} ${emoji}`)} />
+                                <div className="channelTextArea">
+                                    <div className="scrollableContainer">
+                                        <div className="sansAttachButton">
+                                            <div className="attachWrapper">
+                                                <button
+                                                    type="button"
+                                                    disabled={isLoading}
+                                                    onClick={() => onOpen("messageFile", { apiUrl, query })}
+                                                    className="attachButton"
+                                                    aria-label="More message options"
+                                                >
+                                                    <div className="attachButtonInner">
+                                                        <PlusIcon className="emojiListIcon" />
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div className="textArea">
+                                                <SlateEditor
+                                                    editorKey={editorKey}
+                                                    value={editorValue}
+                                                    onChange={(val, text) => {
+                                                        setEditorValue(val)
+                                                        form.setValue("content", text, { shouldValidate: true })
+                                                    }}
+                                                    onSubmit={sendMessage}
+                                                    onEditorReady={(editor) => setEditorInstance(editor)}
+                                                    className="chatInput"
+                                                    placeholder={`Message ${type === "conversation" ? "to " : "#"}${name}`}
+                                                    disabled={isLoading}
+                                                    autoFocus={true}
+                                                    autoComplete="off"
+                                                />
+                                            </div>
+                                            <div className="buttons">
+                                                <div className="buttonItem giftButton" role="button" aria-label="Send a gift" tabIndex={0}>
+                                                    <div className="buttonWrapper">
+                                                        <div className="lottieIcon">
+                                                            <GiftIcon width={20} height={20} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="buttonContainer expression-picker-chat-input-button">
+                                                    <div className="buttonItem gifButton" role="button" aria-label="Open GIF picker" tabIndex={0}>
+                                                        <div className="buttonWrapper">
+                                                            <div className="lottieIcon">
+                                                                <ImagePlayIcon width={20} height={20} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="buttonContainer expression-picker-chat-input-button">
+                                                    <div className="buttonItem stickerButton" role="button" aria-label="Open sticker picker" tabIndex={0}>
+                                                        <div className="buttonWrapper">
+                                                            <div className="lottieIcon">
+                                                                <StickerIcon width={20} height={20} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="buttonContainer expression-picker-chat-input-button">
+                                                    <div className="buttonItem emojiButton">
+                                                        <EmojiPicker
+                                                            onSelect={(emoji: string) => {
+                                                                if (editorInstance) {
+                                                                    insertEmojiAtSelection(editorInstance, emoji)
+                                                                }
+                                                            }}
+                                                            random={true}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="channelAppLauncher">
+                                                    <div className="app-launcher-entrypoint">
+                                                        <button
+                                                            type="button"
+                                                            aria-label="Apps"
+                                                            className="appLauncherButton"
+                                                            tabIndex={0}
+                                                        >
+                                                            <div className="buttonContents">
+                                                                <div className="lottieIcon">
+                                                                    <Gamepad2Icon width={20} height={20} />
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </FormControl>

@@ -58,11 +58,11 @@ export const CustomFormButton = ({
     return (
         <ActionTooltip
             label={tooltipMessage}
+            labelStyle="small"
             side={tooltipSide}
             disabled={disabled}
             showOnlyWhenDisabled={true}
-            contentClassName="py-2 px-3 max-w-[190px] relative justify-self-center bg-app-bg-floating text-app-text-normal-3 font-medium leading-4 border-app-border-subtle rounded-lg !shadow-app-high break-words overflow-hidden"
-            contentTextClassName="font-medium text-[14px]"
+            contentClassName="py-2 px-3 max-w-[190px] relative justify-self-center bg-app-bg-floating text-app-text-normal-3 border-app-border-subtle rounded-lg !shadow-app-high break-words overflow-hidden"
         >
             <Button
                 type={type}

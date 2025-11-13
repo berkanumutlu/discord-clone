@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { useSocket } from "@/components/providers/socket-provider";
-import { Badge } from "@/components/ui/badge";
+import { useSocket } from "@/components/providers/socket-provider"
+import { Badge } from "@/components/ui/badge"
 
 export const SocketIndicator = () => {
-    const { isConnected } = useSocket();
+    const { isConnected } = useSocket()
 
     if (!isConnected) {
         return (
-            <Badge variant="outline" className="text-white bg-yellow-600 border-none select-none">
-                Fallback: Polling every 1s
+            <Badge variant="outline" className="bg-yellow-600 text-app-white border-none select-none">
+                Reconnecting: Retrying every 3s
             </Badge>
         )
     }
 
     return (
-        <Badge variant="outline" className="text-white bg-emerald-600 border-none select-none">
-            Live: Connected
+        <Badge variant="outline" className="bg-emerald-600 text-app-white border-none animate-fadeOut delay-3000 select-none">
+            Connected
         </Badge>
     )
 }

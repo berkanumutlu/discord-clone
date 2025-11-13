@@ -4,7 +4,7 @@ import { render, screen, fireEvent, renderHook, act, within, waitFor } from "@te
 import { userEvent } from "@testing-library/user-event"
 import { isThirdPartyAuthenticationEnabled } from "@/lib/utils"
 import { LoginFormValuesType } from "@/lib/validation/auth"
-import { afterSignInUrl, signUpUrl } from "@/data"
+import { afterSignInUrl, signUpUrl } from "@/data/authData"
 import { mockSignInData } from "../__mocks__/data"
 import { EmailCodeFactorType, handleFormSubmitMock } from "../__mocks__/@clerk/nextjs"
 import LoginPage from "@/app/(auth)/(routes)/login/[[...login]]/page"

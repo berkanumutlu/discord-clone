@@ -1,8 +1,9 @@
 // Protected route patterns
 export const protectedRoutePatterns = [
-    "/servers/(.*)",
-    "/channels/(.*)",
     "/api(.*)",
+    "/channels/(.*)",
+    "/servers/(.*)",
+    "/discovery/(.*)",
 ]
 
 // Ignored route patterns

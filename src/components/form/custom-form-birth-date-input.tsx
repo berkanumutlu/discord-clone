@@ -1,7 +1,7 @@
 "use client"
 
 import { useFormContext } from "react-hook-form"
-import { days, months, years } from "@/data"
+import { days, months, years } from "@/data/dateData"
 import { FormControl, FormField, FormItem } from "@/components/ui/form"
 import { InputProps } from "@/components/ui/input"
 import { CustomCombobox } from "@/components/custom-combobox"

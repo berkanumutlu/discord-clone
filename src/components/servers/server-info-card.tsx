@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { placeholderImageUrl } from "@/data"
+import { placeholderImageUrl } from "@/data/globalData"
 
 const ServerInfoCard = () => {
     return (
