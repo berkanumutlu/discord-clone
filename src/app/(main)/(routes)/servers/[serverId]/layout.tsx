@@ -24,9 +24,7 @@ const ServerLayout = async ({
 
     return (
         <MainLayoutComponent PageSidebarMenu={<ServerSidebarMenu serverId={params.serverId} />}>
-            <main className="mainContainer" aria-label="Friends">
-                {children}
-            </main>
+            {children}
         </MainLayoutComponent>
     )
 }

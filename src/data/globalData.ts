@@ -1,6 +1,7 @@
 import { NavigationMenuItemProps, socialLinkType, FooterMenuSectionType } from "@/types"
 
 export const placeholderImageUrl = "/images/placeholder.svg"
+export const nextThemeStorageKey = "user-selected-theme"
 export const languages = [
     "Čeština",
     "Dansk",

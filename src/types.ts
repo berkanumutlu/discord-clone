@@ -3,6 +3,8 @@ import { NextApiResponse } from "next"
 import { ImageProps } from "next/image"
 import { Server as ServerIOServer } from "socket.io"
 import { Server, Member, Profile } from "@prisma/client"
+import { type BaseEditor } from "slate"
+import { type ReactEditor } from "slate-react"
 
 /* Global */
 export type ServerWithMembersWithProfiles = Server & {
@@ -82,6 +84,9 @@ export type FooterMenuSectionType = {
     title: string
     links: FooterMenuLinkType[]
 }
+
+/* Slate Editor */
+export type SlateEditorType = BaseEditor & ReactEditor
 
 /* Nitro Page */
 export type nitroBannerType = {

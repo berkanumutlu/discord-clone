@@ -259,7 +259,7 @@ const ServersPage = () => {
                         <CustomPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
                     </div>
                 </div>
-            </div >
+            </div>
             <div className="mt-[120px] pt-12 lg:pt-24 pb-6 lg:pb-[72px] w-full bg-app-blurple text-app-white text-center">
                 <h4 className="mx-6 font-display font-bold text-[24px] lg:text-[32px] leading-[120%]">Have a server you want to add to Discovery?</h4>
                 <Link

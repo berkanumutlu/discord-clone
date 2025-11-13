@@ -1,21 +1,31 @@
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 interface UserAvatarProps {
-    src?: string;
-    className?: string;
+    src?: string
+    alt?: string
+    label?: string
+    avatarClassName?: string
+    avatarImageClassName?: string
+    avatarFallbackClassName?: string
+    onClick?: () => void
 }
 
 export const UserAvatar = ({
     src,
-    className
+    alt,
+    label,
+    avatarClassName,
+    avatarImageClassName,
+    avatarFallbackClassName,
+    onClick,
 }: UserAvatarProps) => {
     return (
-        <Avatar className={cn(
-            "w-7 h-7 md:w-10 md:h-10",
-            className
-        )}>
-            <AvatarImage src={src} />
+        <Avatar className={cn(avatarClassName)} onClick={onClick} asChild>
+            <>
+                <AvatarImage src={src} alt={alt ?? undefined} className={cn("userAvatar", avatarImageClassName)} />
+                <AvatarFallback className={cn(avatarFallbackClassName)}>{label ?? alt}</AvatarFallback>
+            </>
         </Avatar>
     )
 }

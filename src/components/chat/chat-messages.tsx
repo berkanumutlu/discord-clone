@@ -1,72 +1,58 @@
-"use client";
+"use client"
 
-import { ElementRef, Fragment, useRef } from "react";
-import { format } from "date-fns";
-import { Member, Message, Profile } from "@prisma/client";
-import { ChevronsUp, Loader2, ServerCrash } from "lucide-react";
-import { ChatWelcome } from "./chat-welcome";
-import { ChatItem } from "./chat-item";
-import { useChatQuery } from "@/hooks/use-chat-query";
-import { useChatSocket } from "@/hooks/use-chat-socket";
-import { useChatScroll } from "@/hooks/use-chat-scroll";
+import { ElementRef, Fragment, useRef, useState } from "react"
+import { Member, Message, Profile } from "@prisma/client"
+import { ChevronsUp, Loader2, ServerCrash } from "lucide-react"
+import { formatDateCustom } from "@/lib/date"
+import { useChatQuery } from "@/hooks/use-chat-query"
+import { useChatSocket } from "@/hooks/use-chat-socket"
+import { useChatScroll } from "@/hooks/use-chat-scroll"
+import { ChatInfoMessage } from "@/components/chat/chat-info-message"
+import { ChatItem } from "@/components/chat/chat-item"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import ChatDividerItem from "@/components/chat/chat-divider-item"
 
-const DATE_FORMAT = "d MMM yyyy, HH:mm";
-
-type MessageWithMemberWithProfile = Message & {
+type MessageWithMemberWithProfileType = Message & {
     member: Member & {
-        profile: Profile;
-    };
-};
+        profile: Profile
+    }
+}
 
 interface ChatMessagesProps {
-    name: string;
-    member: Member;
-    chatId: string;
-    type: "channel" | "conversation";
-    apiUrl: string;
-    socketUrl: string;
-    socketQuery: Record<string, string>;
-    paramKey: "channelId" | "conversationId";
-    paramValue: string;
+    chatId: string
+    type: "channel" | "conversation"
+    name: string
+    member: Member
+    otherMember?: Profile
+    apiUrl: string
+    socketUrl: string
+    socketQuery: Record<string, string>
+    paramKey: "channelId" | "conversationId"
+    paramValue: string
 }
 
 export const ChatMessages = ({
-    name,
-    member,
     chatId,
     type,
+    name,
+    member,
+    otherMember,
     apiUrl,
     socketUrl,
     socketQuery,
     paramKey,
     paramValue
 }: ChatMessagesProps) => {
-    const queryKey = `chat:${chatId}`;
-    const addKey = `chat:${chatId}:messages`;
-    const updateKey = `chat:${chatId}:messages:update`;
-    const chatRef = useRef<ElementRef<"div">>(null);
-    const bottomRef = useRef<ElementRef<"div">>(null);
-    const {
-        data,
-        fetchNextPage,
-        hasNextPage,
-        isFetchingNextPage,
-        isLoading,
-        status
-    } = useChatQuery({
-        queryKey,
-        apiUrl,
-        paramKey,
-        paramValue
-    });
-    useChatSocket({ queryKey, addKey, updateKey });
-    useChatScroll({
-        chatRef,
-        bottomRef,
-        shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
-        loadMore: fetchNextPage,
-        count: data?.pages?.[0]?.items?.length ?? 0
-    });
+    const queryKey = `chat:${chatId}`
+    const addKey = `chat:${chatId}:messages`
+    const updateKey = `chat:${chatId}:messages:update`
+    const chatRef = useRef<ElementRef<"div">>(null)
+    const bottomRef = useRef<ElementRef<"div">>(null)
+    const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null)
+
+    const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, status, messages } = useChatQuery({ queryKey, apiUrl, paramKey, paramValue })
+    useChatSocket({ queryKey, addKey, updateKey })
+    useChatScroll({ chatRef, bottomRef, shouldLoadMore: !isFetchingNextPage && !!hasNextPage, loadMore: fetchNextPage, count: data?.pages?.[0]?.items?.length ?? 0 })
 
     if (isLoading) {
         return (
@@ -86,46 +72,58 @@ export const ChatMessages = ({
     }
 
     return (
-        <div ref={chatRef} className="pt-4 flex flex-col flex-1 overflow-y-auto">
-            {!hasNextPage && <div className="flex-1" />}
-            {!hasNextPage && (
-                <ChatWelcome name={name} type={type} />
-            )}
-            {hasNextPage && (
-                <div className="flex justify-center">
-                    {isFetchingNextPage ? (
-                        <Loader2 className="my-4 w-6 h-6 text-zinc500 animate-spin" />
-                    ) : (
-                        <button onClick={() => fetchNextPage()} className="my-4 flex items-center gap-x-1 text-xs text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition">
-                            <ChevronsUp />Load previous messages<ChevronsUp />
-                        </button>
-                    )}
-                </div>
-            )}
-            <div className="mt-auto flex flex-col-reverse">
-                {data?.pages?.map((group, index) => (
-                    <Fragment key={index}>
-                        {group?.items?.map((message: MessageWithMemberWithProfile) => (
-                            <ChatItem
-                                key={message.id}
-                                id={message.id}
-                                content={message.content}
-                                member={message.member}
-                                currentMember={member}
-                                fileUrl={message.fileUrl}
-                                fileType={message.fileType}
-                                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
-                                isUpdated={message.updatedAt !== null && message.updatedAt !== message.createdAt}
-                                isDeleted={!!message.deletedAt}
-                                deletedAt={format(new Date(message?.deletedAt as Date), DATE_FORMAT)}
-                                socketUrl={socketUrl}
-                                socketQuery={socketQuery}
-                            />
+        <div ref={chatRef} className="messagesWrapper">
+            <ScrollArea className="messagesScroller" role="group" tabIndex={-1}>
+                <div className="messagesScrollerContent">
+                    <ol className="messagesScrollerInner scrollAuto" aria-label={`Messages in ${name}`} role="list" data-list-id="chat-messages" tabIndex={0}>
+                        {!hasNextPage && (
+                            <ChatInfoMessage
+                                title={name}
+                                type={type}
+                                username={otherMember?.username ?? undefined}
+                                userAvatarUrl={otherMember?.imageUrl ?? undefined} />
+                        )}
+                        {hasNextPage && (
+                            <div className="flex justify-center">
+                                {isFetchingNextPage ? (
+                                    <Loader2 className="my-4 size-6 text-zinc500 animate-spin" />
+                                ) : (
+                                    <button onClick={() => fetchNextPage()} className="my-4 flex items-center gap-x-1 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 text-xs transition">
+                                        <ChevronsUp />Load previous messages<ChevronsUp />
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                        {messages.map((group, index) => (
+                            <Fragment key={index}>
+                                <ChatDividerItem content={formatDateCustom(group?.date)} />
+                                {group?.messages?.map((message: MessageWithMemberWithProfileType) => (
+                                    <ChatItem
+                                        key={message.id}
+                                        id={message.id}
+                                        channelId={chatId}
+                                        content={message.content}
+                                        member={message.member}
+                                        currentMember={member}
+                                        fileUrl={message.fileUrl}
+                                        fileType={message.fileType}
+                                        createdAt={message.createdAt}
+                                        updatedAt={message?.updatedAt}
+                                        deletedAt={message?.deletedAt}
+                                        isUpdated={message?.updatedAt !== null && message?.updatedAt !== message.createdAt}
+                                        isDeleted={!!message.deletedAt}
+                                        socketUrl={socketUrl}
+                                        socketQuery={socketQuery}
+                                        selectedMessageId={selectedMessageId}
+                                        setSelectedMessageId={setSelectedMessageId}
+                                    />
+                                ))}
+                            </Fragment>
                         ))}
-                    </Fragment>
-                ))}
-            </div>
-            <div ref={bottomRef} />
+                        <div ref={bottomRef} className="scrollerSpacer" />
+                    </ol>
+                </div>
+            </ScrollArea>
         </div>
     )
 }

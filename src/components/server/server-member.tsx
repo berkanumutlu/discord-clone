@@ -35,7 +35,7 @@ export const ServerMember = ({
             "group mb-1 px-2 py-2 w-full flex items-center gap-x-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 rounded-md transition",
             params?.memberId === member.id && "bg-zinc-700/20 dark:bg-zinc-700"
         )}>
-            <UserAvatar src={member.profile.imageUrl} className="w-8 h-8 md:w-8 md:h-8" />
+            <UserAvatar src={member.profile.imageUrl} avatarClassName="w-8 h-8 md:w-8 md:h-8" />
             <p className={cn(
                 "text-sm font-semibold group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 text-start transition line-clamp-1",
                 params?.memberId === member.id && "text-primary dark:text-zinc-200 dark:group-hover:text-white"

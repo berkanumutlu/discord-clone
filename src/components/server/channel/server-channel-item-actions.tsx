@@ -23,6 +23,7 @@ export const ServerChannelItemActions = ({
     const { onOpen } = useModal()
 
     const onModalAction = (e: React.MouseEvent, modalAction: ModalType) => {
+        e.preventDefault()
         e.stopPropagation()
         onOpen(modalAction, { server, channel })
     }
@@ -32,7 +33,7 @@ export const ServerChannelItemActions = ({
             {canOpenChat && channel.type === ChannelType.AUDIO && (
                 <ActionTooltip side="top" sideOffset={6} label="Open Chat" labelStyle="small">
                     <div
-                        onClick={(e) => onModalAction(e, "invitePeople")}
+                        onClick={(e) => e.preventDefault()}
                         className="actionItem"
                     >
                         <MessageCircle width={16} height={16} className="actionIcon" />

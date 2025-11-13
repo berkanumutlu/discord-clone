@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { updateThemeBasedOnTime } from "@/lib/utils"
+import { nextThemeStorageKey } from "@/data/globalData"
 
 export default function RootLayoutClient({ children }: { children: React.ReactNode }) {
     const { theme, setTheme } = useTheme() // setTheme from next-themes
@@ -14,7 +15,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
     }, [])
 
     useEffect(() => {
-        const userSelectedTheme = localStorage.getItem("user-selected-theme")
+        const userSelectedTheme = localStorage.getItem(nextThemeStorageKey)
         if (theme === "system" || !userSelectedTheme || userSelectedTheme === "system") {
             setIsSystemTheme(true)
         } else {

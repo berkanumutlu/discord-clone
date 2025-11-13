@@ -58,7 +58,7 @@ export const ActionTooltip = ({
                     align={align}
                     sideOffset={sideOffset}
                     className={cn(
-                        "p-0 max-w-48 relative bg-app-bg-floating-2 text-app-text-normal-4 border border-solid border-app-border-subtle-2 rounded-lg origin-[0_50%] !shadow-app-high-2 break-words pointer-events-none will-change-[opacity,transform] z-[1002] overflow-visible",
+                        "p-0 relative bg-app-bg-floating-2 text-app-text-normal-4 border border-solid border-app-border-subtle-2 rounded-lg origin-[0_50%] !shadow-app-high-2 break-words pointer-events-none will-change-[opacity,transform] z-[1002] overflow-visible",
                         labelClassName,
                         contentClassName
                     )}

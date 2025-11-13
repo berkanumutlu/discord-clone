@@ -39,13 +39,13 @@ export function DropdownWithContextMenu({
                         <DropdownMenuTrigger asChild>
                             {dropdownMenuTrigger}
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent className="p-0 border-none rounded-lg z-[102]">
+                        <DropdownMenuContent className="dropdownMenuContainer">
                             {dropdownMenuContent}
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
             </ContextMenuTrigger>
-            <ContextMenuContent className="p-0 border-none rounded-lg z-[102]">
+            <ContextMenuContent className="dropdownMenuContainer">
                 {contextMenuContent}
             </ContextMenuContent>
         </ContextMenu>

@@ -33,7 +33,7 @@ export const NavigationSidebarMenu = async () => {
             </div>
             <ul className="tree" role="tree">
                 <div className="itemsContainer">
-                    <ScrollArea className="scrollArea scrollNone">
+                    <ScrollArea className="scrollArea scrollNotVisible">
                         <NavigationActionItem
                             label="Direct Messages"
                             href={"/channels/@me"}

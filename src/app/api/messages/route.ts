@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 
 export const dynamic = 'force-dynamic';
-const MESSAGES_LIMIT = 15;
+const MESSAGES_LIMIT = 25;
 
 async function fetchMessages(channelId: string, cursor?: string) {
     const queryOptions: Prisma.MessageFindManyArgs = {

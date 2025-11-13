@@ -57,15 +57,15 @@ const ServerSidebarHeaderDropdownMenuContent = forwardRef<HTMLDivElement, Server
         const isModerator = isAdmin || userRole === MemberRole.MODERATOR
 
         return (
-            <div ref={ref} id="guild-header-popout" className="serverSidebarHeaderMenu fixedHeaderMenu" aria-label="Server Actions" role="menu" tabIndex={-1}>
-                <div className="serverSidebarHeaderMenuScroller">
+            <div ref={ref} id="guild-header-popout" className="dropdownMenu fixedDropdownMenu" aria-label="Server Actions" role="menu" tabIndex={-1}>
+                <div className="dropdownMenuScroller">
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             id="guild-header-popout-premium-subscribe"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Server Boost</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer"><Gem /></div>
+                            <div className="dropdownMenuItemLabel">Server Boost</div>
+                            <div className="dropdownMenuItemIconContainer"><Gem /></div>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
@@ -73,98 +73,98 @@ const ServerSidebarHeaderDropdownMenuContent = forwardRef<HTMLDivElement, Server
                         {isModerator && (
                             <DropdownMenuItem
                                 id="guild-header-popout-invite-people"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                                 onClick={() => onOpen("invitePeople", { server })}
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Invite People</div>
-                                <div className="serverSidebarHeaderMenuItemIconContainer"><UserPlus /></div>
+                                <div className="dropdownMenuItemLabel">Invite People</div>
+                                <div className="dropdownMenuItemIconContainer"><UserPlus /></div>
                             </DropdownMenuItem>
                         )}
                         {isAdmin && (
                             <DropdownMenuItem
                                 id="guild-header-popout-settings"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                                 onClick={() => onOpen("editServer", { server })}
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Server Settings</div>
-                                <div className="serverSidebarHeaderMenuItemIconContainer"><Settings /></div>
+                                <div className="dropdownMenuItemLabel">Server Settings</div>
+                                <div className="dropdownMenuItemIconContainer"><Settings /></div>
                             </DropdownMenuItem>
                         )}
                         {isModerator && (
                             <DropdownMenuItem
                                 id="guild-header-popout-create-channel"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                                 onClick={() => onOpen("createChannel")}
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Create Channel</div>
-                                <div className="serverSidebarHeaderMenuItemIconContainer"><CirclePlus /></div>
+                                <div className="dropdownMenuItemLabel">Create Channel</div>
+                                <div className="dropdownMenuItemIconContainer"><CirclePlus /></div>
                             </DropdownMenuItem>
                         )}
                         {isModerator && (
                             <DropdownMenuItem
                                 id="guild-header-popout-create-category"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Create Category</div>
-                                <div className="serverSidebarHeaderMenuItemIconContainer"><FolderPlus /></div>
+                                <div className="dropdownMenuItemLabel">Create Category</div>
+                                <div className="dropdownMenuItemIconContainer"><FolderPlus /></div>
                             </DropdownMenuItem>
                         )}
                         {isModerator && (
                             <DropdownMenuItem
                                 id="guild-header-popout-create-event"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Create Event</div>
-                                <div className="serverSidebarHeaderMenuItemIconContainer"><CalendarPlus /></div>
+                                <div className="dropdownMenuItemLabel">Create Event</div>
+                                <div className="dropdownMenuItemIconContainer"><CalendarPlus /></div>
                             </DropdownMenuItem>
                         )}
                         <DropdownMenuItem
                             id="guild-header-popout-application-directory"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">App Directory</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer"><Gamepad2 /></div>
+                            <div className="dropdownMenuItemLabel">App Directory</div>
+                            <div className="dropdownMenuItemIconContainer"><Gamepad2 /></div>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             id="guild-header-popout-notifications"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Notification Settings</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer"><Bell /></div>
+                            <div className="dropdownMenuItemLabel">Notification Settings</div>
+                            <div className="dropdownMenuItemIconContainer"><Bell /></div>
                         </DropdownMenuItem>
                         <DropdownMenuItem
                             id="guild-header-popout-privacy"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Privacy Settings</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer"><Shield /></div>
+                            <div className="dropdownMenuItemLabel">Privacy Settings</div>
+                            <div className="dropdownMenuItemIconContainer"><Shield /></div>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             id="guild-header-popout-change-nickname"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Edit Per-server Profile</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer"><Pencil /></div>
+                            <div className="dropdownMenuItemLabel">Edit Per-server Profile</div>
+                            <div className="dropdownMenuItemIconContainer"><Pencil /></div>
                         </DropdownMenuItem>
                         <DropdownMenuItem
                             asChild
                             id="guild-header-popout-hide-muted-channels"
                             role="menuitemcheckbox"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                             onSelect={(e) => e.preventDefault()}
                         >
                             <Label
                                 htmlFor="hide-muted-channels"
                                 onClick={(e) => { e.stopPropagation() }}
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Hide Muted Channels</div>
-                                <div className="serverSidebarHeaderMenuItemIconContainer">
+                                <div className="dropdownMenuItemLabel">Hide Muted Channels</div>
+                                <div className="dropdownMenuItemIconContainer">
                                     <Checkbox id="hide-muted-channels" />
                                 </div>
                             </Label>
@@ -174,11 +174,11 @@ const ServerSidebarHeaderDropdownMenuContent = forwardRef<HTMLDivElement, Server
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             id="guild-header-popout-leave"
-                            className="serverSidebarHeaderMenuItem serverSidebarHeaderMenuItemDanger"
+                            className="dropdownMenuItem dropdownMenuItemDanger"
                             onClick={() => onOpen(isAdmin ? "deleteServer" : "leaveServer", { server })}
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Leave Server</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer"><LogOut /></div>
+                            <div className="dropdownMenuItemLabel">Leave Server</div>
+                            <div className="dropdownMenuItemIconContainer"><LogOut /></div>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                 </div>
@@ -194,14 +194,14 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
     const isModerator = isAdmin || userRole === MemberRole.MODERATOR
 
     return (
-        <div id="guild-context" className="serverSidebarHeaderMenu flexibleHeaderMenu" aria-label="Server Actions" role="menu" tabIndex={-1}>
-            <div className="serverSidebarHeaderMenuScroller">
+        <div id="guild-context" className="dropdownMenu flexibleDropdownMenu" aria-label="Server Actions" role="menu" tabIndex={-1}>
+            <div className="dropdownMenuScroller">
                 <ContextMenuGroup>
                     <ContextMenuItem
                         id="guild-context-mark-guild-read"
-                        className="serverSidebarHeaderMenuItem"
+                        className="dropdownMenuItem"
                     >
-                        <div className="serverSidebarHeaderMenuItemLabel">Mark as Read</div>
+                        <div className="dropdownMenuItemLabel">Mark as Read</div>
                     </ContextMenuItem>
                 </ContextMenuGroup>
                 <ContextMenuSeparator />
@@ -209,10 +209,10 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                     <>
                         <ContextMenuItem
                             id="guild-context-invite-people"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                             onClick={() => onOpen("invitePeople", { server })}
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Invite People</div>
+                            <div className="dropdownMenuItemLabel">Invite People</div>
                         </ContextMenuItem>
                         <ContextMenuSeparator />
                     </>
@@ -222,48 +222,48 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                         <ContextMenuSubTrigger
                             inset
                             id="guild-context-mute-guild"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Mute Server</div>
+                            <div className="dropdownMenuItemLabel">Mute Server</div>
                         </ContextMenuSubTrigger>
-                        <ContextMenuSubContent className="serverSidebarHeaderSubMenuContainer">
-                            <div className="serverSidebarHeaderMenu subHeaderMenu">
-                                <div className="serverSidebarHeaderMenuScroller">
+                        <ContextMenuSubContent className="subDropdownMenuContainer">
+                            <div className="dropdownMenu subDropdownMenu">
+                                <div className="dropdownMenuScroller">
                                     <ContextMenuItem
                                         id="guild-context-mute-guild--900"
-                                        className="serverSidebarHeaderMenuItem"
+                                        className="dropdownMenuItem"
                                     >
-                                        <div className="serverSidebarHeaderMenuItemLabel">For 15 Minutes</div>
+                                        <div className="dropdownMenuItemLabel">For 15 Minutes</div>
                                     </ContextMenuItem>
                                     <ContextMenuItem
                                         id="guild-context-mute-guild--3600"
-                                        className="serverSidebarHeaderMenuItem"
+                                        className="dropdownMenuItem"
                                     >
-                                        <div className="serverSidebarHeaderMenuItemLabel">For 1 Hour</div>
+                                        <div className="dropdownMenuItemLabel">For 1 Hour</div>
                                     </ContextMenuItem>
                                     <ContextMenuItem
                                         id="guild-context-mute-guild--10800"
-                                        className="serverSidebarHeaderMenuItem"
+                                        className="dropdownMenuItem"
                                     >
-                                        <div className="serverSidebarHeaderMenuItemLabel">For 3 Hours</div>
+                                        <div className="dropdownMenuItemLabel">For 3 Hours</div>
                                     </ContextMenuItem>
                                     <ContextMenuItem
                                         id="guild-context-mute-guild--28800"
-                                        className="serverSidebarHeaderMenuItem"
+                                        className="dropdownMenuItem"
                                     >
-                                        <div className="serverSidebarHeaderMenuItemLabel">For 8 Hours</div>
+                                        <div className="dropdownMenuItemLabel">For 8 Hours</div>
                                     </ContextMenuItem>
                                     <ContextMenuItem
                                         id="guild-context-mute-guild--86400"
-                                        className="serverSidebarHeaderMenuItem"
+                                        className="dropdownMenuItem"
                                     >
-                                        <div className="serverSidebarHeaderMenuItemLabel">For 24 Hours</div>
+                                        <div className="dropdownMenuItemLabel">For 24 Hours</div>
                                     </ContextMenuItem>
                                     <ContextMenuItem
                                         id="guild-context-mute-guild---1"
-                                        className="serverSidebarHeaderMenuItem"
+                                        className="dropdownMenuItem"
                                     >
-                                        <div className="serverSidebarHeaderMenuItemLabel">Until I turn it back on</div>
+                                        <div className="dropdownMenuItemLabel">Until I turn it back on</div>
                                     </ContextMenuItem>
                                 </div>
                             </div>
@@ -273,43 +273,43 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                         <ContextMenuSubTrigger
                             inset
                             id="guild-context-guild-notifications"
-                            className="serverSidebarHeaderMenuItem"
+                            className="dropdownMenuItem"
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">
+                            <div className="dropdownMenuItemLabel">
                                 Notification Settings
-                                <div className="serverSidebarHeaderMenuItemLabelSubText">All Messages</div>
+                                <div className="dropdownMenuItemLabelSubText">All Messages</div>
                             </div>
                         </ContextMenuSubTrigger>
-                        <ContextMenuSubContent className="serverSidebarHeaderSubMenuContainer">
-                            <div className="serverSidebarHeaderMenu subHeaderMenu">
-                                <div className="serverSidebarHeaderMenuScroller">
+                        <ContextMenuSubContent className="subDropdownMenuContainer">
+                            <div className="dropdownMenu subDropdownMenu">
+                                <div className="dropdownMenuScroller">
                                     <ContextMenuRadioGroup value="0">
                                         <ContextMenuRadioItem
                                             value="0"
                                             id="guild-context-guild-notifications--0"
-                                            className="serverSidebarHeaderMenuItem serverSidebarHeaderMenuRadioItem"
+                                            className="dropdownMenuItem dropdownMenuRadioItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">All Messages</div>
-                                            <div className="serverSidebarHeaderMenuItemIconContainer"><CustomRadioButtonIndicatorIcon checked={true} /></div>
+                                            <div className="dropdownMenuItemLabel">All Messages</div>
+                                            <div className="dropdownMenuItemIconContainer"><CustomRadioButtonIndicatorIcon checked={true} /></div>
                                         </ContextMenuRadioItem>
                                         <ContextMenuRadioItem
                                             value="1"
                                             id="guild-context-guild-notifications--1"
-                                            className="serverSidebarHeaderMenuItem serverSidebarHeaderMenuRadioItem"
+                                            className="dropdownMenuItem dropdownMenuRadioItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Only <strong>@mentions</strong></div>
-                                            <div className="serverSidebarHeaderMenuItemIconContainer"><CustomRadioButtonIndicatorIcon checked={false} /></div>
+                                            <div className="dropdownMenuItemLabel">Only <strong>@mentions</strong></div>
+                                            <div className="dropdownMenuItemIconContainer"><CustomRadioButtonIndicatorIcon checked={false} /></div>
                                         </ContextMenuRadioItem>
                                         <ContextMenuRadioItem
                                             value="2"
                                             id="guild-context-guild-notifications--2"
-                                            className="serverSidebarHeaderMenuItem serverSidebarHeaderMenuRadioItem"
+                                            className="dropdownMenuItem dropdownMenuRadioItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Nothing</div>
-                                            <div className="serverSidebarHeaderMenuItemIconContainer"><CustomRadioButtonIndicatorIcon checked={false} /></div>
+                                            <div className="dropdownMenuItemLabel">Nothing</div>
+                                            <div className="dropdownMenuItemIconContainer"><CustomRadioButtonIndicatorIcon checked={false} /></div>
                                         </ContextMenuRadioItem>
                                     </ContextMenuRadioGroup>
                                     <ContextMenuSeparator />
@@ -318,15 +318,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                                             asChild
                                             id="guild-context-guild-notifications--suppress-everyone"
                                             role="menuitemcheckbox"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
                                             <Label
                                                 htmlFor="context-guild-notifications--suppress-everyone"
                                                 onClick={(e) => { e.stopPropagation() }}
                                             >
-                                                <div className="serverSidebarHeaderMenuItemLabel">Suppress <strong>@everyone</strong> and <strong>@here</strong></div>
-                                                <div className="serverSidebarHeaderMenuItemIconContainer">
+                                                <div className="dropdownMenuItemLabel">Suppress <strong>@everyone</strong> and <strong>@here</strong></div>
+                                                <div className="dropdownMenuItemIconContainer">
                                                     <Checkbox id="context-guild-notifications--suppress-everyone" />
                                                 </div>
                                             </Label>
@@ -335,15 +335,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                                             asChild
                                             id="guild-context-guild-notifications--suppress-roles"
                                             role="menuitemcheckbox"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
                                             <Label
                                                 htmlFor="context-guild-notifications--suppress-roles"
                                                 onClick={(e) => { e.stopPropagation() }}
                                             >
-                                                <div className="serverSidebarHeaderMenuItemLabel">Suppress All Role <strong>@mentions</strong></div>
-                                                <div className="serverSidebarHeaderMenuItemIconContainer">
+                                                <div className="dropdownMenuItemLabel">Suppress All Role <strong>@mentions</strong></div>
+                                                <div className="dropdownMenuItemIconContainer">
                                                     <Checkbox id="context-guild-notifications--suppress-roles" />
                                                 </div>
                                             </Label>
@@ -352,15 +352,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                                             asChild
                                             id="guild-context-guild-notifications--suppress-highlights"
                                             role="menuitemcheckbox"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
                                             <Label
                                                 htmlFor="context-guild-notifications--suppress-highlights"
                                                 onClick={(e) => { e.stopPropagation() }}
                                             >
-                                                <div className="serverSidebarHeaderMenuItemLabel">Suppress Highlights</div>
-                                                <div className="serverSidebarHeaderMenuItemIconContainer">
+                                                <div className="dropdownMenuItemLabel">Suppress Highlights</div>
+                                                <div className="dropdownMenuItemIconContainer">
                                                     <Checkbox id="context-guild-notifications--suppress-highlights" />
                                                 </div>
                                             </Label>
@@ -369,15 +369,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                                             asChild
                                             id="guild-context-guild-notifications--mute-events"
                                             role="menuitemcheckbox"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
                                             <Label
                                                 htmlFor="context-guild-notifications--mute-events"
                                                 onClick={(e) => { e.stopPropagation() }}
                                             >
-                                                <div className="serverSidebarHeaderMenuItemLabel">Mute New Events</div>
-                                                <div className="serverSidebarHeaderMenuItemIconContainer">
+                                                <div className="dropdownMenuItemLabel">Mute New Events</div>
+                                                <div className="dropdownMenuItemIconContainer">
                                                     <Checkbox id="context-guild-notifications--mute-events" />
                                                 </div>
                                             </Label>
@@ -389,15 +389,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                                             asChild
                                             id="guild-context-guild-notifications--mobile-push"
                                             role="menuitemcheckbox"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                             onSelect={(e) => e.preventDefault()}
                                         >
                                             <Label
                                                 htmlFor="context-guild-notifications--mobile-push"
                                                 onClick={(e) => { e.stopPropagation() }}
                                             >
-                                                <div className="serverSidebarHeaderMenuItemLabel">Mobile Push Notifications</div>
-                                                <div className="serverSidebarHeaderMenuItemIconContainer">
+                                                <div className="dropdownMenuItemLabel">Mobile Push Notifications</div>
+                                                <div className="dropdownMenuItemIconContainer">
                                                     <Checkbox id="context-guild-notifications--mobile-push" />
                                                 </div>
                                             </Label>
@@ -411,15 +411,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                         asChild
                         id="guild-context-hide-muted-channels"
                         role="menuitemcheckbox"
-                        className="serverSidebarHeaderMenuItem"
+                        className="dropdownMenuItem"
                         onSelect={(e) => e.preventDefault()}
                     >
                         <Label
                             htmlFor="context-hide-muted-channels"
                             onClick={(e) => { e.stopPropagation() }}
                         >
-                            <div className="serverSidebarHeaderMenuItemLabel">Hide Muted Channels</div>
-                            <div className="serverSidebarHeaderMenuItemIconContainer">
+                            <div className="dropdownMenuItemLabel">Hide Muted Channels</div>
+                            <div className="dropdownMenuItemIconContainer">
                                 <Checkbox id="context-hide-muted-channels" />
                             </div>
                         </Label>
@@ -432,120 +432,120 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                             <ContextMenuSubTrigger
                                 inset
                                 id="guild-context-guild-settings"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Server Settings</div>
+                                <div className="dropdownMenuItemLabel">Server Settings</div>
                             </ContextMenuSubTrigger>
-                            <ContextMenuSubContent className="serverSidebarHeaderSubMenuContainer">
-                                <div className="serverSidebarHeaderMenu subHeaderMenu">
-                                    <div className="serverSidebarHeaderMenuScroller">
+                            <ContextMenuSubContent className="subDropdownMenuContainer">
+                                <div className="dropdownMenu subDropdownMenu">
+                                    <div className="dropdownMenuScroller">
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--PROFILE"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Server Profile</div>
+                                            <div className="dropdownMenuItemLabel">Server Profile</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--BOOST_PERKS"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Boost Perks</div>
+                                            <div className="dropdownMenuItemLabel">Boost Perks</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--EMOJI"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Emoji</div>
+                                            <div className="dropdownMenuItemLabel">Emoji</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--STICKERS"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Stickers</div>
+                                            <div className="dropdownMenuItemLabel">Stickers</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--SOUNDBOARD"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Soundboard</div>
+                                            <div className="dropdownMenuItemLabel">Soundboard</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--MEMBERS"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Members</div>
+                                            <div className="dropdownMenuItemLabel">Members</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--ROLES"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Roles</div>
+                                            <div className="dropdownMenuItemLabel">Roles</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--INVITES"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Invites</div>
+                                            <div className="dropdownMenuItemLabel">Invites</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--ACCESS"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Access</div>
+                                            <div className="dropdownMenuItemLabel">Access</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--INTEGRATIONS"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Integrations</div>
+                                            <div className="dropdownMenuItemLabel">Integrations</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--APP_DIRECTORY"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">App Directory</div>
+                                            <div className="dropdownMenuItemLabel">App Directory</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--MODERATION"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Safety Setup</div>
+                                            <div className="dropdownMenuItemLabel">Safety Setup</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--AUDIT_LOG"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Audit Log</div>
+                                            <div className="dropdownMenuItemLabel">Audit Log</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--BANS"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Bans</div>
+                                            <div className="dropdownMenuItemLabel">Bans</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--GUILD_AUTOMOD"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">AutoMod</div>
+                                            <div className="dropdownMenuItemLabel">AutoMod</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--COMMUNITY"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Community Settings</div>
+                                            <div className="dropdownMenuItemLabel">Community Settings</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--GUILD_PREMIUM"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Server Boost Status</div>
+                                            <div className="dropdownMenuItemLabel">Server Boost Status</div>
                                         </ContextMenuItem>
                                         <ContextMenuItem
                                             id="guild-context-guild-settings--GUILD_TEMPLATES"
-                                            className="serverSidebarHeaderMenuItem"
+                                            className="dropdownMenuItem"
                                         >
-                                            <div className="serverSidebarHeaderMenuItemLabel">Server Template</div>
+                                            <div className="dropdownMenuItemLabel">Server Template</div>
                                         </ContextMenuItem>
                                     </div>
                                 </div>
@@ -554,15 +554,15 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                     )}
                     <ContextMenuItem
                         id="guild-context-privacy"
-                        className="serverSidebarHeaderMenuItem"
+                        className="dropdownMenuItem"
                     >
-                        <div className="serverSidebarHeaderMenuItemLabel">Privacy Settings</div>
+                        <div className="dropdownMenuItemLabel">Privacy Settings</div>
                     </ContextMenuItem>
                     <ContextMenuItem
                         id="guild-context-change-nickname"
-                        className="serverSidebarHeaderMenuItem"
+                        className="dropdownMenuItem"
                     >
-                        <div className="serverSidebarHeaderMenuItemLabel">Edit Per-server Profile</div>
+                        <div className="dropdownMenuItemLabel">Edit Per-server Profile</div>
                     </ContextMenuItem>
                 </ContextMenuGroup>
                 <ContextMenuSeparator />
@@ -571,22 +571,22 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                         <ContextMenuGroup>
                             <ContextMenuItem
                                 id="guild-context-create-channel"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                                 onClick={() => onOpen("createChannel")}
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Create Channel</div>
+                                <div className="dropdownMenuItemLabel">Create Channel</div>
                             </ContextMenuItem>
                             <ContextMenuItem
                                 id="guild-context-create-category"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Create Category</div>
+                                <div className="dropdownMenuItemLabel">Create Category</div>
                             </ContextMenuItem>
                             <ContextMenuItem
                                 id="guild-context-create-event"
-                                className="serverSidebarHeaderMenuItem"
+                                className="dropdownMenuItem"
                             >
-                                <div className="serverSidebarHeaderMenuItemLabel">Create Event</div>
+                                <div className="dropdownMenuItemLabel">Create Event</div>
                             </ContextMenuItem>
                         </ContextMenuGroup>
                         <ContextMenuSeparator />
@@ -595,10 +595,10 @@ const ServerSidebarHeaderContextMenuContent = ({ server, userRole }: ServerSideb
                 <ContextMenuGroup>
                     <ContextMenuItem
                         id="guild-context-leave-guild"
-                        className="serverSidebarHeaderMenuItem serverSidebarHeaderMenuItemDanger"
+                        className="dropdownMenuItem dropdownMenuItemDanger"
                         onClick={() => onOpen(isAdmin ? "deleteServer" : "leaveServer", { server })}
                     >
-                        <div className="serverSidebarHeaderMenuItemLabel">Leave Server</div>
+                        <div className="dropdownMenuItemLabel">Leave Server</div>
                     </ContextMenuItem>
                 </ContextMenuGroup>
             </div>

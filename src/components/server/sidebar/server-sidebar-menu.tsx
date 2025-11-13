@@ -57,7 +57,7 @@ export const ServerSidebarMenu = async ({
                     ) : (
                         <li className="serverSidebarItem">
                             <div className="serverSidebarItemWrapper serverSidebarItemProgressBarWrapper" role="button" tabIndex={-1}>
-                                <ActionTooltip label="Buy Boosts to help unlock Level 1 perks!" labelStyle="small" side="top">
+                                <ActionTooltip label="Buy Boosts to help unlock Level 1 perks!" labelStyle="small" side="top" contentClassName="max-w-48 tooltipBlack">
                                     <div className="textArea">
                                         <div className="goalTextContainer">
                                             <div className="goalText">goal: lvl 1</div>

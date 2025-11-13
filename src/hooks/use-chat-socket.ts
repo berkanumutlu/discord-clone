@@ -9,7 +9,7 @@ type ChatSocketProps = {
     queryKey: string;
 };
 
-type MessageWithMemberWithProfile = Message & {
+export type MessageWithMemberWithProfile = Message & {
     member: Member & {
         profile: Profile;
     };

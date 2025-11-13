@@ -59,7 +59,7 @@ export const CustomFormCheckbox = ({
                                         a: ['href', 'class', 'rel', 'target'],
                                     },
                                     allowedClasses: {
-                                        a: ['anchor_edefb8', 'anchorUnderlineOnHover_edefb8'],
+                                        a: ['anchorLink', 'anchorUnderlineOnHover'],
                                     },
                                     allowedSchemes: ['http', 'https'],
                                     allowedSchemesByTag: {

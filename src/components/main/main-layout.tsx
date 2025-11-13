@@ -8,6 +8,7 @@ import { placeholderImageUrl } from "@/data/globalData"
 import { NavigationSidebarMenu } from "@/components/navigation/navigation-sidebar-menu"
 import { Button } from "@/components/ui/button"
 import { ActionTooltip } from "@/components/action-tooltip"
+import { SocketIndicator } from "@/components/socket-indicator"
 
 export default async function MainLayoutComponent({
     children,
@@ -36,14 +37,15 @@ export default async function MainLayoutComponent({
                                             </div>
                                             <div className="leadingSection"></div>
                                             <div className="trailingSection">
+                                                <SocketIndicator />
                                                 <div className="recentsIcon">
-                                                    <ActionTooltip side="bottom" sideOffset={8} label="Inbox" labelStyle="small">
+                                                    <ActionTooltip label="Inbox" labelStyle="small" side="bottom" sideOffset={8}>
                                                         <div className="buttonDiv" aria-label="Inbox" role="button">
                                                             <Inbox width={20} height={20} fill="none" role="img" />
                                                         </div>
                                                     </ActionTooltip>
                                                 </div>
-                                                <ActionTooltip side="bottom" sideOffset={8} label="Help" labelStyle="small">
+                                                <ActionTooltip label="Help" labelStyle="small" side="bottom" sideOffset={8}>
                                                     <Link
                                                         href={"https://support.discord.com"}
                                                         className="anchorLink"
@@ -66,7 +68,7 @@ export default async function MainLayoutComponent({
                                                     <div className="panelsWrapper"></div>
                                                     <div className="panelsContainer">
                                                         <div className="avatarWrapper" aria-label="Set Status" role="button" aria-expanded="false">
-                                                            <div className="avatarContainer" aria-label="berkanumutlu, Online" role="img" aria-hidden="false">
+                                                            <div className="avatarContainer" aria-label={`${userProfile?.username}, Online`} role="img" aria-hidden="false">
                                                                 <svg width="49" height="49" viewBox="0 0 49 49" className="avatarSVG" aria-hidden="true">
                                                                     <mask id=":r12:" width="40" height="40">
                                                                         <circle cx="20" cy="20" r="20" fill="white"></circle>
@@ -104,7 +106,7 @@ export default async function MainLayoutComponent({
                                                                 <div className="panelSubtextContainer">
                                                                     <div className="subText">
                                                                         <div className="hoverRoll">
-                                                                            <div className="hovered">berkanumutlu</div>
+                                                                            <div className="hovered">{userProfile?.username}</div>
                                                                             <div className="hoveredDefault">
                                                                                 <div className="hoveredDefaultContainer">
                                                                                     <div className="animatedText">Online</div>
@@ -116,27 +118,33 @@ export default async function MainLayoutComponent({
                                                             </div>
                                                         </div>
                                                         <div className="panelsButtons">
-                                                            <Button className="panelsButtonsButton panelsMuteButton" aria-label="Mute" role="switch" aria-checked="false">
-                                                                <div className="contents">
-                                                                    <div className="lottieIcon">
-                                                                        <Mic width={20} height={20} />
+                                                            <ActionTooltip label={"Mute"} labelStyle="small" side="top" sideOffset={8} contentClassName="deneme">
+                                                                <Button className="panelsButtonsButton panelsMuteButton" aria-label="Mute" role="switch" aria-checked="false">
+                                                                    <div className="contents">
+                                                                        <div className="lottieIcon">
+                                                                            <Mic width={20} height={20} />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </Button>
-                                                            <Button className="panelsButtonsButton panelsDeafenButton" aria-label="Deafen" role="switch" aria-checked="false">
-                                                                <div className="contents">
-                                                                    <div className="lottieIcon">
-                                                                        <Headphones width={20} height={20} />
+                                                                </Button>
+                                                            </ActionTooltip>
+                                                            <ActionTooltip label={"Deafen"} labelStyle="small" side="top" sideOffset={8}>
+                                                                <Button className="panelsButtonsButton panelsDeafenButton" aria-label="Deafen" role="switch" aria-checked="false">
+                                                                    <div className="contents">
+                                                                        <div className="lottieIcon">
+                                                                            <Headphones width={20} height={20} />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </Button>
-                                                            <Button className="panelsButtonsButton panelsSettingsButton" aria-label="User Settings">
-                                                                <div className="contents">
-                                                                    <div className="lottieIcon">
-                                                                        <Settings width={20} height={20} />
+                                                                </Button>
+                                                            </ActionTooltip>
+                                                            <ActionTooltip label={"User Settings"} labelStyle="small" side="top" sideOffset={8}>
+                                                                <Button className="panelsButtonsButton panelsSettingsButton" aria-label="User Settings">
+                                                                    <div className="contents">
+                                                                        <div className="lottieIcon">
+                                                                            <Settings width={20} height={20} />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </Button>
+                                                                </Button>
+                                                            </ActionTooltip>
                                                         </div>
                                                     </div>
                                                 </section>

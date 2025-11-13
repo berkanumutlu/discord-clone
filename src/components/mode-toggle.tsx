@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Check, Moon, Sun, SunMoon } from "lucide-react";
 import { updateThemeBasedOnTime } from "@/lib/utils";
+import { nextThemeStorageKey } from "@/data/globalData";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
@@ -15,7 +16,7 @@ export function ModeToggle() {
     // Checking the mount status
     useEffect(() => {
         setMounted(true);
-        const userSelectedTheme = localStorage.getItem("user-selected-theme");
+        const userSelectedTheme = localStorage.getItem(nextThemeStorageKey);
         setUserSelectedTheme(userSelectedTheme || "system"); // If not present, "system" is the default
     }, []);
 
@@ -23,7 +24,7 @@ export function ModeToggle() {
     const handleThemeChange = (newTheme: string) => {
         setTheme(newTheme);
         setUserSelectedTheme(newTheme);
-        localStorage.setItem("user-selected-theme", newTheme); // Save new selection to localStorage
+        localStorage.setItem(nextThemeStorageKey, newTheme); // Save new selection to localStorage
         if (newTheme === "system") {
             updateThemeBasedOnTime(setTheme);
         }
